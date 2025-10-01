@@ -5,8 +5,8 @@
   <meta name="viewport" content="width-device-width" initial-scale="1.0">
   <title>Store</title>
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
         <nav class="navbar navbar-light bg-info">
@@ -22,21 +22,19 @@
                 
                 </div>
                <!-- đây là cột danh mục-->
-                <div class="col-auto category-col">
-                   <div class="dropdown">
-                          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="asset/expand_category_icon.png" alt="icon" width="20" height="20" class="me-2">
-                            Danh mục
-                          </button>
-
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Điện Tử</a></li>
-                            <li><a class="dropdown-item" href="#">Điện Lạnh-Điện Gia dụng</a></li>
-                            <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
-                          </ul>
-                     </div>
-                </div>
+               <div class="col-auto category-col">
+                    <div class="dropdown">
+                        <button class="btn btn-info">
+                          <img src="asset/expand_category_icon.png" alt="icon" width="20" height="20" class="me-2">
+                          Danh mục
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Điện Tử</a></li>
+                          <li><a href="#">Điện Lạnh - Điện Gia dụng</a></li>
+                          <li><a href="#">Phụ Kiện</a></li>
+                        </ul>
+                    </div>
+                  </div>
                 <!-- đây là cột tìm kiếm-->
                 <div class="col-auto search-col">
                   <form class="d-flex">
@@ -65,7 +63,5 @@
           </div>
 
         </nav>
- 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
