@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<nav class="navbar navbar-light bg-info py-3">
+  <div class="container-fluid d-flex align-items-center flex-wrap"> <!-- flex-wrap thay cho flex-nowrap -->
+    
+    <!-- Logo -->
+    <a class="navbar-brand me-3" href="index.html">
+      <img src="asset/logo.png" alt="Logo" class="logo-img">
+    </a>
+
+    <!-- Danh mục -->
+    <div class="dropdown me-3 flex-shrink-0">
+      <button class="btn btn-info btn-lg dropdown-toggle fw-bold">
+        <img src="asset/expand_category_icon.png" alt="icon" width="24" height="24" class="me-2">
+        Danh mục
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Điện Tử</a></li>
+        <li><a class="dropdown-item" href="#">Điện Lạnh - Điện Gia dụng</a></li>
+        <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
+      </ul>
+    </div>
+
+    <!-- Search -->
+    <form class="d-flex me-2 search-form" style="flex:1; max-width:500px;">
+      <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
+    </form>
+
+    <!-- User buttons -->
+    <div class="btn-group ms-0">
+      <a href="gio-hang.html" class="btn btn-info btn-lg fw-bold d-flex align-items-center user-btn">
+        <img src="asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
+        Giỏ hàng
+      </a>
+      <a href="dang-nhap.html" class="btn btn-info btn-lg fw-bold d-flex align-items-center user-btn">
+        <img src="asset/user_icon.png" alt="Đăng nhập" width="24" height="24" class="me-2">
+        Đăng nhập
+      </a>
+      <a href="dang-ky.html" class="btn btn-info btn-lg fw-bold d-flex align-items-center user-btn">
+        <img src="asset/reigister_icon.png" alt="Đăng ký" width="24" height="24" class="me-2">
+        Đăng ký
+      </a>
+    </div>
+
+  </div>
+</nav>
+</body>
+</html>
