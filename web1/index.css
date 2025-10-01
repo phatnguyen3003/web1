@@ -1,32 +1,59 @@
-/* Dropdown thuần CSS */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+.logo-img { width: 120px; height: auto; }
+.search-input { flex:1; max-width: 500px; }
+.user-btn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 120px;
+  white-space: nowrap;
+}
 
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      background-color: #fff;
-      min-width: 200px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      z-index: 1000;
-    }
+/* dropdown CSS */
+.dropdown { position: relative; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+.dropdown:hover .dropdown-menu { display: block; }
 
-    .dropdown-menu li a {
-      display: block;
-      padding: 10px;
-      text-decoration: none;
-      color: #000;
-    }
+/* --- Sửa lỗi khi màn hình nhỏ --- */
+.navbar .container-fluid { gap: .5rem; } /* khoảng giữa các phần tử */
+@media (max-width: 768px) {
+  /* cho phép wrap và sắp xếp thứ tự hợp lý */
+  .navbar .container-fluid { flex-wrap: wrap; align-items: center; }
 
-    .dropdown-menu li a:hover {
-      background-color: #f1f1f1;
-    }
+  /* logo nhỏ lại */
+  .logo-img { width: 90px; }
 
-    .dropdown:hover .dropdown-menu {
-      display: block;
-    }
+  /* đặt thứ tự: Danh mục (1) - Nút (2) - Search (3) */
+  .dropdown { order: 1; flex: 0 0 auto; }
+  .btn-group { order: 2; width: 100%; display:flex; gap: .5rem; padding: 0 .5rem; }
+  .search-form { order: 3; width: 100%; padding: 0 .5rem; }
+
+  /* search full-width */
+  .search-input { width: 100%; max-width: none; }
+
+  /* nút rút gọn trên mobile: chia đều, không bị ép ra ngoài */
+  .btn-group .btn {
+    flex: 1 1 0;
+    min-width: 0;         /* rất quan trọng để cho phép co lại */
+    padding: 0.45rem 0.5rem;
+    font-size: 0.9rem;
+    justify-content: center;
+  }
+
+  /* dropdown menu khi mobile: cho hiển thị full width phía dưới nút danh mục */
+  .dropdown-menu {
+    position: static;
+    display: none;
+    width: 100%;
+    box-shadow: none;
+  }
+  .dropdown:hover .dropdown-menu { display: block; }
+
+  /* nếu muốn bớt cao (btn-lg -> nhỏ hơn) */
+  .btn-lg { padding: .4rem .6rem; font-size: .95rem; }
+}
