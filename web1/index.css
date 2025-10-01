@@ -1,0 +1,32 @@
+/* Dropdown thuần CSS */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 200px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      z-index: 1000;
+    }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
