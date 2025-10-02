@@ -16,5 +16,7 @@
 
   <h1>IF YOU USE BOOTSTRAP USE THE node_modules/bootstrap/dist/css/bootstrap.css DONT AS LIKE BAO HE USE THE ONLINE VERSION. AND DONT EVER WRITE ANY JS TO RUN THE WEB, WHEN ON SERVER, IT WILL DIE</h1>
   <p>If anyone update anything of this repo, write it into the log file, YOUR PERCENT OF POINT WILL DROP IF YOU DONT</p>
+
+  <h1>DONT SWEARING TO PHAT LIKE HAU, HIS POINT JUST DROP 5% FOR THAT, HE NOW 20% LEFT</h1>
   <h2>GOOD LUCK GUYS</h2>
 
