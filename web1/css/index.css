@@ -1,14 +1,28 @@
-.logo-img { width: 120px; height: auto; }
-.search-input { flex:1; max-width: 500px; }
+.background-blue {
+  background-color: #5cd6ff;
+}
+/* Logo */
+.logo-img { 
+  width: 120px; 
+  height: auto; 
+}
+
+/* Search box */
+.search-input { 
+  flex: 1; 
+  max-width: 500px; 
+}
+
+/* User buttons */
 .user-btn {
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 120px;
   white-space: nowrap;
 }
 
-/* dropdown CSS */
+/* Dropdown */
 .dropdown { position: relative; }
 .dropdown-menu {
   display: none;
@@ -19,33 +33,62 @@
 }
 .dropdown:hover .dropdown-menu { display: block; }
 
-/* --- Sửa lỗi khi màn hình nhỏ --- */
-.navbar .container-fluid { gap: .5rem; } /* khoảng giữa các phần tử */
+/* --- Responsive cho màn hình nhỏ --- */
+.navbar .container-fluid { gap: .5rem; }
+
 @media (max-width: 768px) {
-  /* cho phép wrap và sắp xếp thứ tự hợp lý */
-  .navbar .container-fluid { flex-wrap: wrap; align-items: center; }
+  /* container wrap */
+  .navbar .container-fluid { 
+    flex-wrap: wrap; 
+    align-items: center; 
+  }
 
   /* logo nhỏ lại */
   .logo-img { width: 90px; }
 
-  /* đặt thứ tự: Danh mục (1) - Nút (2) - Search (3) */
-  .dropdown { order: 1; flex: 0 0 auto; }
-  .btn-group { order: 2; width: 100%; display:flex; gap: .5rem; padding: 0 .5rem; }
-  .search-form { order: 3; width: 100%; padding: 0 .5rem; }
+  /* sắp xếp thứ tự: Danh mục (1) - Nút (2) - Search (3) */
+  .dropdown { 
+    order: 1; 
+    flex: 0 0 auto; 
+  }
+
+  .btn-group { 
+    order: 2; 
+    width: 100%; 
+    display: flex !important; 
+    flex-wrap: nowrap !important; /* luôn 1 hàng */
+    gap: .5rem; 
+    padding: 0 .5rem; 
+  }
+
+  .search-form { 
+    order: 3; 
+    width: 100%; 
+    padding: 0 .5rem; 
+  }
 
   /* search full-width */
-  .search-input { width: 100%; max-width: none; }
+  .search-input { 
+    width: 100%; 
+    max-width: none; 
+  }
 
-  /* nút rút gọn trên mobile: chia đều, không bị ép ra ngoài */
+  /* nút chia đều, không tràn */
   .btn-group .btn {
     flex: 1 1 0;
-    min-width: 0;         /* rất quan trọng để cho phép co lại */
+    min-width: 0;
     padding: 0.45rem 0.5rem;
     font-size: 0.9rem;
     justify-content: center;
   }
 
-  /* dropdown menu khi mobile: cho hiển thị full width phía dưới nút danh mục */
+  /* thu nhỏ btn-lg cho mobile */
+  .btn-lg { 
+    padding: .4rem .6rem; 
+    font-size: .95rem; 
+  }
+
+  /* dropdown menu full-width dưới nút danh mục */
   .dropdown-menu {
     position: static;
     display: none;
@@ -53,10 +96,4 @@
     box-shadow: none;
   }
   .dropdown:hover .dropdown-menu { display: block; }
-
-  /* nếu muốn bớt cao (btn-lg -> nhỏ hơn) */
-  .btn-lg { padding: .4rem .6rem; font-size: .95rem; }
-}
-.background-blue{
-    background-color: #5cd6ff;
 }
