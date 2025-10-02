@@ -1,0 +1,19 @@
+.background-blue{
+    background-color: #5cd6ff;
+}
+.borderline-blue{
+    border:3px solid #5cd6ff;
+}
+
+.menu-change-avatar{
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.small-icon{
+    font-size: 10px;
+}
+
+.address-custom-width{
+    width:20%;
+}
