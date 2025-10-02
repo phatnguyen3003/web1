@@ -1,2 +1,6 @@
-1/10/2025 1:29PM : create project
+1/10/2025 1:29PM : create project.
 1/10/2025 7.00PM : update index.html
+2/10/2025 7:03AM : update site/profile.html, site/infor_change.html, add backgound-blue to navbar color, reconstruct file structure.
+//.background-blue{
+    background-color: #5cd6ff;
+}//
