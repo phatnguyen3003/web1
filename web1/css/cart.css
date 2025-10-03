@@ -1,0 +1,32 @@
+.box{
+	position: relative;
+	background: aqua;
+	min-height: 150px;
+	margin-top: 20px ;
+	border-radius: 10px;
+}
+
+.item-picture{
+	position: relative;
+	background: white;
+	min-height: 100px;
+	min-width: 100px;
+	margin-top: 10px ;
+	border-radius: 10px;
+}
+
+.btn-img-fill {
+    /* Đảm bảo ảnh chiếm 100% không gian (width/height) của nút */
+    width: 100%;
+    height: 100%;
+    
+    /* === Bắt buộc phải có để ảnh lấp đầy === */
+    /* Lấp đầy toàn bộ khu vực, có thể làm biến dạng ảnh */
+    object-fit: fill; 
+    
+    /* HOẶC: Lấp đầy toàn bộ khu vực mà không bị biến dạng, nhưng có thể bị cắt bớt */
+    /* object-fit: cover; */ 
+    
+    /* HOẶC: Giữ tỷ lệ và nằm gọn trong nút (nên dùng cho icon) */
+    /* object-fit: contain; */ 
+}
