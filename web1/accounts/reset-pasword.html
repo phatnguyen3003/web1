@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thay đổi mật khẩu</title>
+
+  <!-- Bootstrap 5 local -->
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+  <div class="row w-100 justify-content-center align-items-stretch g-5">
+    <div class="col-md-6 order-md-2">
+      <div class="card shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4 text-primary">Đổi mật khẩu</h2>
+          
+          <form action="/change-password" method="POST">
+            <!-- Mật khẩu hiện tại -->
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="currentPassword" placeholder="Mật khẩu hiện tại" required>
+              <label for="currentPassword">Mật khẩu hiện tại</label>
+            </div>
+
+            <!-- Mật khẩu mới -->
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="newPassword" placeholder="Mật khẩu mới" required>
+              <label for="newPassword">Mật khẩu mới</label>
+            </div>
+
+            <!-- Xác nhận mật khẩu mới -->
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Xác nhận mật khẩu mới" required>
+              <label for="confirmPassword">Xác nhận mật khẩu mới</label>
+            </div>
+
+            <!-- Nút đổi mật khẩu -->
+            <button type="submit" class="btn btn-primary w-100">Đổi mật khẩu</button>
+          </form>
+
+          <!-- Quay lại -->
+          <div class="text-center mt-3">
+            <a href="../index-frame.html" class="btn btn-outline-secondary btn-sm">
+              ← Quay lại trang chủ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 order-md-1">
+      <div class="card shadow-lg rounded-4 h-100 d-flex flex-column justify-content-center align-items-center background-blue">
+        <img src="../asset/logo.png" alt="logo" class="img-fluid mb-3" style="max-width:250px;">
+        <p><b>Chào mừng bạn đến với chúng tôi.</b></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
