@@ -9,24 +9,44 @@
 .item-picture{
 	position: relative;
 	background: white;
-	min-height: 100px;
-	min-width: 100px;
-	margin-top: 10px ;
+	min-height: 90px;
+	min-width: 90px;
+	margin-top: 5px ;
 	border-radius: 10px;
 }
 
 .btn-img-fill {
-    /* Đảm bảo ảnh chiếm 100% không gian (width/height) của nút */
     width: 100%;
     height: 100%;
-    
-    /* === Bắt buộc phải có để ảnh lấp đầy === */
-    /* Lấp đầy toàn bộ khu vực, có thể làm biến dạng ảnh */
     object-fit: fill; 
-    
-    /* HOẶC: Lấp đầy toàn bộ khu vực mà không bị biến dạng, nhưng có thể bị cắt bớt */
-    /* object-fit: cover; */ 
-    
-    /* HOẶC: Giữ tỷ lệ và nằm gọn trong nút (nên dùng cho icon) */
-    /* object-fit: contain; */ 
+}
+
+/* Ẩn mũi tên (Spin Buttons) trong input type="number" để đồng bộ các trình duyệt */
+.form-control[type="number"]::-webkit-outer-spin-button,
+.form-control[type="number"]::-webkit-inner-spin-button {
+    /* Cho firefox */
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-control[type="number"]::-webkit-outer-spin-button,
+.form-control[type="number"]::-webkit-inner-spin-button {
+    /* Cho Chrome, Safari, Opera */
+    -webkit-appearance: none;
+    margin: 0; /* Quan trọng: loại bỏ margin có thể còn sót lại */
+}
+
+/* Ghi đè CSS cho thanh footer cố định */
+.fixed-bottom-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1030;
+}
+
+
+body {
+    padding-bottom: 70px;
 }
