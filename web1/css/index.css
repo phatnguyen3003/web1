@@ -1,3 +1,7 @@
+body{
+  min-height:2000px;
+   padding-top: 80px;
+}
 .background-blue {
   background-color: #5cd6ff;
 }
