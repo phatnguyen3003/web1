@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/check_out.css">
+</head>
+<body>
+<nav class="navbar navbar-light background-blue py-3">
+  <div class="container-fluid d-flex align-items-center flex-wrap">
+    
+    <!-- Logo -->
+    <a class="navbar-brand me-3" href="../index.html">
+      <img src="../asset/logo.png" alt="Logo" class="logo-img">
+    </a>
+
+    <!-- Danh mục -->
+    <div class="dropdown me-3 flex-shrink-0">
+      <button class="btn background-blue btn-lg dropdown-toggle fw-bold">
+        <img src="../asset/expand_category_icon.png" alt="icon" width="24" height="24" class="me-2">
+        Danh mục
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Điện Tử</a></li>
+        <li><a class="dropdown-item" href="#">Điện Lạnh - Điện Gia dụng</a></li>
+        <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
+      </ul>
+    </div>
+
+    <!-- Search -->
+    <form class="d-flex me-2 search-form" style="flex:1; max-width:500px;">
+      <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
+    </form>
+
+    <!-- User buttons -->
+    <div class="btn-group ms-0">
+      <a href="#" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
+        <img src="../asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
+        Giỏ hàng
+      </a>
+      <a href="#" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
+        <img src="../asset/user_icon.png" alt="Đăng nhập" width="24" height="24" class="me-2">
+        Đăng nhập
+      </a>
+      <a href="#" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
+        <img src="../asset/reigister_icon.png" alt="Đăng ký" width="24" height="24" class="me-2">
+        Đăng ký
+      </a>
+    </div>
+  </div>
+</nav>
+<!-- Thanh toán v -->
+<div class="check-out">
+  <header class="p-3 bg-white border-bottom position-relative">
+    <div class="container-fluid d-flex align-items-center justify-content-end">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <h3 class="mb-0 text-dark">
+              Thanh toán
+            </h3>
+        </div>
+        <a href="cart.html" class="btn btn-link text-dark text-decoration-none fw-bold" style="z-index: 2;">
+            <i class="bi bi-arrow-left"></i> Quay lại
+        </a>
+      </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-8 col-xs-8">
+        <!-- Thông tin người nhận -->
+        <div class="select-address p-3 border rounded bg-light">
+          <h5 class="fw-bold mb-3">Thông tin người nhận</h5>
+
+          <div class="d-flex align-items-center mb-3">
+            <img src="../asset/profile_image/male_profile_image.png" alt="Ảnh đại diện người dùng" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;">
+            <span class="fw-bold">Người Dùng 001</span>
+          </div>
+          
+          <div class="small mb-1">
+              <span class="text-muted me-2">Giới tính:</span>
+              Nam
+          </div>
+          
+          <div class="small mb-1">
+              <span class="text-muted me-2">Ngày sinh:</span>
+              30/03/2003
+          </div>
+          
+          <div class="small mb-1">
+              <span class="text-muted me-2">Điện thoại:</span>
+              !
+          </div>
+          
+          <div class="small mb-1">
+              <span class="text-muted me-2">Email:</span>
+              nguoidung00130032003@gmail.com
+          </div>
+          
+          <div class="small mb-1">
+              <span class="text-muted me-2">Địa chỉ:</span>
+              68 Bùi Thị Xuân, <span class="fw-bold">phường Tân Sơn Nhất</span>, TP HCM
+          </div>
+
+        </div>
+        <!-- sản phẩm đã chọn -->
+        <div class="product-list-container mt-4">
+          <h5 class="fw-bold mb-3">Các Sản Phẩm Đã Chọn</h5>
+          <!-- box -->
+          <div class="product-item p-3 border rounded mb-3">
+              <div class="row align-items-center g-3">
+                  
+                  <div class="col-md-1 col-3 text-center">
+                      <img src="../asset/item_image/QA85Q60D.png" alt="Ảnh SP 1" class="img-fluid product-thumb rounded">
+                  </div>
+                  
+                  <div class="col-md-6 col-9">
+                      <p class="mb-0 fw-bold">Smart Tivi QLED Samsung 4K 85 inch</p>
+                      <small class="text-muted">Mã SP: QA85Q60D</small>
+                  </div>
+                  
+                  <div class="col-md-2 col-6 text-md-center text-start">
+                      <small class="text-muted d-block d-md-none">SL:</small>
+                      <span class="fw-bold">1</span>
+                  </div>
+                  
+                  <div class="col-md-3 col-6 text-end">
+                    <small class="text-muted d-block d-md-none">Giá:</small>
+
+                    <span class="fw-bold text-danger text-decoration-line-through small">30.870.000₫</span>
+
+                    <span class="fw-bold text-danger d-block">15.435.000₫</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="text-success fw-bold small">Mã: SUMMER50</span>
+                      <span class="text-success small">-15.435.000₫</span>
+
+                  </div>
+              </div>
+          </div>
+          <!-- box -->
+          <div class="product-item p-3 border rounded mb-3">
+              <div class="row align-items-center g-3">
+                  
+                  <div class="col-md-1 col-3 text-center">
+                      <img src="../asset/item_image/FTKF71ZVMV.png" alt="Ảnh SP 2" class="img-fluid product-thumb rounded">
+                  </div>
+                  
+                  <div class="col-md-6 col-9">
+                      <p class="mb-0 fw-bold">Máy Lạnh Daikin Inverter 3 Hp</p>
+                      <small class="text-muted">Mã SP: FTKF71ZVMV</small>
+                  </div>
+                  
+                  <div class="col-md-2 col-6 text-md-center text-start">
+                      <small class="text-muted d-block d-md-none">SL:</small>
+                      <span class="fw-bold">1</span>
+                  </div>
+                  
+                  <div class="col-md-3 col-6 text-end">
+                    <small class="text-muted d-block d-md-none">Giá:</small>
+
+                    <span class="fw-bold text-danger text-decoration-line-through small">29.890.000₫</span>
+
+                    <span class="fw-bold text-danger d-block">23.912.000₫</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="text-success fw-bold small">Mã: GIADUNG20</span>
+                      <span class="text-success small">-5.978.000₫</span>
+
+                  </div>
+                </div>
+          </div>
+          <!-- box -->
+          <div class="product-item p-3 border rounded mb-3">
+              <div class="row align-items-center g-3">
+                  
+                  <div class="col-md-1 col-3 text-center">
+                      <img src="../asset/item_image/MNWP3ZA-A.png" alt="Ảnh SP 3" class="img-fluid product-thumb rounded">
+                  </div>
+                  
+                  <div class="col-md-6 col-9">
+                      <p class="mb-0 fw-bold">Củ sạc Apple 2 cổng Type-C 35W</p>
+                      <small class="text-muted">Mã SP: MNWP3ZA-A</small>
+                  </div>
+                  
+                  <div class="col-md-2 col-6 text-md-center text-start">
+                      <small class="text-muted d-block d-md-none">SL:</small>
+                      <span class="fw-bold">1</span>
+                  </div>
+                  
+                  <div class="col-md-3 col-6 text-end">
+                    <small class="text-muted d-block d-md-none">Giá:</small>
+
+                    <span class="fw-bold text-danger text-decoration-line-through small">1.490.000₫</span>
+
+                    <span class="fw-bold text-danger d-block">1.266.500₫</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="text-success fw-bold small">Mã: PHUKIEN50</span>
+                      <span class="text-success small">-223.500₫</span>
+
+                  </div>
+              </div>
+          </div>
+
+          <!-- Phí ship -->
+            <div class="text-end p-1 border-top mt-3">
+              <span class="fw-bold me-3">phí ship:</span>
+              <span class="fw-bold text-danger fs-5">69.000₫</span>
+            </div>
+
+          <!-- giá chưa voucher -->
+            <div class="text-end p-3 border-top mt-3">
+              <span class="fw-bold me-3">Tổng Cộng:</span>
+              <span class="fw-bold text-danger fs-5">40.682.500₫</span>
+            </div>
+        </div>
+        <!-- vouchers -->
+        <div class="voucher-container mt-4 p-3 border rounded">
+            <h5 class="fw-bold mb-3">Mã Giảm Giá / Voucher</h5>
+            
+            <div class="voucher-applied-list mb-3">
+                <div class="mb-2 p-2 border rounded bg-success-subtle">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="text-success fw-bold small">Mã: SUMMER50</span>
+                      <span class="text-success small">-50%</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                      <span class="text-success fw-bold small">Danh mục: Điện tử</span>
+                      <span class="text-success fw-bold small">HSD: 31/12/2025</span>
+                  </div>
+                </div>
+                <div class="mb-2 p-2 border rounded bg-success-subtle">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="text-success fw-bold small">Mã: GIADUNG20</span>
+                      <span class="text-success small">-20%</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                      <span class="text-success fw-bold small">Danh mục: Điện lạnh - gia dụng</span>
+                      <span class="text-success fw-bold small">HSD: 31/12/2025</span>
+                  </div>
+                </div>
+                <div class="mb-2 p-2 border rounded bg-success-subtle">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="text-success fw-bold small">Mã: PHUKIEN15</span>
+                      <span class="text-success small">-15%</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                      <span class="text-success fw-bold small">Danh mục: Điện tử</span>
+                      <span class="text-success fw-bold small">HSD: 31/12/2025</span>
+                  </div>
+                </div>
+
+                
+
+                <p class="small text-muted mt-2">Tổng giảm giá đã áp dụng: <span class="fw-bold">21.636.500₫</span></p>
+            </div>
+            
+            <hr>
+
+            <div class="text-center">
+                <button 
+                    class="btn btn-outline-primary w-100" 
+                    type="button"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#voucherModal"
+                >
+                    <i class="fas fa-ticket-alt me-2"></i> Chọn Voucher Khác
+                </button>
+            </div>
+        </div>
+        <!-- PTTT -->
+        <div class="payment-method-container mt-4 p-3 border rounded">
+          <h5 class="fw-bold mb-3">Chọn Phương Thức Thanh Toán</h5>
+          
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="paymentOption" id="paymentCOD" value="cod" checked>
+            <label class="form-check-label" for="paymentCOD">
+                Thanh toán khi nhận hàng (COD)
+            </label>
+            </div>
+
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="paymentOption" id="paymentTransfer" value="transfer">
+              <label class="form-check-label" for="paymentTransfer">
+                  Chuyển khoản ngân hàng (Bank Transfer)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentOption" id="paymentEwallet" value="ewallet">
+              <label class="form-check-label" for="paymentEwallet">
+                    Thanh toán qua ví điện tử (Momo/ZaloPay/...)
+              </label>
+            </div>
+        </div>
+        <div class="checkout-actions mt-4 mb-3 text-end">
+            <button type="submit" class="btn btn-success btn-lg fw-bold">
+              Thanh Toán
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Thanh toán ^ -->
+</body>
+</html>
