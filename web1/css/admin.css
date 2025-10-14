@@ -1,0 +1,51 @@
+body{
+  padding-top:80px;
+}
+
+.background-blue{
+    background-color: #5cd6ff;
+}
+.logo-img {
+  width: 200px;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+}
+.avatar-img {
+  width: 100px;
+  height: auto;
+  max-height: 50px;
+  object-fit: contain;
+}
+.nav-link::after {
+  display: none !important;
+}
+
+.chart-img-temp{
+    width:auto;
+    height:auto;
+    max-width: 800px;
+    max-height: 600px;
+}
+.small-icon-size {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Make the add-bill form stick to top when scrolling */
+    .sticky-form {
+      position: -webkit-sticky; /* Safari */
+      position: sticky;
+      top: 100px; /* below fixed navbar */
+      align-self: flex-start; /* keep width behavior inside flex */
+      z-index: 1020; /* above table rows */
+    }
+
+    @media (max-width: 767.98px) {
+      /* disable sticky on small screens so layout remains natural */
+      .sticky-form { position: static; top: auto; }
+    }

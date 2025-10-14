@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>ADMIN Add Items Site</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light px-0 py-0 fixed-top">
+    <div class="container-fluid background-blue">
+      <!-- Logo -->
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="../asset/logo.png" alt="logo" class="logo-img me-2">
+        <span class="fw-bold">AdminPanel</span>
+      </a>
+
+      <!-- Nút toggle (cho màn nhỏ) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu -->
+      <div class="collapse navbar-collapse justify-content-end align-items-center fs-5" id="main-nav">
+        <ul class="navbar-nav px-3 align-items-center">
+          <li class="nav-item"><a href="admin_index.html" class="nav-link active fs-5">Dashboard</a></li>
+          <li class="nav-item"><a href="admin_add_items.html" class="nav-link fs-5">Lên kệ</a></li>
+          <li class="nav-item"><a href="admin_add_bill.html" class="nav-link fs-5">Hóa đơn nhập kho</a></li>
+          <li class="nav-item"><a href="admin_package_manage.html" class="nav-link fs-5">Quản Lý Đơn hàng</a></li>
+          <li class="nav-item"><a href="admin_user_manage.html" class="nav-link fs-5">Quản Lý Khách hàng</a></li>
+          <li class="nav-item"><a href="admin_voucher_manager.html" class="nav-link fs-5">Quản Lý Khuyến mãi</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../asset/user_icon.png" alt="User" class="avatar-img">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item text-danger" href="#">Đăng xuất</a></li>
+            </ul>
+           </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <hr style="border: 2px solid black">
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-10 align-items-center text-center justify-content-center">
+
+
+            <div class="row pb-3">
+              <div class="col-6">
+
+              </div>
+              <div class="col-6">
+                <div class="col-8">
+                  <h2 class="align-items-center">
+                    Thông tin sản phẩm
+                  </h2>
+               </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-4">
+                <div class="position-relative d-inline-block">
+                    <div class="position-relative d-inline-block">
+                      <img src="../asset/admin/add_product_image.png" 
+                          class="img-fluid rounded  border border-black border-5" 
+                          alt="Ảnh sản phẩm">
+
+                      <input type="file" id="mypicture" name="mypicture" accept="image/*" hidden>
+
+                      <label for="mypicture" 
+                            class="btn btn-danger fw-bold position-absolute top-50 start-50 translate-middle rounded-circle d-flex align-items-center justify-content-center"
+                            style="width: 60px; height: 60px; font-size: 32px;">
+                        +
+                      </label>
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-8">
+                <!-- Hàng 1: Tên sản phẩm -->
+                <div class="row mb-3 align-items-center">
+                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+                    <label for="name" class="col-form-label fw-semibold">Tên sản phẩm:</label>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <input type="text" id="name" class="form-control" placeholder="Nhập tên sản phẩm...">
+                  </div>
+                </div>
+
+                <!-- Hàng 2: Mã sản phẩm -->
+                <div class="row mb-3 align-items-center">
+                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+                    <label for="pid" class="col-form-label fw-semibold">Mã sản phẩm:</label>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <input type="text" id="pid" class="form-control" placeholder="VD: DT001">
+                  </div>
+                </div>
+
+                <!-- Hàng 3: Danh mục -->
+                <div class="row mb-3 align-items-center">
+                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+                    <label for="category" class="col-form-label fw-semibold">Danh mục:</label>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <select id="category" class="form-select">
+                      <option value="Điện tử" selected>Điện tử</option>
+                      <option value="Điện gia dụng - điện lạnh">Điện gia dụng - điện lạnh</option>
+                      <option value="Phụ kiện">Phụ kiện</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Hàng 4: Thương hiệu -->
+                <div class="row mb-3 align-items-center">
+                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+                    <label for="brand" class="col-form-label fw-semibold">Thương hiệu:</label>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <select id="brand" class="form-select">
+                      <option value="">-- Chọn thương hiệu --</option>
+
+                      <optgroup label="📱 Điện thoại di động">
+                        <option>Apple (iPhone)</option>
+                        <option>Samsung</option>
+                        <option>Oppo</option>
+                        <option>Xiaomi</option>
+                        <option>Vivo</option>
+                        <option>OnePlus</option>
+                        <option>Nokia</option>
+                      </optgroup>
+
+                      <optgroup label="💻 Máy tính - Laptop">
+                        <option>Asus</option>
+                        <option>Dell</option>
+                        <option>HP</option>
+                        <option>Acer</option>
+                        <option>Lenovo</option>
+                        <option>MSI</option>
+                      </optgroup>
+
+                      <optgroup label="🎧 Phụ kiện & Thiết bị điện tử">
+                        <option>Sony</option>
+                        <option>LG</option>
+                        <option>Philips</option>
+                        <option>Logitech</option>
+                        <option>JBL</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Hàng 5: Mô tả -->
+                <div class="row mb-3">
+                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+                    <label for="description" class="col-form-label fw-semibold">Chi tiết:</label>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <textarea id="description" class="form-control" rows="4" placeholder="Nhập mô tả sản phẩm..."></textarea>
+                  </div>
+                </div>
+
+                <!-- Hàng 6: Thời gian bảo hành -->
+                <div class="row mb-3 align-items-center">
+                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+                    <label for="warranty" class="col-form-label fw-semibold">Thời gian bảo hành:</label>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <select id="warranty" class="form-select">
+                      <option value="">-- Thời gian bảo hành --</option>
+                      <option>3 tháng</option>
+                      <option>6 tháng</option>
+                      <option>12 tháng</option>
+                      <option>24 tháng</option>
+                      <option>36 tháng</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Hàng 7: Xuất xứ -->
+                <div class="row mb-3 align-items-center">
+                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+                    <label for="origin" class="col-form-label fw-semibold">Xuất xứ:</label>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <input type="text" id="origin" class="form-control" placeholder="Nhập quốc gia sản xuất...">
+                  </div>
+                </div>
+
+                <!-- Hàng 8: Giá -->
+                <div class="row mb-3 align-items-center">
+                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+                    <label for="price" class="col-form-label fw-semibold text-danger">Giá:</label>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="input-group">
+                      <input type="number" id="price" class="form-control" placeholder="VD: 15000000" min="0" step="100000">
+                      <span class="input-group-text text-danger fw-semibold">VND</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hàng 9: Kích thước màn hình & Công suất -->
+                <div class="row mb-3">
+                  <div class="col-12 col-md-6">
+                    <label for="screensize" class="fw-semibold d-block">Kích thước màn hình:</label>
+                    <div class="input-group">
+                      <input type="number" id="screensize" class="form-control" placeholder="28 Inch">
+                      <span class="input-group-text">Inch</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 mt-2 mt-md-0">
+                    <label for="power" class="fw-semibold d-block">Công suất:</label>
+                    <div class="input-group">
+                      <input type="number" id="power" class="form-control" placeholder="300W">
+                      <span class="input-group-text">W</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hàng 10-13: Thông tin chi tiết (2 cột / hàng) -->
+                <div class="row mb-3">
+                  <div class="col-12 col-md-6">
+                    <label for="backcamerainfo" class="fw-semibold d-block">Camera sau:</label>
+                    <textarea id="backcamerainfo" class="form-control" rows="2" placeholder="50 MP, F1.8 + 12 MP, F2.2"></textarea>
+                  </div>
+                  <div class="col-12 col-md-6 mt-2 mt-md-0">
+                    <label for="frontcamerainfo" class="fw-semibold d-block">Camera trước:</label>
+                    <textarea id="frontcamerainfo" class="form-control" rows="2" placeholder="16 MP"></textarea>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-12 col-md-6">
+                    <label for="RAM" class="fw-semibold d-block">Dung lượng RAM:</label>
+                    <input type="text" id="RAM" class="form-control" placeholder="12GB">
+                  </div>
+                  <div class="col-12 col-md-6 mt-2 mt-md-0">
+                    <label for="storage" class="fw-semibold d-block">Bộ nhớ trong:</label>
+                    <input type="text" id="storage" class="form-control" placeholder="256GB">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-12 col-md-6">
+                    <label for="battery" class="fw-semibold d-block">Pin:</label>
+                    <input type="text" id="battery" class="form-control" placeholder="4300mAh">
+                  </div>
+                  <div class="col-12 col-md-6 mt-2 mt-md-0">
+                    <label for="SIM" class="fw-semibold d-block">Thẻ SIM:</label>
+                    <input type="text" id="SIM" class="form-control" placeholder="2 SIM">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-12 col-md-6">
+                    <label for="OS" class="fw-semibold d-block">Hệ điều hành:</label>
+                    <input type="text" id="OS" class="form-control" placeholder="Android 14">
+                  </div>
+                  <div class="col-12 col-md-6 mt-2 mt-md-0">
+                    <label for="CPU" class="fw-semibold d-block">Loại CPU:</label>
+                    <input type="text" id="CPU" class="form-control" placeholder="Snapdragon 8 Gen 2">
+                  </div>
+                </div>
+
+                <!-- Nút -->
+                <div class="row mb-3">
+                  <div class="col-12 col-md-6 text-center text-md-end mb-2 mb-md-0">
+                    <button class="btn btn-success fw-bold w-100 w-md-auto">Thêm sản phẩm</button>
+                  </div>
+                  <div class="col-12 col-md-6 text-center text-md-start">
+                    <button type="reset" class="btn btn-warning fw-bold w-100 w-md-auto">Reset Thông Tin</button>
+                  </div>
+                </div>
+              </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
