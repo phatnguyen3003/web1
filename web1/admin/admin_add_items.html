@@ -7,28 +7,41 @@
   <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
+    <!-- NAVBAR -->
   <nav class="navbar navbar-expand-md navbar-light bg-light px-0 py-0 fixed-top">
-    <div class="container-fluid background-blue">
-      <!-- Logo -->
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <img src="../asset/logo.png" alt="logo" class="logo-img me-2">
-        <span class="fw-bold">AdminPanel</span>
-      </a>
+      <div class="container-fluid background-blue">
+        <!-- Logo -->
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <img src="../asset/logo.png" alt="logo" class="logo-img me-2">
+          <span class="fw-bold">AdminPanel</span>
+        </a>
 
-      <!-- Nút toggle (cho màn nhỏ) -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <!-- Nút toggle (cho màn nhỏ) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <!-- Menu -->
+        <!-- Menu -->
       <div class="collapse navbar-collapse justify-content-end align-items-center fs-5" id="main-nav">
         <ul class="navbar-nav px-3 align-items-center">
-          <li class="nav-item"><a href="admin_index.html" class="nav-link active fs-5">Dashboard</a></li>
-          <li class="nav-item"><a href="admin_add_items.html" class="nav-link fs-5">Lên kệ</a></li>
-          <li class="nav-item"><a href="admin_add_bill.html" class="nav-link fs-5">Hóa đơn nhập kho</a></li>
-          <li class="nav-item"><a href="admin_package_manage.html" class="nav-link fs-5">Quản Lý Đơn hàng</a></li>
-          <li class="nav-item"><a href="admin_user_manage.html" class="nav-link fs-5">Quản Lý Khách hàng</a></li>
-          <li class="nav-item"><a href="admin_voucher_manager.html" class="nav-link fs-5">Quản Lý Khuyến mãi</a></li>
+          <li class="nav-item mx-1">
+            <a href="admin_index.html" class="btn btn-outline-dark">Dashboard</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a href="admin_add_items.html" class="btn btn-outline-dark">Lên kệ</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a href="admin_add_bill.html" class="btn btn-outline-dark">Hóa đơn nhập kho</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a href="admin_package_manage.html" class="btn btn-outline-dark">Quản Lý Đơn hàng</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a href="admin_user_manage.html" class="btn btn-outline-dark">Quản Lý Khách hàng</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a href="admin_voucher_manager.html" class="btn btn-outline-dark">Quản Lý Khuyến mãi</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle d-flex align-items-center p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="../asset/user_icon.png" alt="User" class="avatar-img">
@@ -39,9 +52,9 @@
            </li>
         </ul>
       </div>
-    </div>
-  </nav>
 
+      </div>
+    </nav>
   <hr style="border: 2px solid black">
 
   <div class="container-fluid">
@@ -280,10 +293,347 @@
                 </div>
               </div>
 
+            </div>
+            </div>
 
+          <div class="container-fluid">
+          <div class="col-12 align-items-center text-center justify-content-center mt-5">
+            <div class="table-responsive mx-auto">
+              <table class="table table-striped table-hover align-middle text-center">
+                <thead class="table-primary">
+                <tr>
+                  <td>ID</td>
+                  <td></td>
+                  <td>Tên Sản Phẩm</td>
+                  <td>Thông Số Sản Phẩm</td>
+                  <td>Số Lượng Trong Kho</td>
+                  <td>Trạng Thái Trên Kệ</td>
+                  <td>Giá</td>
+                  <td>Thao Tác</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>DL001</td>
+                  <td>
+                    <img src="../asset/products/Tu-lanh-Xiaomi-Mijia-606L.png" 
+                        alt="Tu-lanh-Xiaomi-Mijia-606L" class="product-image" width="80">
+                  </td>
+                  <td>Tủ lạnh Xiaomi Mijia 606L</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec1" aria-expanded="false">
+                      Xem thông số
+                    </button>
 
-                </div>
+                    <div class="collapse mt-2" id="spec1">
+                      <ul>
+                        <li>công suất: 180W</li>
+                        <li>dung tích tổng: 606 lít</li>
+                        <li>chất liệu: hợp kim thép không gỉ</li>
+                        <li>trọng lượng: 81kg</li>
+                        <li>kích thước: 794 x 688 x 1800 mm</li>
+                        <li>số cửa: 4 cửa</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>43</td>
+                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
+                  <td>16.990.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary">Ẩn</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
 
+                <tr>
+                  <td>GD001</td>
+                  <td>
+                    <img src="../asset/products/may-giat-aqua.png" 
+                        alt="may-giat-aqua" class="product-image">
+                  </td>
+                  <td>Máy giặt Toshiba 8kg AW-M905BV(MK)</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec2" aria-expanded="false">
+                      Xem thông số
+                    </button>
+
+                    <div class="collapse mt-2" id="spec2">
+                      <ul>
+                        <li>Kiểu máy: Máy giặt cửa trên</li>
+                        <li>Khối lượng giặt: 8k</li>
+                        <li>Kiểu động cơ: Dây Curo</li>
+                        <li>Công nghệ Inverter: Không</li>
+                        <li>Tốc độ quay vắt: 700 vòng/phút</li>
+                        <li>Chất liệu vỏ máy: Kim loại sơn tĩnh điện</li>
+                        <li>Chất liệu nắp máy: Kính cường lực</li>
+                        <li>Chất liệu lồng giặt: Thép không gỉ</li>
+                        <li>Công suất: 400</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>22</td>
+                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
+                  <td>4.790.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary">Ẩn</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>DL002</td>
+                  <td>
+                    <img src="../asset/products/may-lanh-casper-qc-12is36-a.png" 
+                        alt="may-lanh-casper-qc-12is36-a" class="product-image">
+                  </td>
+                  <td>Máy lạnh Casper Inverter 1.5HP QC-12IS36</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec3" aria-expanded="false">
+                      Xem thông số
+                    </button>
+
+                    <div class="collapse mt-2" id="spec3">
+                      <ul>
+                        <li>Loại máy điều hòa: 1 chiều</li>
+                        <li>Công suất làm lạnh: 12.000 BTU - 1.5HP</li>
+                        <li>Công nghệ Inverter: Có</li>
+                        <li>Diện tích sử dụng: 15m2 - 20m2</li>
+                        <li>Gas sử dụng: R32</li>
+                        <li>Lưu lượng gió dàn lạnh: 10/8.7/5.6 m3/phút</li>
+                        <li>Độ ồn dàn lạnh: 42/36/24 dB(A)</li>
+                        <li>Độ ồn dàn nóng: 51/50/49 dB(A)</li>
+                        <li>Chất liệu dàn tản nhiệt: Đồng mạ vàng</li>
+                        <li>Công suất tiêu thụ: 1.400W</li>
+                        <li>Tiết kiệm điện: Inverter, Công nghệ I-saving</li>
+                        <li>Nhãn năng lượng tiết kiệm: 5 sao</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>69</td>
+                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
+                  <td>9.900.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary">Ẩn</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>DT001</td>
+                  <td>
+                    <img src="../asset/products/tivi-tcl-qd-mini-led-115x955-max.png" 
+                        alt="tivi-tcl-qd-mini-led-115x955-max" class="product-image" width="80">
+                  </td>
+                  <td>Google Tivi TCL QD-Mini LED 4K 115 inch 115X955 Max</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec4" aria-expanded="false">
+                      Xem thông số
+                    </button>
+                    <div class="collapse mt-2" id="spec4">
+                      <ul>
+                        <li>Loại Tivi: MiniLED</li>
+                        <li>Kích thước màn hình: 115 inch</li>
+                        <li>Độ phân giải: 4K</li>
+                        <li>VESA: 1.000mm x 600mm</li>
+                        <li>Kích thước có chân đế: 256.56cm x 179.3cm x 28.5cm</li>
+                        <li>Kích thước không chân đế: 256.56cm x 146.97cm x 5.7cm</li>
+                        <li>Trọng lượng có chân đế: 99.8kg</li>
+                        <li>Trọng lượng không chân đế: 98.3kg</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>12</td>
+                  <td><span class="badge bg-secondary text-white">Chưa Lên Kệ</span></td>
+                  <td>699.000.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-success">Lên kệ</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>DT002</td>
+                  <td>
+                    <img src="../asset/products/xiaomi-redmi-turbo-4.png" 
+                        alt="xiaomi-redmi-turbo-4" class="product-image" width="80">
+                  </td>
+                  <td>Xiaomi Redmi Turbo 4</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec5" aria-expanded="false">
+                      Xem thông số
+                    </button>
+                    <div class="collapse mt-2" id="spec5">
+                      <ul>
+                        <li>Hệ điều hành: Android 15, HyperOS 2.0</li>
+                        <li>Loại màn hình: AMOLED</li>
+                        <li>Độ phân giải: 1220 x 2712 pixels</li>
+                        <li>Kích thước màn hình: 6.67 inches</li>
+                        <li>Camera sau: 50 MP, f/1.5, PDAF, OIS</li>
+                        <li>Camera trước: 20 MP, f/2.2, HDR</li>
+                        <li>Chipset: MediaTek Dimensity 8400 Ultra (4 nm)</li>
+                        <li>CPU: 8 nhân (3.25 GHz & 3x3.0 GHz & 4x2.1 GHz)</li>
+                        <li>GPU: Mali-G720 MC7</li>
+                        <li>AI: MediaTek NPU 880</li>
+                        <li>RAM: 12–16GB (LPDDR5X)</li>
+                        <li>Bộ nhớ trong: 256–512GB (UFS 4.0)</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>89</td>
+                  <td><span class="badge bg-secondary text-white">Chưa Lên Kệ</span></td>
+                  <td>6.190.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-success">Lên kệ</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td>DT003</td>
+                  <td>
+                    <img src="../asset/products/xiaomi-pad-mini.png" 
+                        alt="xiaomi-pad-mini" class="product-image" width="80">
+                  </td>
+                  <td>Xiaomi Pad Mini</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec6" aria-expanded="false">
+                      Xem thông số
+                    </button>
+                    <div class="collapse mt-2" id="spec6">
+                      <ul>
+                        <li>Hệ điều hành: Xiaomi HyperOS 2</li>
+                        <li>Kích thước màn hình: 8.8 inches</li>
+                        <li>Công nghệ màn hình: LCD</li>
+                        <li>Camera sau: 13MP, f/2.2, PDAF</li>
+                        <li>Camera trước: 8MP, f/2.28</li>
+                        <li>Chipset: MediaTek Dimensity 9400+</li>
+                        <li>RAM: 8GB</li>
+                        <li>Bộ nhớ trong: 256GB</li>
+                        <li>Pin: 7500mAh</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>45</td>
+                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
+                  <td>13.990.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary">Ẩn</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td>PK001</td>
+                  <td>
+                    <img src="../asset/products/cu-sac-apple-35w.png" 
+                        alt="cu-sac-apple-35w" class="product-image" width="80">
+                  </td>
+                  <td>Củ sạc Apple 2 cổng Type-C 35W</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec7" aria-expanded="false">
+                      Xem thông số
+                    </button>
+                    <div class="collapse mt-2" id="spec7">
+                      <ul>
+                        <li>Công suất: 35W</li>
+                        <li>Sử dụng tối đa: 2 thiết bị</li>
+                        <li>Đầu ra: 2 x USB-C</li>
+                        <li>Tiện ích: Sạc nhanh</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>123</td>
+                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
+                  <td>1.190.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary">Ẩn</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>GD002</td>
+                  <td>
+                    <img src="../asset/products/noi-com-dien-xiaomi-gen3.png" 
+                        alt="noi-com-dien-xiaomi-gen3" class="product-image" width="80">
+                  </td>
+                  <td>Nồi Cơm Điện Cao Tần Xiaomi Mijia Gen 3 3L/4L</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec8" aria-expanded="false">
+                      Xem thông số
+                    </button>
+                    <div class="collapse mt-2" id="spec8">
+                      <ul>
+                        <li>Thương hiệu: Xiaomi</li>
+                        <li>Model: MFB2AM</li>
+                        <li>Công suất: 1100W</li>
+                        <li>Dung tích nồi: 3L / 4L</li>
+                        <li>Dung tích lòng nồi: 1L / 1.4L</li>
+                        <li>Chất liệu: Nhựa ABS</li>
+                        <li>Điện áp đầu vào: 220V</li>
+                        <li>Trọng lượng: 5kg</li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>74</td>
+                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
+                  <td>1.550.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary">Ẩn</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>DL003</td>
+                  <td>
+                    <img src="../asset/products/may-loc-khong-khi-xiaomi-6eu.png" 
+                        alt="may-loc-khong-khi-xiaomi-6eu" class="product-image" width="80">
+                  </td>
+                  <td>Máy lọc không khí Xiaomi Mijia Smart Air Purifier 6 EU (BHR08MZEU)</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec9" aria-expanded="false">
+                      Xem thông số
+                    </button>
+                    <div class="collapse mt-2" id="spec9">
+                      <ul>
+                        <li>Công suất: 38W</li>
+                        <li>Phạm vi lọc hiệu quả: 50m²</li>
+                        <li>Lưu lượng gió tối đa: 443 m³/h</li>
+                        <li>Bộ lọc bụi gồm:</li>
+                        <ul>
+                          <li>Bộ lọc sơ bộ</li>
+                          <li>Màng lọc HEPA</li>
+                          <li>Màng lọc than hoạt tính</li>
+                        </ul>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>57</td>
+                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
+                  <td>5.990.000 đồng</td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary">Ẩn</button>
+                    <button class="btn btn-sm btn-warning">Sửa</button>
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                  </td>
+                </tr>
+
+                
+
+              </tbody>
+            </table>
+            </div>
+
+            </div>
             </div>
         </div>
     </div>

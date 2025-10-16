@@ -49,3 +49,10 @@ body{
       /* disable sticky on small screens so layout remains natural */
       .sticky-form { position: static; top: auto; }
     }
+
+
+.product-image{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
