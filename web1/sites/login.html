@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trang đăng nhập</title>
+
+  <!-- Bootstrap 5 local -->
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+  <div class="row w-100 justify-content-center align-items-stretch g-5">
+    
+    <!-- Form đăng nhập -->
+    <div class="col-md-6 order-md-2">
+      <div class="card shadow-lg rounded-4 h-100"> <!-- thêm h-100 -->
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4">Đăng nhập</h2>
+          <form id="loginForm">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="username" placeholder="Tên tài khoản">
+              <label for="username">Tên tài khoản</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="password" placeholder="Mật khẩu">
+              <label for="password">Mật khẩu</label>
+            </div>
+            <div id="loginError" class="text-danger text-center mb-2" style="display:none;"></div>
+            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+          </form>
+          <p class="mt-3 text-center">
+            Chưa có tài khoản? <a href="register.html" class="text-decoration-none text-primary">Đăng ký ngay</a>
+          </p>
+          <div class="text-center">
+            <a href="../index-frame.html" class="btn btn-outline-secondary btn-sm mt-2">← Quay lại trang chủ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logo + chữ -->
+    <div class="col-md-6 order-md-1">
+      <div class="card shadow-lg rounded-4 h-100 d-flex flex-column justify-content-center align-items-center background-blue">
+        <img src="../asset/logo.png" alt="logo" class="img-fluid mb-3" style="max-width:250px;">
+        <p><b>Chào mừng bạn đến với chúng tôi.</b></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="../js/login.js"></script>
+</body>
+</html>
