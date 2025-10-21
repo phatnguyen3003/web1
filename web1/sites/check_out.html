@@ -104,6 +104,64 @@
               68 Bùi Thị Xuân, <span class="fw-bold">phường Tân Sơn Nhất</span>, TP HCM
           </div>
 
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1" checked>
+            <label class="form-check-label" for="radioDefault1">
+              Địa chỉ mặc định
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2">
+            <label class="form-check-label" for="radioDefault2">
+              Tùy chỉnh địa chỉ
+            </label>
+          </div>
+
+          <div id="addressFields">
+              <ul class="list-group">
+                  <li class="list-group-item border-0">
+                      <div class="row g-3">
+                          <div class="col-md-3">
+                              <label for="housenumber" class="form-label">Số nhà:</label>
+                              <input type="text" class="form-control" id="housenumber"> 
+                          </div>
+                          <div class="col-md-5">
+                              <label for="street" class="form-label">Tên đường:</label>
+                              <input type="text" class="form-control" id="street">
+                          </div>
+                          <div class="col-md-4">
+                              <label for="distric" class="form-label">Phường/Xã:</label>
+                              <select id="distric" class="form-select">
+                                  <option value="" selected>-- Chọn Phường/Xã --</option>
+                                  <option value="sai_gon">Phường Sài Gòn</option>
+                                  <option value="ben_thanh">Phường Bến Thành</option>
+                                  <option value="ban_co">Phường Bàn Cờ</option>
+                                  <option value="xuan_hoa">Phường Xuân Hòa</option>
+                                  <option value="khanh_hoi">Phường Khánh Hội</option>
+                                  <option value="cho_lon">Phường Chợ Lớn</option>
+                                  <option value="tan_hung">Phường Tân Hưng</option>
+                                  <option value="chanh_hung">Phường Chánh Hưng</option>
+                                  <option value="vuon_lai">Phường Vườn Lài</option>
+                                  <option value="tan_son_nhat">Phường Tân Sơn Nhất</option>
+                                  <option value="thu_duc">Phường Thủ Đức</option>
+                                  <option value="tan_an_hoi">Xã Tân An Hội</option>
+                                  <option value="nhuan_duc">Xã Nhuận Đức</option>
+                                  <option value="cu_chi">Xã Củ Chi</option>
+                                  <option value="binh_khanh">Xã Bình Khánh</option>
+                                  <option value="ba_diem">Xã Bà Điểm</option>
+                              </select>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="list-group-item border-0">
+                      <label for="city" class="form-label">Thành Phố:</label>
+                      <select id="city" class="form-select w-50">
+                          <option value="HoCHiMinhCity" selected>Thành Phố Hồ Chí Minh</option>
+                      </select>
+                  </li>
+              </ul>
+          </div>
+
         </div>
         <!-- sản phẩm đã chọn -->
         <div class="product-list-container mt-4">
