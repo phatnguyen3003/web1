@@ -15,7 +15,7 @@ const password = passwordInput.value.trim();
     if (found)
     {
         alert("Đăng nhập thành công!");
-        window.location.href= "infor_change.html";
+        window.location.href= "../admin/admin_index.html";
 
     }
     else
