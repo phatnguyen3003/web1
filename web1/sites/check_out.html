@@ -325,10 +325,10 @@
             <hr>
 
             <div class="text-center">
-                <button 
-                    class="btn btn-outline-primary w-100" 
+                <button
+                    class="btn btn-outline-primary w-100"
                     type="button"
-                    data-bs-toggle="modal" 
+                    data-bs-toggle="modal"
                     data-bs-target="#voucherModal"
                 >
                     <i class="fas fa-ticket-alt me-2"></i> Chọn Voucher Khác
@@ -370,6 +370,53 @@
   </div>
 </div>
 <!-- Thanh toán ^ -->
+<!-- Chọn voucher ^ -->
+<div class="modal fade" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="voucherModalLabel">Chọn Mã Giảm Giá / Voucher</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-4">
+                    <input type="text" class="form-control" placeholder="Nhập mã giảm giá..." aria-label="Nhập mã giảm giá">
+                    <button class="btn btn-outline-primary" type="button">Áp dụng</button>
+                </div>
+
+                <h6 class="fw-bold mb-3 text-secondary">Voucher Có Thể Áp Dụng:</h6>
+                
+                <div class="list-group">
+                    <label class="list-group-item d-flex justify-content-between align-items-start border rounded mb-2 py-3">
+                        <input class="form-check-input me-3 mt-0" type="checkbox" value="KM004" aria-label="...">
+                        <div class="flex-grow-1">
+                            <span class="fw-bold text-dark d-block">TETSALE30</span>
+                            <small class="text-muted d-block">Giảm 30% cho danh mục Điện tử.</small>
+                            <span class="badge bg-success mt-1">HSD: 10/02/2026</span>
+                        </div>
+                        <span class="badge bg-info rounded-pill text-dark fw-bold p-2 ms-3">30%</span>
+                    </label>
+
+                    <label class="list-group-item d-flex justify-content-between align-items-start border rounded mb-2 py-3">
+                        <input class="form-check-input me-3 mt-0" type="checkbox" value="KM005" aria-label="...">
+                        <div class="flex-grow-1">
+                            <span class="fw-bold text-dark d-block">WEEKEND10</span>
+                            <small class="text-muted d-block">Giảm 10% cho danh mục Phụ kiện.</small>
+                            <span class="badge bg-success mt-1">HSD: 31/10/2025</span>
+                        </div>
+                        <span class="badge bg-danger rounded-pill fw-bold p-2 ms-3">10%</span>
+                    </label>
+
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <span class="text-muted small">Đã chọn: 1 Voucher</span>
+                <button type="button" class="btn btn-primary fw-bold" data-bs-dismiss="modal">Hoàn thành</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
 3
