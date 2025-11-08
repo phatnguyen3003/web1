@@ -9,14 +9,13 @@
 </head>
 <body>
 
-    <div class="container-fluid">
-        <div class="row gap-1">
-            <div class="col-12 p-0">
-                <nav class="navbar navbar-light background-blue py-3">
+  <!-- ===== NAVBAR CONTAINER ===== -->
+  <div class="container-fluid p-0">
+     <nav class="navbar navbar-light background-blue py-3 fixed-top">
         <div class="container-fluid d-flex align-items-center flex-wrap"> <!-- flex-wrap thay cho flex-nowrap -->
           
           <!-- Logo -->
-          <a class="navbar-brand me-3" href="index.html">
+          <a class="navbar-brand me-3" href="../index.html">
             <img src="../asset/logo.png" alt="Logo" class="logo-img">
           </a>
 
@@ -27,141 +26,120 @@
               Danh mục
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Điện Tử</a></li>
-              <li><a class="dropdown-item" href="#">Điện Lạnh - Điện Gia dụng</a></li>
-              <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
+              <li><a class="dropdown-item" href="electronic.html">Điện Tử</a></li>
+              <li><a class="dropdown-item" href="refrigeration.html">Điện Lạnh - Điện Gia dụng</a></li>
+              <li><a class="dropdown-item" href="accessorie.html">Phụ Kiện</a></li>
             </ul>
           </div>
 
-          <!-- Search -->
-          <form class="d-flex me-2 search-form" style="flex:1; max-width:500px;">
-            <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
-          </form>
+          <!-- Ô tìm kiếm -->
+      <form class="d-flex me-2 search-form nav-item-box flex-grow-1" style="max-width:500px;">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." id="bill-search-input">
+          <button class="btn btn-secondary" type="submition">Tìm</button>
+        </div>
+      </form>
 
-          <!-- User buttons -->
-          <div class="btn-group ms-0">
-            <a href="gio-hang.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
-              <img src="../asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
-              Giỏ hàng
-            </a>
-            <a href="dang-nhap.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
-              <img src="../asset/user_icon.png" alt="Đăng nhập" width="24" height="24" class="me-2">
-              Đăng nhập
-            </a>
-            <a href="dang-ky.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
-              <img src="../asset/reigister_icon.png" alt="Đăng ký" width="24" height="24" class="me-2">
-              Đăng ký
-            </a>
-          </div>
+                    <!-- User buttons -->
+            <div class="d-flex flex-wrap gap-2 ms-0">
+              <a href="cart.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
+                <img src="../asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
+                Giỏ hàng
+              </a>
+            </div>
 
         </div>
       </nav>
-            </div>
+  </div>
 
-            <div class="col-12 p-0">
-                  <div class="container-fluid background-blue d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-                    <div class="card shadow w-100" style="max-width: 1200px;">
-                        <div class="card-header text-center">
-                            <h5 class="card-title mb-0">Chỉnh sửa thông tin</h5>
-                        </div>
+  <!-- ===== MAIN CONTAINER ===== -->
+  <div class="container-fluid background-blue d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow w-100" style="max-width: 1200px;">
+      <div class="card-header text-center">
+        <h5 class="card-title mb-0">Chỉnh sửa thông tin</h5>
+      </div>
 
-                        <div class="card-body">
-                            <div class="text-center mb-4">
-                                <div class="position-relative d-inline-block">
-                                    <img src="../asset/profile_image/male_profile_image.png" class="img-fluid menu-change-avatar rounded-circle">
-                                    <input type="file" id="mypicture" name="mypicture" accept="image/*" hidden>
-                                    <label for="mypicture" class="btn btn-outline-dark small-icon position-absolute bottom-0 end-0 m-0 px-2">
-                                        ✒️
-                                    </label>
-                                </div>
-                            </div>
-                            <form>
-                                <ul class="list-group list-group-flush text-start">
-                                    <li class="list-group-item border-0">
-                                        <label for="username" class="form-label">Tên người dùng:</label>
-                                        <input type="text" class="form-control w-50" id="username" value="Người dùng 001">
-                                    </li>
-
-                                    <li class="list-group-item border-0">
-                                        <label for="birthday" class="form-label">Ngày sinh:</label>
-                                        <input type="date" id="birthday" name="birthday" class="form-control w-25" value="2003-03-30">
-                                    </li>
-
-                                    <li class="list-group-item border-0">
-                                        <label for="email" class="form-label">Email:</label>
-                                        <input type="email" class="form-control w-75" id="email" value="nguoidung300320036@gmail.com">
-                                    </li>
-
-                                    <li class="list-group-item border-0">
-                                        <label for="phonenumber" class="form-label">Số Điện Thoại:</label>
-                                        <input type="text" class="form-control w-50" id="phonenumber" value="Chưa có">
-                                    </li>
-
-                                    <li class="list-group-item border-0">
-                                        <label for="gender" class="form-label">Giới tính:</label>
-                                        <select id="gender" class="form-select w-50">
-                                            <option value="">-- Chọn giới tính --</option>
-                                            <option value="male" selected>Nam</option>
-                                            <option value="female">Nữ</option>
-                                            <option value="other">Khác</option>
-                                        </select>
-                                    </li>
-
-                                    <li class="list-group-item border-0">
-                                        <div class="row g-3">
-                                            <div class="col-md-3">
-                                                <label for="housenumber" class="form-label">Số nhà:</label>
-                                                <input type="text" class="form-control" id="housenumber" value="68">
-                                            </div>
-                                            <div class="col-md-5">
-                                                <label for="street" class="form-label">Tên đường:</label>
-                                                <input type="text" class="form-control" id="street" value="Bùi Thị Xuân">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="distric" class="form-label">Phường/Xã:</label>
-                                                <select id="distric" class="form-select">
-                                                        <option value="">-- Chọn Phường/Xã --</option>
-                                                        <option value="sai_gon">Phường Sài Gòn</option>
-                                                        <option value="ben_thanh">Phường Bến Thành</option>
-                                                        <option value="ban_co">Phường Bàn Cờ</option>
-                                                        <option value="xuan_hoa">Phường Xuân Hòa</option>
-                                                        <option value="khanh_hoi">Phường Khánh Hội</option>
-                                                        <option value="cho_lon">Phường Chợ Lớn</option>
-                                                        <option value="tan_hung">Phường Tân Hưng</option>
-                                                        <option value="chanh_hung">Phường Chánh Hưng</option>
-                                                        <option value="vuon_lai">Phường Vườn Lài</option>
-                                                        <option value="tan_son_nhat" selected>Phường Tân Sơn Nhất</option>
-                                                        <option value="thu_duc">Phường Thủ Đức</option>
-                                                        <option value="tan_an_hoi">Xã Tân An Hội</option>
-                                                        <option value="nhuan_duc">Xã Nhuận Đức</option>
-                                                        <option value="cu_chi">Xã Củ Chi</option>
-                                                        <option value="binh_khanh">Xã Bình Khánh</option>
-                                                        <option value="ba_diem">Xã Bà Điểm</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li class="list-group-item border-0">
-                                        <label for="city" class="form-label">Thành Phố:</label>
-                                        <select id="city" class="form-select w-50">
-                                            <option value="">-- Chọn Thành Phố --</option>
-                                            <option value="HoCHiMinhCity" selected>Thành Phố Hồ Chí Minh</option>
-                                        </select>
-                                    </li>
-                                </ul>
-
-                                <div class="d-flex justify-content-center gap-3 mt-4">
-                                    <a href="profile.html" class="btn btn-outline-danger fw-bold fs-5">Hoàn tất chỉnh sửa</a>
-                                    <button type="reset" class="btn btn-outline-secondary fw-bold fs-5">Reset Thông tin</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="card-body">
+        <div class="text-center mb-4">
+          <div class="position-relative d-inline-block">
+            <img src="../asset/profile_image/male_profile_image.png" class="img-fluid menu-change-avatar rounded-circle">
+            <input type="file" id="mypicture" name="mypicture" accept="image/*" hidden>
+            <label for="mypicture" class="btn btn-outline-dark small-icon position-absolute bottom-0 end-0 m-0 px-2">✒️</label>
+          </div>
         </div>
+
+        <form>
+          <ul class="list-group list-group-flush text-start">
+            <li class="list-group-item border-0">
+              <label for="username" class="form-label">Tên người dùng:</label>
+              <input type="text" class="form-control w-50" id="username" value="Người dùng 001">
+            </li>
+
+            <li class="list-group-item border-0">
+              <label for="birthday" class="form-label">Ngày sinh:</label>
+              <input type="date" id="birthday" name="birthday" class="form-control w-25" value="2003-03-30">
+            </li>
+
+            <li class="list-group-item border-0">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" class="form-control w-75" id="email" value="nguoidung300320036@gmail.com">
+            </li>
+
+            <li class="list-group-item border-0">
+              <label for="phonenumber" class="form-label">Số Điện Thoại:</label>
+              <input type="text" class="form-control w-50" id="phonenumber" value="Chưa có">
+            </li>
+
+            <li class="list-group-item border-0">
+              <label for="gender" class="form-label">Giới tính:</label>
+              <select id="gender" class="form-select w-50">
+                <option value="">-- Chọn giới tính --</option>
+                <option value="male" selected>Nam</option>
+                <option value="female">Nữ</option>
+                <option value="other">Khác</option>
+              </select>
+            </li>
+
+            <li class="list-group-item border-0">
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <label for="housenumber" class="form-label">Số nhà:</label>
+                  <input type="text" class="form-control" id="housenumber" value="68">
+                </div>
+                <div class="col-md-5">
+                  <label for="street" class="form-label">Tên đường:</label>
+                  <input type="text" class="form-control" id="street" value="Bùi Thị Xuân">
+                </div>
+                <div class="col-md-4">
+                  <label for="distric" class="form-label">Phường/Xã:</label>
+                  <select id="distric" class="form-select">
+                    <option value="">-- Chọn Phường/Xã --</option>
+                    <option value="tan_son_nhat" selected>Phường Tân Sơn Nhất</option>
+                    <option value="ben_thanh">Phường Bến Thành</option>
+                    <option value="cho_lon">Phường Chợ Lớn</option>
+                    <option value="vuon_lai">Phường Vườn Lài</option>
+                  </select>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-0">
+              <label for="city" class="form-label">Thành Phố:</label>
+              <select id="city" class="form-select w-50">
+                <option value="">-- Chọn Thành Phố --</option>
+                <option value="HoCHiMinhCity" selected>Thành Phố Hồ Chí Minh</option>
+              </select>
+            </li>
+          </ul>
+
+          <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="profile.html" class="btn btn-outline-danger fw-bold fs-5">Hoàn tất chỉnh sửa</a>
+            <button type="reset" class="btn btn-outline-secondary fw-bold fs-5">Reset Thông tin</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 
 </body>
 </html>

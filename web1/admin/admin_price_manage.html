@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/png" href="../asset/logo.png">
+  <title>Quản lý giá bán sản phẩm</title>
+
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script>
+    // Kiểm tra trạng thái đăng nhập
+    if (localStorage.getItem("AdminLogged") !== "quanly1") {
+        // Chưa đăng nhập => chuyển về trang login
+        window.location.href = "../sites/login_admin.html";
+    }
+
+  </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark background-blue fixed-top shadow">
+    <div class="container-fluid">
+
+      <!-- Logo -->
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="../asset/logo.png" alt="Logo" class="me-2" style="height: 80px;">
+      </a>
+
+      <!-- Nút thu gọn -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu chính -->
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav align-items-center text-center mb-2 mb-md-0" id="admin-navbar">
+         <li class="nav-item mx-1"><a href="admin_user_manage.html" class="btn btn-outline-dark border-dark">Quản lý người dùng</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_items.html" class="btn btn-outline-dark border-dark">Quản lý danh mục sản phẩm</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_bill.html" class="btn btn-outline-dark border-dark">Quản lý nhập hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_price_manage.html" class="btn btn-outline-dark border-dark">Quản lý giá bán</a></li>
+          <li class="nav-item mx-1"><a href="admin_order_manage.html" class="btn btn-outline-dark border-dark">Quản lý đơn đặt hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_storage_manage.html" class="btn btn-outline-dark border-dark">Quản lý tồn kho</a></li>
+        </ul>
+        <!-- JS sẽ thêm phần admin vào đây -->
+      </div>
+
+      </div>
+    </nav>
+
+  <div style="height: 80px"></div>
+
+  <!-- NỘI DUNG -->
+  <div class="container mt-4">
+
+    <!-- Thanh tìm kiếm -->
+    <div class="search-container">
+      <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Nhập ID hoặc tên sản phẩm cần tìm...">
+        <button class="btn background-blue btn-search" onclick="timSanPham()">Tìm</button>
+        <button class="btn btn-showall" onclick="hienTatCa()">Hiển thị tất cả</button>
+      </div>
+    </div>
+
+    <!-- BẢNG -->
+    <table id="tableSanPham" class="table table-bordered table-striped bg-white shadow-sm">
+      <thead class="table-primary">
+        <tr>
+          <th>ID Sản phẩm</th>
+          <th>Tên sản phẩm</th>
+          <th>Giá vốn (VNĐ)</th>
+          <th> Lợi nhuận(%)</th>
+          <th>Giá bán (VNĐ)</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>GD001</td>
+        <td>Google Tivi TCL QD-Mini LED 4K</td>
+        <td>699.000.000₫</td>
+        <td>20</td>
+        <td class="profit">838.800.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>DT001</td>
+        <td>Xiaomi Redmi Turbo 4</td>
+        <td>6.190.000₫</td>
+        <td>15</td>
+        <td class="profit">7.118.500₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>DT002</td>
+        <td>Xiaomi Pad Mini 8GB 256GB</td>
+        <td>13.990.000₫</td>
+        <td>25</td>
+        <td class="profit">17.487.500₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>DT003</td>
+        <td>Xiaomi 17 Pro 5G</td>
+        <td>19.450.000₫</td>
+        <td>18</td>
+        <td class="profit">22.991.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD002</td>
+        <td>Smart Tivi Xiaomi S Pro Mini Led 4K</td>
+        <td>26.990.000₫</td>
+        <td>22</td>
+        <td class="profit">32.927.800₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>DT004</td>
+        <td>HONOR Magic V5</td>
+        <td>44.490.000₫</td>
+        <td>30</td>
+        <td class="profit">57.837.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>DT005</td>
+        <td>Điện thoại Vivo iQOO Z10 Turbo</td>
+        <td>6.150.000₫</td>
+        <td>12</td>
+        <td class="profit">6.888.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>DT006</td>
+        <td>Điện thoại Xiaomi POCO F8 Ultra</td>
+        <td>16.950.000₫</td>
+        <td>18</td>
+        <td class="profit">19.991.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>MT001</td>
+        <td>Máy tính bảng Vivo iQOO Pad5 Pro</td>
+        <td>11.550.000₫</td>
+        <td>20</td>
+        <td class="profit">13.860.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>DT007</td>
+        <td>Điện thoại Xiaomi MIX Flip 2</td>
+        <td>21.850.000₫</td>
+        <td>25</td>
+        <td class="profit">27.312.500₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD003</td>
+        <td>Máy lạnh Casper Inverter 1.5HP QC-12IS36</td>
+        <td>9.990.000₫</td>
+        <td>20</td>
+        <td class="profit">11.988.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD004</td>
+        <td>Máy giặt Toshiba 8kg AW-M905BV(MK)</td>
+        <td>4.790.000₫</td>
+        <td>15</td>
+        <td class="profit">5.508.500₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD005</td>
+        <td>Tủ lạnh Xiaomi Mijia 606L</td>
+        <td>5.990.000₫</td>
+        <td>18</td>
+        <td class="profit">7.072.200₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD006</td>
+        <td>Máy lạnh Toshiba Inverter 1 HP RAS-H10Z2KCVG-V</td>
+        <td>9.190.000₫</td>
+        <td>22</td>
+        <td class="profit">11.227.800₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD007</td>
+        <td>Máy giặt Haier 3 lồng MultiWash Inverter</td>
+        <td>29.990.000₫</td>
+        <td>25</td>
+        <td class="profit">37.487.500₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD008</td>
+        <td>Tủ lạnh LG Inverter 474 lít Multi Door LFB47BLG</td>
+        <td>16.710.000₫</td>
+        <td>20</td>
+        <td class="profit">20.052.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD009</td>
+        <td>Máy lạnh LG Inverter 1 HP IDC09M1</td>
+        <td>11.790.000₫</td>
+        <td>15</td>
+        <td class="profit">13.558.500₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD010</td>
+        <td>Máy giặt Aqua Inverter 11 kg AW11-BP4959U1K(B)</td>
+        <td>8.490.000₫</td>
+        <td>12</td>
+        <td class="profit">9.508.800₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD011</td>
+        <td>Tủ lạnh Sharp Inverter 401 lít Multi Door SJ-FXP480V-SL</td>
+        <td>14.020.000₫</td>
+        <td>18</td>
+        <td class="profit">16.543.600₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>GD012</td>
+        <td>Tủ lạnh Hitachi Inverter 344 lít HRTN6379SUVN</td>
+        <td>11.140.000₫</td>
+        <td>20</td>
+        <td class="profit">13.368.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK001</td>
+        <td>Củ sạc Apple 2 cổng Type-C 35W</td>
+        <td>1.190.000₫</td>
+        <td>20</td>
+        <td class="profit">1.428.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK002</td>
+        <td>Ốp lưng kèm dây đeo iPhone 17 Pro Max</td>
+        <td>2.500.000₫</td>
+        <td>15</td>
+        <td class="profit">2.875.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK003</td>
+        <td>Tai nghe Bluetooth Apple AirPods Pro VN/A</td>
+        <td>6.500.000₫</td>
+        <td>18</td>
+        <td class="profit">7.670.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK004</td>
+        <td>USB 3.2 Kingston DataTraveler Exodia Onyx 64GB</td>
+        <td>219.000₫</td>
+        <td>25</td>
+        <td class="profit">273.750₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK005</td>
+        <td>Thẻ nhớ Micro SDXC Sandisk Extreme Pro V30 S 1TB</td>
+        <td>5.990.000₫</td>
+        <td>20</td>
+        <td class="profit">7.188.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK006</td>
+        <td>Bộ phát Wifi di động TotoLink M3L Wifi 6 AX300 4G LTE 300Mbps</td>
+        <td>1.099.000₫</td>
+        <td>15</td>
+        <td class="profit">1.263.850₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK007</td>
+        <td>Pin dự phòng Ugreen không dây Ugreen Qi2 10000mAh 30W PB761</td>
+        <td>1.200.000₫</td>
+        <td>18</td>
+        <td class="profit">1.416.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK008</td>
+        <td>Pin dự phòng Cuktech 1C1A 20000mAh 55W tích hợp cáp Type-C (CP25) PB200N</td>
+        <td>767.000₫</td>
+        <td>20</td>
+        <td class="profit">920.400₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK009</td>
+        <td>Chuột không dây Logitech MX Master 2S</td>
+        <td>1.890.000₫</td>
+        <td>15</td>
+        <td class="profit">2.173.500₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      <tr>
+        <td>PK010</td>
+        <td>Túi chống sốc Macbook Pro M2/M1 14 inch Tomtoc</td>
+        <td>570.000₫</td>
+        <td>20</td>
+        <td class="profit">684.000₫</td>
+        <td><button class="btn background-blue btn-sm" onclick="moPopup(this)">Sửa</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- POPUP -->
+  <div class="modal fade" id="popupSua" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header background-blue">
+          <h5 class="modal-title text-white">Sửa tỷ lệ lợi nhuận ()</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <label class="form-label fw-bold mb-2">Nhập tỷ lệ lợi nhuận mới (%)</label>
+          <input type="number" id="popupLoiNhuan" class="form-control text-center" style="max-width: 150px; margin: 0 auto;">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+          <button class="btn background-blue" data-bs-dismiss="modal">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:80px";></div>
+
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function timSanPham() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#tableSanPham tbody tr");
+      rows.forEach(row => {
+        const id = row.cells[0].textContent.toLowerCase();
+        const ten = row.cells[1].textContent.toLowerCase();
+        row.style.display = (id.includes(input) || ten.includes(input)) ? "" : "none";
+      });
+    }
+
+    function hienTatCa() {
+      document.getElementById("searchInput").value = "";
+      document.querySelectorAll("#tableSanPham tbody tr").forEach(row => row.style.display = "");
+    }
+
+    function moPopup(btn) {
+      const row = btn.closest("tr");
+      const loiNhuan = row.cells[3].textContent;
+      document.getElementById("popupLoiNhuan").value = loiNhuan;
+      const modal = new bootstrap.Modal(document.getElementById("popupSua"));
+      modal.show();
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("admin-navbar");
+    const tenAdmin = localStorage.getItem("AdminLogged") || "Admin";
+
+    const nameItem = document.createElement("li");
+    nameItem.className = "nav-item mx-1 fw-bold text-dark";
+    nameItem.innerHTML = `
+      <div class="d-flex align-items-center">
+        <img src="../asset/user_icon.png" alt="User" style="height:40px; width:40px; border-radius:50%; border:2px solid white; margin-right:8px;">
+        <span>${tenAdmin}</span>
+      </div>
+    `;
+
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "btn background-blue border-dark btn-sm fw-bold ms-2";
+    logoutBtn.textContent = "Đăng xuất";
+    logoutBtn.onclick = () => {
+      alert("Đã đăng xuất!");
+      // ❌ Chỉ xóa AdminLogged
+      localStorage.removeItem("AdminLogged");
+      location.reload();
+    };
+
+    const logoutItem = document.createElement("li");
+    logoutItem.className = "nav-item mx-1";
+    logoutItem.appendChild(logoutBtn);
+
+    nav.appendChild(nameItem);
+    nav.appendChild(logoutItem);
+  });
+
+  const rowsPerPage = 8; // Số sản phẩm mỗi trang
+  let currentPage = 1;
+  const table = document.getElementById("tableSanPham");
+  const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+  // --- Tạo phân trang ở dưới bảng ---
+  const paginationDiv = document.createElement("div");
+  paginationDiv.id = "pagination";
+  paginationDiv.className = "d-flex justify-content-center align-items-center mt-3 gap-2";
+  table.insertAdjacentElement("afterend", paginationDiv);
+
+  function renderTable() {
+    // Ẩn tất cả rows
+    rows.forEach(row => row.style.display = "none");
+
+    // Tính tổng số trang
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    currentPage = Math.min(currentPage, totalPages) || 1;
+
+    // Hiển thị rows của trang hiện tại
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = currentPage * rowsPerPage;
+    rows.slice(start, end).forEach(row => row.style.display = "");
+
+    renderPagination(totalPages);
+  }
+
+  function renderPagination(totalPages) {
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
+
+    // Nút "Trước"
+    const prev = document.createElement("button");
+    prev.textContent = "« Trước";
+    prev.className = "btn btn-outline-primary btn-sm";
+    prev.disabled = currentPage === 1;
+    prev.onclick = () => { currentPage--; renderTable(); };
+
+    // Nút "Sau"
+    const next = document.createElement("button");
+    next.textContent = "Sau »";
+    next.className = "btn btn-outline-primary btn-sm";
+    next.disabled = currentPage === totalPages;
+    next.onclick = () => { currentPage++; renderTable(); };
+
+    // Thông tin trang
+    const pageInfo = document.createElement("span");
+    pageInfo.textContent = `Trang ${currentPage} / ${totalPages || 1}`;
+    pageInfo.className = "mx-2";
+
+    pagination.append(prev, pageInfo, next);
+  }
+
+  // Khi DOM sẵn sàng
+  document.addEventListener("DOMContentLoaded", () => {
+    renderTable();
+  });
+
+  </script>
+</body>
+</html>

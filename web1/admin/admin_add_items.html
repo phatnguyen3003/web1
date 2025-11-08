@@ -2,644 +2,940 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>ADMIN Add Items Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/png" href="../asset/logo.png">
+  <title>Quản Lý danh mục sản phẩm </title>
+
+  <script>
+    // Kiểm tra trạng thái đăng nhập
+    if (localStorage.getItem("AdminLogged") !== "quanly1") {
+        // Chưa đăng nhập => chuyển về trang login
+        window.location.href = "../sites/login_admin.html";
+    }
+
+  </script>
+   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-    <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-md navbar-light bg-light px-0 py-0 fixed-top">
-      <div class="container-fluid background-blue">
-        <!-- Logo -->
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <img src="../asset/logo.png" alt="logo" class="logo-img me-2">
-          <span class="fw-bold">AdminPanel</span>
-        </a>
-
-        <!-- Nút toggle (cho màn nhỏ) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Menu -->
-      <div class="collapse navbar-collapse justify-content-end align-items-center fs-5" id="main-nav">
-        <ul class="navbar-nav px-3 align-items-center">
-          <li class="nav-item mx-1">
-            <a href="admin_index.html" class="btn btn-outline-dark">Dashboard</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_add_items.html" class="btn btn-outline-dark">Lên kệ</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_add_bill.html" class="btn btn-outline-dark">Hóa đơn nhập kho</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_package_manage.html" class="btn btn-outline-dark">Quản Lý Đơn hàng</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_user_manage.html" class="btn btn-outline-dark">Quản Lý Khách hàng</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_voucher_manager.html" class="btn btn-outline-dark">Quản Lý Khuyến mãi</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle d-flex align-items-center p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="../asset/user_icon.png" alt="User" class="avatar-img">
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item text-danger" href="#">Đăng xuất</a></li>
-            </ul>
-           </li>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark background-blue fixed-top shadow">
+    <div class="container-fluid">
+ 
+      <!-- Logo -->
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="../asset/logo.png" alt="Logo" class="me-2" style="height: 80px;">
+      </a>
+ 
+      <!-- Nút thu gọn -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+ 
+      <!-- Menu chính -->
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav align-items-center text-center mb-2 mb-md-0" id="admin-navbar">
+         <li class="nav-item mx-1"><a href="admin_user_manage.html" class="btn btn-outline-dark border-dark">Quản lý người dùng</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_items.html" class="btn btn-outline-dark border-dark">Quản lý danh mục sản phẩm</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_bill.html" class="btn btn-outline-dark border-dark">Quản lý nhập hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_price_manage.html" class="btn btn-outline-dark border-dark">Quản lý giá bán</a></li>
+          <li class="nav-item mx-1"><a href="admin_order_manage.html" class="btn btn-outline-dark border-dark">Quản lý đơn đặt hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_storage_manage.html" class="btn btn-outline-dark border-dark">Quản lý tồn kho</a></li>
         </ul>
+        <!-- JS sẽ thêm phần admin vào đây -->
       </div>
-
+ 
       </div>
     </nav>
+
   <hr style="border: 2px solid black">
 
-  <div class="container-lg">
-    <div class="row">
-        <div class="col-10 align-items-center text-center justify-content-center">
+  <div class="container-fluid" style="padding-top: 80px;">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+
+        <!-- Tiêu đề -->
+        <h2 class="text-center mb-4">Thông tin sản phẩm</h2>
 
 
-            <div class="row pb-3">
-              <div class="col-6">
+        <!-- Form thông tin sản phẩm -->
+      
+<form id="addProductForm">
+  <div class="row g-3">
+    <!-- Mã sản phẩm -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Mã sản phẩm</label>
+      <input type="text" id="add_pid" class="form-control" placeholder="VD: DT001" required>
+    </div>
 
+    <!-- Tên sản phẩm -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Tên sản phẩm</label>
+      <input type="text" id="add_name" class="form-control" placeholder="Nhập tên sản phẩm..." required>
+    </div>
+
+   <!-- Loại -->
+<select id="add_category" class="form-select" required>
+  <option value="" disabled selected>-- Chọn loại sản phẩm --</option>
+  <option value="Điện thoại">Điện thoại-Máy tinh Bảng</option>
+  <option value="Điện gia dụng">Điện gia dụng</option>
+  <option value="Phụ kiện">Phụ kiện</option>
+  <option value="Khác">Khác</option>
+</select>
+
+<!-- Ô nhập loại sản phẩm khác -->
+<input
+  type="text"
+  id="customCategory"
+  class="form-control mt-2 d-none"
+  placeholder="Nhập loại sản phẩm khác..."
+>
+<!-- Thông số kỹ thuật (ẩn mặc định, hiển thị tùy loại sản phẩm) -->
+<div id="specFields" class="col-12 mt-3 d-none">
+  <label class="form-label fw-semibold">Thông số kỹ thuật</label>
+  <table class="table table-bordered align-middle">
+    <tbody id="specDetails"></tbody>
+  </table>
+</div>
+
+   <!-- Đơn vị tính -->
+<div class="col-md-6">
+  <label class="form-label fw-semibold">Đơn vị tính</label>
+  <select id="add_unit" class="form-select">
+    <option value="Cái">Cái</option>
+    <option value="Chiếc">Chiếc</option>
+  </select>
+</div>
+              <!-- Nhà cung cấp -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Nhà cung cấp</label>
+            <select id="add_supplier" class="form-select">
+              <option>Xiaomi</option>
+              <option>Samsung</option>
+              <option>LG</option>
+              <option>Asus</option>
+              <option>Toshiba</option>
+              <option>Apple</option>
+              <option>Khác</option>
+            </select>
+        <input type="text" id="add_supplier_custom" class="form-control mt-2 d-none" placeholder="Nhập tên nhà cung cấp mới...">
+          </div>
+    <!-- Số lượng -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Số lượng</label>
+      <input type="number" id="add_quantity" class="form-control" min="0" value="0">
+    </div>
+
+    <!-- Giá bán -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Giá bán đề xuất (VND)</label>
+      <input type="number" id="add_price" class="form-control" placeholder="VD: 15000000" min="0" step="1000">
+    </div>
+
+    <!-- Tỉ lệ lợi nhuận -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Tỉ lệ lợi nhuận mong muốn (%)</label>
+      <input type="number" id="add_profit" class="form-control" min="0" max="100">
+    </div>
+
+    <!-- Hiện trạng -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Hiện trạng</label>
+      <select id="add_status" class="form-select">
+        <option>Đang bán</option>
+        <option>Ngừng bán</option>
+        <option selected>Chưa bán</option>
+      </select>
+    </div>
+
+    <!-- Mô tả -->
+    <div class="col-12">
+      <label class="form-label fw-semibold">Mô tả</label>
+      <textarea id="add_description" class="form-control" rows="3" placeholder="Nhập mô tả sản phẩm..."></textarea>
+    </div>
+
+    <!-- Hình ảnh -->
+    <div class="col-12">
+      <label class="form-label fw-semibold">Hình ảnh sản phẩm</label>
+      <input type="file" id="add_image" accept="image/*" class="form-control w-50">
+    </div>
+
+    <!-- Nút Thêm & Reset -->
+    <div class="col-12 d-flex flex-column flex-md-row justify-content-between mt-3">
+      <button type="button" id="addProductBtn" class="btn btn-success fw-bold mb-2 mb-md-0 w-100 w-md-auto">
+        Thêm sản phẩm
+      </button>
+      <button type="reset" class="btn btn-warning fw-bold w-100 w-md-auto">
+        Đặt lại thông tin
+      </button>
+    </div>
+  </div>
+</form>
+
+        <!-- Bảng sản phẩm -->
+            <div class="table-responsive mt-5">
+              <table class="table table-bordered table-hover align-middle text-center shadow-sm">
+                <thead class="table-primary align-middle">
+                  <tr>
+                    <th style="width: 90px;">Mã SP</th>
+                    <th style="width: 110px;">Ảnh</th>
+                    <th style="min-width: 200px;">Tên Sản Phẩm</th>
+                    <th style="width: 130px;">Thông số</th>
+                    <th style="width: 130px;">Tồn Kho</th>
+                    <th style="width: 150px;">Trạng Thái</th>
+                    <th style="width: 140px;">Giá (VND)</th>
+                    <th style="width: 160px;">Thao Tác</th>
+                  </tr>
+                </thead>
+   <tbody>
+  <tr>
+    <td>DL001</td>
+    <td><img src="../asset/products/Tu-lanh-Xiaomi-Mijia-606L.png" alt="Tu-lanh-Xiaomi-Mijia-606L" width="80"></td>
+    <td>Tủ lạnh Xiaomi Mijia 606L</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec1">Xem thông số</button>
+      <div class="collapse mt-2" id="spec1">
+        <ul>
+          <li>Công suất: 180W</li>
+          <li>Dung tích tổng: 606 lít</li>
+          <li>Chất liệu: Hợp kim thép không gỉ</li>
+          <li>Trọng lượng: 81kg</li>
+          <li>Kích thước: 794 × 688 × 1800 mm</li>
+          <li>Số cửa: 4 cửa</li>
+        </ul>
+      </div>
+    </td>
+    <td>43</td>
+    <td><span class="badge bg-success">Đang bán</span></td>
+    <td>16.990.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+
+  <tr>
+    <td>GD001</td>
+    <td><img src="../asset/products/may-giat-aqua.png" alt="may-giat-aqua" width="80"></td>
+    <td>Máy giặt Toshiba 8kg AW-M905BV(MK)</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec2">Xem thông số</button>
+      <div class="collapse mt-2" id="spec2">
+        <ul>
+          <li>Kiểu máy: Cửa trên</li>
+          <li>Khối lượng giặt: 8kg</li>
+          <li>Động cơ: Dây Curo</li>
+          <li>Inverter: Không</li>
+          <li>Tốc độ quay: 700 vòng/phút</li>
+        </ul>
+      </div>
+    </td>
+    <td>22</td>
+    <td><span class="badge bg-danger">Ngừng bán</span></td>
+    <td>4.790.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+
+  <tr>
+    <td>DL002</td>
+    <td><img src="../asset/products/may-lanh-casper-qc-12is36-a.png" alt="may-lanh-casper" width="80"></td>
+    <td>Máy lạnh Casper Inverter 1.5HP QC-12IS36</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec3">Xem thông số</button>
+      <div class="collapse mt-2" id="spec3">
+        <ul>
+          <li>Loại: 1 chiều</li>
+          <li>Công suất: 1.5HP (12.000 BTU)</li>
+          <li>Inverter: Có</li>
+          <li>Gas: R32</li>
+        </ul>
+      </div>
+    </td>
+    <td>69</td>
+    <td><span class="badge bg-secondary">Chưa bán</span></td>
+    <td>9.900.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+
+  <tr>
+    <td>DT001</td>
+    <td><img src="../asset/products/tivi-tcl-115x955-max-g.png" alt="tivi-tcl" width="80"></td>
+    <td>Google Tivi TCL QD-Mini LED 4K 115 inch 115X955 Max</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec4">Xem thông số</button>
+      <div class="collapse mt-2" id="spec4">
+        <ul>
+          <li>Loại: MiniLED</li>
+          <li>Kích thước: 115 inch</li>
+          <li>Độ phân giải: 4K</li>
+          <li>Trọng lượng: 98.3kg</li>
+        </ul>
+      </div>
+    </td>
+    <td>12</td>
+    <td><span class="badge bg-success">Đang bán</span></td>
+    <td>699.000.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+
+  <tr>
+    <td>DT002</td>
+    <td><img src="../asset/products/xiaomi-turbo.png" alt="xiaomi-redmi-turbo-4" width="80"></td>
+    <td>Xiaomi Redmi Turbo 4</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec5">Xem thông số</button>
+      <div class="collapse mt-2" id="spec5">
+        <ul>
+          <li>Hệ điều hành: Android 15</li>
+          <li>Màn hình: AMOLED 6.67”</li>
+          <li>Camera sau: 50MP</li>
+          <li>Chip: Dimensity 8400 Ultra</li>
+          <li>RAM: 12–16GB</li>
+        </ul>
+      </div>
+    </td>
+    <td>89</td>
+    <td><span class="badge bg-danger">Ngừng bán</span></td>
+    <td>6.190.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+
+  <tr>
+    <td>DT003</td>
+    <td><img src="../asset/products/xiaomi-ipad.png" alt="xiaomi-pad-mini" width="80"></td>
+    <td>Xiaomi Pad Mini</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec6">Xem thông số</button>
+      <div class="collapse mt-2" id="spec6">
+        <ul>
+          <li>OS: HyperOS 2</li>
+          <li>Màn hình: 8.8” LCD</li>
+          <li>Chip: Dimensity 9400+</li>
+          <li>RAM: 8GB</li>
+          <li>Pin: 7500mAh</li>
+        </ul>
+      </div>
+    </td>
+    <td>45</td>
+    <td><span class="badge bg-success">Đang bán</span></td>
+    <td>13.990.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+
+  <tr>
+    <td>PK001</td>
+    <td><img src="../asset/products/cu_sac_apple.png" alt="cu-sac-apple" width="80"></td>
+    <td>Củ sạc Apple 2 cổng Type-C 35W</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec7">Xem thông số</button>
+      <div class="collapse mt-2" id="spec7">
+        <ul>
+          <li>Công suất: 35W</li>
+          <li>Đầu ra: 2 x USB-C</li>
+          <li>Tiện ích: Sạc nhanh</li>
+        </ul>
+      </div>
+    </td>
+    <td>123</td>
+    <td><span class="badge bg-secondary">Chưa bán</span></td>
+    <td>1.190.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+
+  <tr>
+    <td>GD002</td>
+    <td><img src="../asset/products/noi-com-dien-xiaomi-gen3.png" alt="noi-com-dien-xiaomi-gen3" width="80"></td>
+    <td>Nồi Cơm Điện Cao Tần Xiaomi Mijia Gen 3 3L/4L</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec8">Xem thông số</button>
+      <div class="collapse mt-2" id="spec8">
+        <ul>
+          <li>Công suất: 1100W</li>
+          <li>Dung tích: 3L / 4L</li>
+          <li>Chất liệu: Nhựa ABS</li>
+        </ul>
+      </div>
+    </td>
+    <td>74</td>
+    <td><span class="badge bg-success">Đang bán</span></td>
+    <td>1.550.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+
+  <tr>
+    <td>DL003</td>
+    <td><img src="../asset/products/may-loc-khong-khi-xiaomi-6eu.png" alt="may-loc-khong-khi-xiaomi-6eu" width="80"></td>
+    <td>Máy lọc không khí Xiaomi Mijia Smart Air Purifier 6 EU</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#spec9">Xem thông số</button>
+      <div class="collapse mt-2" id="spec9">
+        <ul>
+          <li>Công suất: 38W</li>
+          <li>Phạm vi lọc: 50m²</li>
+          <li>Lưu lượng gió: 443 m³/h</li>
+          <li>Bộ lọc: HEPA + Than hoạt tính</li>
+        </ul>
+      </div>
+    </td>
+    <td>57</td>
+    <td><span class="badge bg-danger">Ngừng bán</span></td>
+    <td>5.990.000 đồng</td>
+    <td><div class="d-flex justify-content-center gap-2"><button class="btn btn-sm btn-warning">Sửa</button></div></td>
+  </tr>
+</tbody>
+
+
+              </table>
+            </div>
+
+
+                  </div>
+                </div>
               </div>
-              <div class="col-6">
-                <div class="col-8">
-                  <h2 class="align-items-center">
-                    Thông tin sản phẩm
-                  </h2>
-               </div>
-              </div>
+  
+
+
+   <!-- Modal sửa sản phẩm -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="editProductLabel">Sửa thông tin sản phẩm</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editProductForm">
+          <div class="row g-3">
+            <!-- Mã sản phẩm -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Mã sản phẩm</label>
+              <input type="text" id="edit_pid" class="form-control" readonly>
             </div>
 
-
-            <div class="row">
-              <div class="col-4">
-                <div class="position-relative d-inline-block">
-                    <div class="position-relative d-inline-block">
-                      <img src="../asset/admin/add_product_image.png" 
-                          class="img-fluid rounded  border border-black border-5" 
-                          alt="Ảnh sản phẩm">
-
-                      <input type="file" id="mypicture" name="mypicture" accept="image/*" hidden>
-
-                      <label for="mypicture" 
-                            class="btn btn-danger fw-bold position-absolute top-50 start-50 translate-middle rounded-circle d-flex align-items-center justify-content-center"
-                            style="width: 60px; height: 60px; font-size: 32px;">
-                        +
-                      </label>
-                    </div>
-                </div>
-              </div>
-
-              <div class="col-12 col-lg-8">
-                <!-- Hàng 1: Tên sản phẩm -->
-                <div class="row mb-3 align-items-center">
-                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
-                    <label for="name" class="col-form-label fw-semibold">Tên sản phẩm:</label>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <input type="text" id="name" class="form-control" placeholder="Nhập tên sản phẩm...">
-                  </div>
-                </div>
-
-                <!-- Hàng 2: Mã sản phẩm -->
-                <div class="row mb-3 align-items-center">
-                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
-                    <label for="pid" class="col-form-label fw-semibold">Mã sản phẩm:</label>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <input type="text" id="pid" class="form-control" placeholder="VD: DT001">
-                  </div>
-                </div>
-
-                <!-- Hàng 3: Danh mục -->
-                <div class="row mb-3 align-items-center">
-                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
-                    <label for="category" class="col-form-label fw-semibold">Danh mục:</label>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <select id="category" class="form-select">
-                      <option value="Điện tử" selected>Điện tử</option>
-                      <option value="Điện gia dụng - điện lạnh">Điện gia dụng - điện lạnh</option>
-                      <option value="Phụ kiện">Phụ kiện</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Hàng 4: Thương hiệu -->
-                <div class="row mb-3 align-items-center">
-                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
-                    <label for="brand" class="col-form-label fw-semibold">Thương hiệu:</label>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <select id="brand" class="form-select">
-                      <option value="">-- Chọn thương hiệu --</option>
-
-                      <optgroup label="📱 Điện thoại di động">
-                        <option>Apple (iPhone)</option>
-                        <option>Samsung</option>
-                        <option>Oppo</option>
-                        <option>Xiaomi</option>
-                        <option>Vivo</option>
-                        <option>OnePlus</option>
-                        <option>Nokia</option>
-                      </optgroup>
-
-                      <optgroup label="💻 Máy tính - Laptop">
-                        <option>Asus</option>
-                        <option>Dell</option>
-                        <option>HP</option>
-                        <option>Acer</option>
-                        <option>Lenovo</option>
-                        <option>MSI</option>
-                      </optgroup>
-
-                      <optgroup label="🎧 Phụ kiện & Thiết bị điện tử">
-                        <option>Sony</option>
-                        <option>LG</option>
-                        <option>Philips</option>
-                        <option>Logitech</option>
-                        <option>JBL</option>
-                      </optgroup>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Hàng 5: Mô tả -->
-                <div class="row mb-3">
-                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
-                    <label for="description" class="col-form-label fw-semibold">Chi tiết:</label>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <textarea id="description" class="form-control" rows="4" placeholder="Nhập mô tả sản phẩm..."></textarea>
-                  </div>
-                </div>
-
-                <!-- Hàng 6: Thời gian bảo hành -->
-                <div class="row mb-3 align-items-center">
-                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
-                    <label for="warranty" class="col-form-label fw-semibold">Thời gian bảo hành:</label>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <select id="warranty" class="form-select">
-                      <option value="">-- Thời gian bảo hành --</option>
-                      <option>3 tháng</option>
-                      <option>6 tháng</option>
-                      <option>12 tháng</option>
-                      <option>24 tháng</option>
-                      <option>36 tháng</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Hàng 7: Xuất xứ -->
-                <div class="row mb-3 align-items-center">
-                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
-                    <label for="origin" class="col-form-label fw-semibold">Xuất xứ:</label>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <input type="text" id="origin" class="form-control" placeholder="Nhập quốc gia sản xuất...">
-                  </div>
-                </div>
-
-                <!-- Hàng 8: Giá -->
-                <div class="row mb-3 align-items-center">
-                  <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
-                    <label for="price" class="col-form-label fw-semibold text-danger">Giá:</label>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="input-group">
-                      <input type="number" id="price" class="form-control" placeholder="VD: 15000000" min="0" step="100000">
-                      <span class="input-group-text text-danger fw-semibold">VND</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Hàng 9: Kích thước màn hình & Công suất -->
-                <div class="row mb-3">
-                  <div class="col-12 col-md-6">
-                    <label for="screensize" class="fw-semibold d-block">Kích thước màn hình:</label>
-                    <div class="input-group">
-                      <input type="number" id="screensize" class="form-control" placeholder="28 Inch">
-                      <span class="input-group-text">Inch</span>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6 mt-2 mt-md-0">
-                    <label for="power" class="fw-semibold d-block">Công suất:</label>
-                    <div class="input-group">
-                      <input type="number" id="power" class="form-control" placeholder="300W">
-                      <span class="input-group-text">W</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Hàng 10-13: Thông tin chi tiết (2 cột / hàng) -->
-                <div class="row mb-3">
-                  <div class="col-12 col-md-6">
-                    <label for="backcamerainfo" class="fw-semibold d-block">Camera sau:</label>
-                    <textarea id="backcamerainfo" class="form-control" rows="2" placeholder="50 MP, F1.8 + 12 MP, F2.2"></textarea>
-                  </div>
-                  <div class="col-12 col-md-6 mt-2 mt-md-0">
-                    <label for="frontcamerainfo" class="fw-semibold d-block">Camera trước:</label>
-                    <textarea id="frontcamerainfo" class="form-control" rows="2" placeholder="16 MP"></textarea>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-12 col-md-6">
-                    <label for="RAM" class="fw-semibold d-block">Dung lượng RAM:</label>
-                    <input type="text" id="RAM" class="form-control" placeholder="12GB">
-                  </div>
-                  <div class="col-12 col-md-6 mt-2 mt-md-0">
-                    <label for="storage" class="fw-semibold d-block">Bộ nhớ trong:</label>
-                    <input type="text" id="storage" class="form-control" placeholder="256GB">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-12 col-md-6">
-                    <label for="battery" class="fw-semibold d-block">Pin:</label>
-                    <input type="text" id="battery" class="form-control" placeholder="4300mAh">
-                  </div>
-                  <div class="col-12 col-md-6 mt-2 mt-md-0">
-                    <label for="SIM" class="fw-semibold d-block">Thẻ SIM:</label>
-                    <input type="text" id="SIM" class="form-control" placeholder="2 SIM">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-12 col-md-6">
-                    <label for="OS" class="fw-semibold d-block">Hệ điều hành:</label>
-                    <input type="text" id="OS" class="form-control" placeholder="Android 14">
-                  </div>
-                  <div class="col-12 col-md-6 mt-2 mt-md-0">
-                    <label for="CPU" class="fw-semibold d-block">Loại CPU:</label>
-                    <input type="text" id="CPU" class="form-control" placeholder="Snapdragon 8 Gen 2">
-                  </div>
-                </div>
-
-                <!-- Nút -->
-                <div class="row mb-3">
-                  <div class="col-12 col-md-6 text-center text-md-end mb-2 mb-md-0">
-                    <button class="btn btn-success fw-bold w-100 w-md-auto">Thêm sản phẩm</button>
-                  </div>
-                  <div class="col-12 col-md-6 text-center text-md-start">
-                    <button type="reset" class="btn btn-warning fw-bold w-100 w-md-auto">Reset Thông Tin</button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+            <!-- Tên sản phẩm -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Tên sản phẩm</label>
+              <input type="text" id="edit_name" class="form-control" required>
             </div>
 
-          <div class="container-fluid">
-          <div class="col-12 align-items-center text-center justify-content-center mt-5">
-            <div class="table-responsive mx-auto">
-              <table class="table table-striped table-hover align-middle text-center">
-                <thead class="table-primary">
-                <tr>
-                  <td>ID</td>
-                  <td></td>
-                  <td>Tên Sản Phẩm</td>
-                  <td>Thông Số Sản Phẩm</td>
-                  <td>Số Lượng Trong Kho</td>
-                  <td>Trạng Thái Trên Kệ</td>
-                  <td>Giá</td>
-                  <td>Thao Tác</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>DL001</td>
-                  <td>
-                    <img src="../asset/products/Tu-lanh-Xiaomi-Mijia-606L.png" 
-                        alt="Tu-lanh-Xiaomi-Mijia-606L" class="product-image" width="80">
-                  </td>
-                  <td>Tủ lạnh Xiaomi Mijia 606L</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec1" aria-expanded="false">
-                      Xem thông số
-                    </button>
+            <!-- Loại sản phẩm -->
+<div class="mb-3">
+  <label for="edit_category" class="form-label">Loại sản phẩm</label>
+  <select id="edit_category" class="form-select" required>
+    <option value="" disabled selected>-- Chọn loại sản phẩm --</option>
+    <option value="Điện thoại - Máy tính bảng">Điện thoại - Máy tính bảng</option>
+    <option value="Điện gia dụng">Điện gia dụng</option>
+    <option value="Phụ kiện">Phụ kiện</option>
+    <option value="Khác">Khác</option>
+  </select>
+</div>
+            <div class="col-md-6">
+  <label class="form-label fw-semibold">Đơn vị tính</label>
+  <select id="edit_unit" class="form-select">
+    <option value="" disabled>-- Chọn đơn vị tính --</option>
+    <option value="cái" selected>Cái</option>
+    <option value="chiếc">Chiếc</option>
+  </select>
 
-                    <div class="collapse mt-2" id="spec1">
-                      <ul>
-                        <li>công suất: 180W</li>
-                        <li>dung tích tổng: 606 lít</li>
-                        <li>chất liệu: hợp kim thép không gỉ</li>
-                        <li>trọng lượng: 81kg</li>
-                        <li>kích thước: 794 x 688 x 1800 mm</li>
-                        <li>số cửa: 4 cửa</li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>43</td>
-                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
-                  <td>16.990.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-secondary">Ẩn</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>GD001</td>
-                  <td>
-                    <img src="../asset/products/may-giat-aqua.png" 
-                        alt="may-giat-aqua" class="product-image">
-                  </td>
-                  <td>Máy giặt Toshiba 8kg AW-M905BV(MK)</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec2" aria-expanded="false">
-                      Xem thông số
-                    </button>
-
-                    <div class="collapse mt-2" id="spec2">
-                      <ul>
-                        <li>Kiểu máy: Máy giặt cửa trên</li>
-                        <li>Khối lượng giặt: 8k</li>
-                        <li>Kiểu động cơ: Dây Curo</li>
-                        <li>Công nghệ Inverter: Không</li>
-                        <li>Tốc độ quay vắt: 700 vòng/phút</li>
-                        <li>Chất liệu vỏ máy: Kim loại sơn tĩnh điện</li>
-                        <li>Chất liệu nắp máy: Kính cường lực</li>
-                        <li>Chất liệu lồng giặt: Thép không gỉ</li>
-                        <li>Công suất: 400</li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>22</td>
-                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
-                  <td>4.790.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-secondary">Ẩn</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>DL002</td>
-                  <td>
-                    <img src="../asset/products/may-lanh-casper-qc-12is36-a.png" 
-                        alt="may-lanh-casper-qc-12is36-a" class="product-image">
-                  </td>
-                  <td>Máy lạnh Casper Inverter 1.5HP QC-12IS36</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec3" aria-expanded="false">
-                      Xem thông số
-                    </button>
-
-                    <div class="collapse mt-2" id="spec3">
-                      <ul>
-                        <li>Loại máy điều hòa: 1 chiều</li>
-                        <li>Công suất làm lạnh: 12.000 BTU - 1.5HP</li>
-                        <li>Công nghệ Inverter: Có</li>
-                        <li>Diện tích sử dụng: 15m2 - 20m2</li>
-                        <li>Gas sử dụng: R32</li>
-                        <li>Lưu lượng gió dàn lạnh: 10/8.7/5.6 m3/phút</li>
-                        <li>Độ ồn dàn lạnh: 42/36/24 dB(A)</li>
-                        <li>Độ ồn dàn nóng: 51/50/49 dB(A)</li>
-                        <li>Chất liệu dàn tản nhiệt: Đồng mạ vàng</li>
-                        <li>Công suất tiêu thụ: 1.400W</li>
-                        <li>Tiết kiệm điện: Inverter, Công nghệ I-saving</li>
-                        <li>Nhãn năng lượng tiết kiệm: 5 sao</li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>69</td>
-                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
-                  <td>9.900.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-secondary">Ẩn</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>DT001</td>
-                  <td>
-                    <img src="../asset/products/tivi-tcl-qd-mini-led-115x955-max.png" 
-                        alt="tivi-tcl-qd-mini-led-115x955-max" class="product-image" width="80">
-                  </td>
-                  <td>Google Tivi TCL QD-Mini LED 4K 115 inch 115X955 Max</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec4" aria-expanded="false">
-                      Xem thông số
-                    </button>
-                    <div class="collapse mt-2" id="spec4">
-                      <ul>
-                        <li>Loại Tivi: MiniLED</li>
-                        <li>Kích thước màn hình: 115 inch</li>
-                        <li>Độ phân giải: 4K</li>
-                        <li>VESA: 1.000mm x 600mm</li>
-                        <li>Kích thước có chân đế: 256.56cm x 179.3cm x 28.5cm</li>
-                        <li>Kích thước không chân đế: 256.56cm x 146.97cm x 5.7cm</li>
-                        <li>Trọng lượng có chân đế: 99.8kg</li>
-                        <li>Trọng lượng không chân đế: 98.3kg</li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>12</td>
-                  <td><span class="badge bg-secondary text-white">Chưa Lên Kệ</span></td>
-                  <td>699.000.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-success">Lên kệ</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>DT002</td>
-                  <td>
-                    <img src="../asset/products/xiaomi-redmi-turbo-4.png" 
-                        alt="xiaomi-redmi-turbo-4" class="product-image" width="80">
-                  </td>
-                  <td>Xiaomi Redmi Turbo 4</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec5" aria-expanded="false">
-                      Xem thông số
-                    </button>
-                    <div class="collapse mt-2" id="spec5">
-                      <ul>
-                        <li>Hệ điều hành: Android 15, HyperOS 2.0</li>
-                        <li>Loại màn hình: AMOLED</li>
-                        <li>Độ phân giải: 1220 x 2712 pixels</li>
-                        <li>Kích thước màn hình: 6.67 inches</li>
-                        <li>Camera sau: 50 MP, f/1.5, PDAF, OIS</li>
-                        <li>Camera trước: 20 MP, f/2.2, HDR</li>
-                        <li>Chipset: MediaTek Dimensity 8400 Ultra (4 nm)</li>
-                        <li>CPU: 8 nhân (3.25 GHz & 3x3.0 GHz & 4x2.1 GHz)</li>
-                        <li>GPU: Mali-G720 MC7</li>
-                        <li>AI: MediaTek NPU 880</li>
-                        <li>RAM: 12–16GB (LPDDR5X)</li>
-                        <li>Bộ nhớ trong: 256–512GB (UFS 4.0)</li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>89</td>
-                  <td><span class="badge bg-secondary text-white">Chưa Lên Kệ</span></td>
-                  <td>6.190.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-success">Lên kệ</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-                
-                <tr>
-                  <td>DT003</td>
-                  <td>
-                    <img src="../asset/products/xiaomi-pad-mini.png" 
-                        alt="xiaomi-pad-mini" class="product-image" width="80">
-                  </td>
-                  <td>Xiaomi Pad Mini</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec6" aria-expanded="false">
-                      Xem thông số
-                    </button>
-                    <div class="collapse mt-2" id="spec6">
-                      <ul>
-                        <li>Hệ điều hành: Xiaomi HyperOS 2</li>
-                        <li>Kích thước màn hình: 8.8 inches</li>
-                        <li>Công nghệ màn hình: LCD</li>
-                        <li>Camera sau: 13MP, f/2.2, PDAF</li>
-                        <li>Camera trước: 8MP, f/2.28</li>
-                        <li>Chipset: MediaTek Dimensity 9400+</li>
-                        <li>RAM: 8GB</li>
-                        <li>Bộ nhớ trong: 256GB</li>
-                        <li>Pin: 7500mAh</li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>45</td>
-                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
-                  <td>13.990.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-secondary">Ẩn</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-                
-                <tr>
-                  <td>PK001</td>
-                  <td>
-                    <img src="../asset/products/cu-sac-apple-35w.png" 
-                        alt="cu-sac-apple-35w" class="product-image" width="80">
-                  </td>
-                  <td>Củ sạc Apple 2 cổng Type-C 35W</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec7" aria-expanded="false">
-                      Xem thông số
-                    </button>
-                    <div class="collapse mt-2" id="spec7">
-                      <ul>
-                        <li>Công suất: 35W</li>
-                        <li>Sử dụng tối đa: 2 thiết bị</li>
-                        <li>Đầu ra: 2 x USB-C</li>
-                        <li>Tiện ích: Sạc nhanh</li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>123</td>
-                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
-                  <td>1.190.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-secondary">Ẩn</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>GD002</td>
-                  <td>
-                    <img src="../asset/products/noi-com-dien-xiaomi-gen3.png" 
-                        alt="noi-com-dien-xiaomi-gen3" class="product-image" width="80">
-                  </td>
-                  <td>Nồi Cơm Điện Cao Tần Xiaomi Mijia Gen 3 3L/4L</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec8" aria-expanded="false">
-                      Xem thông số
-                    </button>
-                    <div class="collapse mt-2" id="spec8">
-                      <ul>
-                        <li>Thương hiệu: Xiaomi</li>
-                        <li>Model: MFB2AM</li>
-                        <li>Công suất: 1100W</li>
-                        <li>Dung tích nồi: 3L / 4L</li>
-                        <li>Dung tích lòng nồi: 1L / 1.4L</li>
-                        <li>Chất liệu: Nhựa ABS</li>
-                        <li>Điện áp đầu vào: 220V</li>
-                        <li>Trọng lượng: 5kg</li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>74</td>
-                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
-                  <td>1.550.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-secondary">Ẩn</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>DL003</td>
-                  <td>
-                    <img src="../asset/products/may-loc-khong-khi-xiaomi-6eu.png" 
-                        alt="may-loc-khong-khi-xiaomi-6eu" class="product-image" width="80">
-                  </td>
-                  <td>Máy lọc không khí Xiaomi Mijia Smart Air Purifier 6 EU (BHR08MZEU)</td>
-                  <td>
-                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#spec9" aria-expanded="false">
-                      Xem thông số
-                    </button>
-                    <div class="collapse mt-2" id="spec9">
-                      <ul>
-                        <li>Công suất: 38W</li>
-                        <li>Phạm vi lọc hiệu quả: 50m²</li>
-                        <li>Lưu lượng gió tối đa: 443 m³/h</li>
-                        <li>Bộ lọc bụi gồm:</li>
-                        <ul>
-                          <li>Bộ lọc sơ bộ</li>
-                          <li>Màng lọc HEPA</li>
-                          <li>Màng lọc than hoạt tính</li>
-                        </ul>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>57</td>
-                  <td><span class="badge bg-success text-white">Đang lên Kệ</span></td>
-                  <td>5.990.000 đồng</td>
-                  <td>
-                    <button class="btn btn-sm btn-secondary">Ẩn</button>
-                    <button class="btn btn-sm btn-warning">Sửa</button>
-                    <button class="btn btn-sm btn-danger">Xóa</button>
-                  </td>
-                </tr>
-
-                
-
-              </tbody>
-            </table>
+</div>
+            <!-- Nhà cung cấp -->
+<div class="col-md-6">
+  <label class="form-label fw-semibold">Nhà cung cấp</label>
+  <select id="edit_supplier" class="form-select">
+    <option>Xiaomi</option>
+    <option>Samsung</option>
+    <option>LG</option>
+    <option>Asus</option>
+    <option>Toshiba</option>
+    <option>Apple</option>
+    <option>Khác</option>
+  </select>
+  <input type="text" id="edit_supplier_custom" class="form-control mt-2 d-none" placeholder="Nhập tên nhà cung cấp mới...">
+</div>
+            <!-- Số lượng -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Số lượng</label>
+              <input type="number" id="edit_quantity" class="form-control" min="0">
             </div>
 
+            <!-- Giá bán đề xuất -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Giá bán đề xuất (VND)</label>
+              <input type="number" id="edit_price" class="form-control" min="0" step="1000">
             </div>
+
+            <!-- Tỉ lệ lợi nhuận -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Tỉ lệ lợi nhuận mong muốn (%)</label>
+              <input type="number" id="edit_profit" class="form-control" min="0" max="100">
             </div>
-        </div>
+
+            <!-- Hiện trạng -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Hiện trạng</label>
+              <select id="edit_status" class="form-select">
+                <option>Đang bán</option>
+                <option>Ngừng bán</option>
+                <option>Chưa bán</option>
+              </select>
+            </div>
+
+            <!-- Mô tả -->
+            <div class="col-12">
+              <label class="form-label fw-semibold">Mô tả</label>
+              <textarea id="edit_description" class="form-control" rows="3" placeholder="Nhập mô tả sản phẩm..."></textarea>
+            </div>
+
+            
+          <!-- Hình ảnh -->
+     <div class="col-12">
+     <label class="form-label fw-semibold">Hình ảnh sản phẩm</label>
+     <input type="file" id="edit_image" accept="image/*" class="form-control w-50">
+      </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-success" id="saveEditBtn">Lưu thay đổi</button>
+      </div>
     </div>
   </div>
 </div>
-
+           
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("admin-navbar");
+    const tenAdmin = localStorage.getItem("AdminLogged") || "Admin";
+
+    const nameItem = document.createElement("li");
+    nameItem.className = "nav-item mx-1 fw-bold text-dark";
+    nameItem.innerHTML = `
+      <div class="d-flex align-items-center">
+        <img src="../asset/user_icon.png" alt="User" style="height:40px; width:40px; border-radius:50%; border:2px solid white; margin-right:8px;">
+        <span>${tenAdmin}</span>
+      </div>
+    `;
+
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "btn background-blue border-dark btn-sm fw-bold ms-2";
+    logoutBtn.textContent = "Đăng xuất";
+    logoutBtn.onclick = () => {
+      alert("Đã đăng xuất!");
+      // ❌ Chỉ xóa AdminLogged
+      localStorage.removeItem("AdminLogged");
+      location.reload();
+    };
+
+    const logoutItem = document.createElement("li");
+    logoutItem.className = "nav-item mx-1";
+    logoutItem.appendChild(logoutBtn);
+
+    nav.appendChild(nameItem);
+    nav.appendChild(logoutItem);
+  });
+
+  // ================== QUẢN LÝ SẢN PHẨM ==================
+  const editModal = new bootstrap.Modal(document.getElementById("editProductModal"));
+
+  document.querySelectorAll(".btn-warning").forEach(btn => {
+    btn.addEventListener("click", e => {
+      const row = e.target.closest("tr");
+      const pid = row.children[0].textContent.trim();
+      const name = row.children[2].textContent.trim();
+      const priceText = row.children[6].textContent.trim().replace(/\D/g, "");
+      const price = parseInt(priceText) || 0;
+      const status = row.querySelector(".badge")?.textContent.trim() || "Chưa bán";
+      const quantity = parseInt(row.children[4].textContent.trim()) || 0;
+
+      document.getElementById("edit_pid").value = pid;
+      document.getElementById("edit_name").value = name;
+      document.getElementById("edit_price").value = price;
+      document.getElementById("edit_quantity").value = quantity;
+      document.getElementById("edit_status").value =
+        status.includes("Đang") ? "Đang bán" :
+        status.includes("Ngừng") ? "Ngừng bán" : "Chưa bán";
+        
+
+      // reset phần còn lại
+      document.getElementById("edit_description").value = "";
+      document.getElementById("edit_unit").value = "";
+      document.getElementById("edit_profit").value = "";
+      document.getElementById("edit_category").selectedIndex = 0;
+      document.getElementById("edit_image").value = "";
+
+      editModal.show();
+    });
+  });
+
+  document.getElementById("saveEditBtn").addEventListener("click", () => {
+    alert("✅ Đã lưu thay đổi sản phẩm!");
+    editModal.hide();
+  });
+
+  document.getElementById("addProductBtn").addEventListener("click", () => {
+    alert("✅ Thêm sản phẩm thành công!");
+    document.getElementById("addProductForm").reset();
+  });
+
+  // ================== LỌC & PHÂN TRANG ==================
+  const rows = Array.from(document.querySelectorAll("tbody tr"));
+  const rowsPerPage = 5;
+  let currentPage = 1;
+
+  const tableContainer = document.querySelector(".table-responsive");
+
+  // Bộ lọc
+  const filterDiv = document.createElement("div");
+  filterDiv.className = "d-flex justify-content-start align-items-center mb-3";
+  filterDiv.innerHTML = `
+    <label class="fw-semibold me-2">Lọc theo trạng thái:</label>
+    <select id="filterStatus" class="form-select d-inline-block w-auto">
+      <option value="all">Tất cả</option>
+      <option value="Đang bán">Đang bán</option>
+      <option value="Ngừng bán">Ngừng bán</option>
+      <option value="Chưa bán">Chưa bán</option>
+    </select>
+  `;
+  tableContainer.parentNode.insertBefore(filterDiv, tableContainer);
+
+  // Phân trang
+  const paginationDiv = document.createElement("div");
+  paginationDiv.id = "pagination";
+  paginationDiv.className = "d-flex justify-content-center align-items-center mt-3 gap-2";
+  tableContainer.insertAdjacentElement("afterend", paginationDiv);
+
+  function renderTable() {
+    const filter = document.getElementById("filterStatus").value;
+    const filteredRows = rows.filter(row => {
+      const status = row.querySelector(".badge").textContent.trim();
+      return filter === "all" || status === filter;
+    });
+
+    const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+    currentPage = Math.min(currentPage, totalPages) || 1;
+
+    rows.forEach(row => (row.style.display = "none"));
+    filteredRows
+      .slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)
+      .forEach(row => (row.style.display = ""));
+
+    renderPagination(totalPages);
+  }
+
+  function renderPagination(totalPages) {
+    paginationDiv.innerHTML = "";
+
+    const prev = document.createElement("button");
+    prev.textContent = "« Trước";
+    prev.className = "btn btn-outline-primary btn-sm";
+    prev.disabled = currentPage === 1;
+    prev.onclick = () => { currentPage--; renderTable(); };
+
+    const next = document.createElement("button");
+    next.textContent = "Sau »";
+    next.className = "btn btn-outline-primary btn-sm";
+    next.disabled = currentPage === totalPages;
+    next.onclick = () => { currentPage++; renderTable(); };
+
+    const pageInfo = document.createElement("span");
+    pageInfo.textContent = `Trang ${currentPage}/${totalPages || 1}`;
+
+    paginationDiv.append(prev, pageInfo, next);
+  }
+
+  document.getElementById("filterStatus").addEventListener("change", () => {
+    currentPage = 1;
+    renderTable();
+  });
+
+  renderTable();
+
+  // ================== NHÀ CUNG CẤP "KHÁC" ==================
+  function setupSupplierField(selectId, inputId) {
+    const select = document.getElementById(selectId);
+    const input = document.getElementById(inputId);
+
+    select.addEventListener("change", () => {
+      if (select.value === "Khác") {
+        input.classList.remove("d-none");
+        input.focus();
+      } else {
+        input.classList.add("d-none");
+        input.value = "";
+      }
+    });
+
+    input.addEventListener("input", () => {
+      if (input.value.trim() !== "") {
+        select.value = "Khác";
+      }
+    });
+  }
+
+  setupSupplierField("add_supplier", "add_supplier_custom");
+  setupSupplierField("edit_supplier", "edit_supplier_custom");
+
+// ================== HIỂN THỊ THÔNG SỐ KỸ THUẬT TÙY LOẠI ==================
+const categorySelect = document.getElementById("add_category");
+const specFields = document.getElementById("specFields");
+const specDetails = document.getElementById("specDetails");
+
+// Cấu hình thông số theo từng loại sản phẩm
+const specsByCategory = {
+  "Điện thoại - Máy tính bảng": `
+    <tr><th>Thương hiệu</th><td><input type="text" class="form-control" placeholder="VD: Samsung, Xiaomi, Apple..."></td></tr>
+    <tr><th>Màn hình</th><td><input type="text" class="form-control" placeholder="VD: AMOLED 6.7'', 120Hz..."></td></tr>
+    <tr><th>Hệ điều hành</th><td><input type="text" class="form-control" placeholder="VD: Android 15, iOS 18..."></td></tr>
+    <tr><th>Camera</th><td><input type="text" class="form-control" placeholder="VD: 50MP + 12MP..."></td></tr>
+    <tr><th>CPU</th><td><input type="text" class="form-control" placeholder="VD:Snapdragon 8 gen 4"></td></tr>
+    <tr><th>RAM</th><td><input type="text" class="form-control" placeholder="VD:16GB"></td></tr>
+    <tr><th>Bộ nhớ trong</th><td><input type="text" class="form-control" placeholder="VD:256-512GB"></td></tr>
+    <tr><th>Pin</th><td><input type="text" class="form-control" placeholder="VD: 5000mAh, sạc nhanh 120W..."></td></tr>
+    
+  `,
+
+  "Điện gia dụng": `
+    <tr>
+      <th>Loại sản phẩm</th>
+      <td>
+        <select class="form-select" id="applianceType">
+          <option value="TV">TV</option>
+          <option value="Máy giặt">Máy giặt</option>
+          <option value="Máy lạnh">Máy lạnh</option>
+          <option value="Tủ lạnh">Tủ lạnh</option>
+          <option value="Khác">Khác</option>
+        </select>
+        <input type="text" id="otherApplianceType" class="form-control mt-2 d-none" placeholder="Nhập loại sản phẩm khác...">
+      </td>
+    </tr>
+    <tr><th>Công suất</th><td><input type="text" class="form-control" placeholder="VD: 2000W, 38W..."></td></tr>
+    <tr><th>Dung tích / Kích thước</th><td><input type="text" class="form-control" placeholder="VD: 606L, 55 inch..."></td></tr>
+    <tr><th>Trọng lượng</th><td><input type="text" class="form-control" placeholder="VD: 60kg..."></td></tr>
+    <tr><th>Đặc điểm nổi bật</th><td><input type="text" class="form-control" placeholder="VD: Inverter, Dolby Vision, HDR10+..."></td></tr>
+  `,
+
+
+"Phụ kiện": `
+  <tr>
+    <th>Loại phụ kiện</th>
+    <td>
+      <select class="form-select" id="accessoryType">
+        <option value="Tai nghe" selected>Tai nghe</option>
+        <option value="Ốp lưng">Ốp lưng</option>
+        <option value="Củ sạc">Củ sạc</option>
+        <option value="Khác">Khác</option>
+      </select>
+      <input type="text" id="otherAccessoryType" class="form-control mt-2 d-none" placeholder="Nhập loại phụ kiện khác...">
+    </td>
+  </tr>
+  <tr><th>Thương hiệu</th><td><input type="text" class="form-control" placeholder="VD: Apple, Sony, JBL..."></td></tr>
+  <tr><th>Kết nối</th><td><input type="text" class="form-control" placeholder="VD: Bluetooth, có dây..."></td></tr>
+  <tr><th>Công nghệ nổi bật</th><td><input type="text" class="form-control" placeholder="VD: Chống ồn chủ động, Xuyên âm..."></td></tr>
+  <tr><th>Thời lượng pin</th><td><input type="text" class="form-control" placeholder="VD: 6 giờ, 30 giờ kèm hộp sạc..."></td></tr>
+  <tr><th>Trọng lượng (mỗi tai)</th><td><input type="text" class="form-control" placeholder="VD: 5.3g..."></td></tr>
+`
+};
+document.addEventListener("change", (e) => {
+  // Khi chọn loại sản phẩm trong phần Điện Gia Dụng
+  if (e.target && e.target.id === "applianceType") {
+    renderApplianceSpecs(e.target.value, e.target);
+  }
+});
+
+// 👉 Hàm tái sử dụng để render bảng chi tiết theo loại
+function renderApplianceSpecs(type, selectElement = null) {
+  const table = selectElement
+    ? selectElement.closest("table")
+    : document.querySelector("#specsTable, table"); // fallback nếu gọi lúc khởi tạo
+  if (!table) return;
+  const tbody = table.querySelector("tbody");
+  const otherInput = document.getElementById("otherApplianceType");
+
+  let rows = "";
+
+  // Nếu chọn "Khác"
+  if (type === "Khác") {
+    if (otherInput) otherInput.classList.remove("d-none");
+    tbody.innerHTML = `
+      <tr>
+        <th>Loại sản phẩm</th>
+        <td>
+          <select class="form-select" id="applianceType">
+            <option value="TV">TV</option>
+            <option value="Máy giặt">Máy giặt</option>
+            <option value="Máy lạnh">Máy lạnh</option>
+            <option value="Tủ lạnh">Tủ lạnh</option>
+            <option value="Khác" selected>Khác</option>
+          </select>
+          <input type="text" id="otherApplianceType" class="form-control mt-2" placeholder="Nhập loại sản phẩm khác...">
+        </td>
+      </tr>
+      <tr><th>Công suất</th><td><input type="text" class="form-control" placeholder="VD: 2000W, 38W..."></td></tr>
+      <tr><th>Dung tích</th><td><input type="text" class="form-control" placeholder="VD: 606L, 3L..."></td></tr>
+      <tr><th>Kích thước</th><td><input type="text" class="form-control" placeholder="VD: 600 x 700 x 1800 mm..."></td></tr>
+      <tr><th>Trọng lượng</th><td><input type="text" class="form-control" placeholder="VD: 45kg..."></td></tr>
+    `;
+    return;
+  } else {
+    if (otherInput) otherInput.classList.add("d-none");
+  }
+
+  // Các loại cụ thể
+  if (type === "Máy giặt" || type === "Tủ lạnh") {
+    rows = `
+      <tr><th>Công suất</th><td><input type="text" class="form-control" placeholder="VD: 1.5HP, 12000BTU..."></td></tr>
+      <tr><th>Dung tích</th><td><input type="text" class="form-control" placeholder="VD: 10kg, 600L..."></td></tr>
+      <tr><th>Trọng lượng</th><td><input type="text" class="form-control" placeholder="VD: 60kg..."></td></tr>
+      <tr><th>Kích thước</th><td><input type="text" class="form-control" placeholder="VD: 600 x 700 x 1800 mm..."></td></tr>
+    `;
+  } else if (type === "Máy lạnh") {
+    rows = `
+      <tr><th>Công suất</th><td><input type="text" class="form-control" placeholder="VD: 1.5HP, 12000BTU..."></td></tr>
+      <tr><th>Điện áp</th><td><input type="text" class="form-control" placeholder="VD: 220V / 50Hz..."></td></tr>
+      <tr><th>Kích thước</th><td><input type="text" class="form-control" placeholder="VD: 900 x 300 x 220 mm..."></td></tr>
+    `;
+  } else if (type === "TV") {
+    // ✅ Thông số mặc định cho TV
+    rows = `
+      <tr><th>Kích thước màn hình</th><td><input type="text" class="form-control" placeholder="VD: 55 inch, 65 inch..."></td></tr>
+      <tr><th>Độ phân giải</th><td><input type="text" class="form-control" placeholder="VD: 4K, 8K, Full HD..."></td></tr>
+      <tr><th>Công nghệ hiển thị</th><td><input type="text" class="form-control" placeholder="VD: OLED, QLED, LED..."></td></tr>
+      <tr><th>Công nghệ âm thanh</th><td><input type="text" class="form-control" placeholder="VD: Dolby Atmos, DTS:X..."></td></tr>
+      <tr><th>Công nghệ âm thanh</th><td><input type="text" class="form-control" placeholder="VD: Dolby Atmos, Onkyo Speaker..."></td></tr> <tr><th>Kết nối</th><td><input type="text" class="form-control" placeholder="VD: Bluetooth, Wifi..."></td></tr> <tr><th>Cổng HDMI</th><td><input type="text" class="form-control" placeholder="VD: 4 cổng, 3 cổng..."></td></tr> <tr><th>USB</th><td><input type="text" class="form-control" placeholder="VD: 2 cổng, 3 cổng..."></td></tr> <tr><th>Tần số quét</th><td><input type="text" class="form-control" placeholder="VD: 60Hz, 120Hz..."></td></tr> <tr><th>Công suất loa</th><td><input type="text" class="form-control" placeholder="VD: 120W, 80W..."></td></tr> <tr><th>Hệ điều hành</th><td><input type="text" class="form-control" placeholder="VD: Google TV, Tizen, WebOS..."></td></tr> <tr><th>Tiện ích</th><td><input type="text" class="form-control" placeholder="VD: Trợ lý ảo Google Assistant, Điều khiển giọng nói..."></td></tr>
+    `;
+  }
+
+  // Gắn lại bảng chi tiết
+  tbody.innerHTML = `
+    <tr>
+      <th>Loại sản phẩm</th>
+      <td>
+        <select class="form-select" id="applianceType">
+          <option value="TV" ${type === "TV" ? "selected" : ""}>TV</option>
+          <option value="Máy giặt" ${type === "Máy giặt" ? "selected" : ""}>Máy giặt</option>
+          <option value="Máy lạnh" ${type === "Máy lạnh" ? "selected" : ""}>Máy lạnh</option>
+          <option value="Tủ lạnh" ${type === "Tủ lạnh" ? "selected" : ""}>Tủ lạnh</option>
+          <option value="Khác" ${type === "Khác" ? "selected" : ""}>Khác</option>
+        </select>
+        <input type="text" id="otherApplianceType" class="form-control mt-2 d-none" placeholder="Nhập loại sản phẩm khác...">
+      </td>
+    </tr>
+    ${rows}
+  `;
+}
+
+// 👉 Khi mới khởi tạo, nếu loại mặc định là "TV" thì render luôn thông số TV
+document.addEventListener("DOMContentLoaded", () => {
+  const defaultSelect = document.querySelector("#applianceType");
+  if (defaultSelect && defaultSelect.value === "TV") {
+    renderApplianceSpecs("TV", defaultSelect);
+  }
+});
+
+document.addEventListener("change", (e) => {
+  if (e.target && e.target.id === "accessoryType") {
+    const tbody = e.target.closest("table").querySelector("tbody");
+    const otherInput = document.getElementById("otherAccessoryType");
+    let rows = "";
+
+    switch (e.target.value) {
+      case "Tai nghe":
+        otherInput.classList.add("d-none");
+        rows = `
+          <tr><th>Thương hiệu</th><td><input type="text" class="form-control" placeholder="VD: Apple, Sony, JBL..."></td></tr>
+          <tr><th>Kết nối</th><td><input type="text" class="form-control" placeholder="VD: Bluetooth, có dây..."></td></tr>
+          <tr><th>Công nghệ nổi bật</th><td><input type="text" class="form-control" placeholder="VD: Chống ồn, Âm thanh không gian..."></td></tr>
+          <tr><th>Thời lượng pin</th><td><input type="text" class="form-control" placeholder="VD: 6 giờ nghe nhạc..."></td></tr>
+          <tr><th>Trọng lượng (mỗi tai)</th><td><input type="text" class="form-control" placeholder="VD: 5.3g..."></td></tr>
+        `;
+        break;
+
+      case "Ốp lưng":
+        otherInput.classList.add("d-none");
+        rows = `
+          <tr><th>Thương hiệu</th><td><input type="text" class="form-control" placeholder="VD: UAG, Spigen..."></td></tr>
+          <tr><th>Dành cho</th><td><input type="text" class="form-control" placeholder="VD: iPhone 17 Pro Max..."></td></tr>
+          <tr><th>Đặc điểm nổi bật</th><td><input type="text" class="form-control" placeholder="VD: Chống sốc, Magsafe..."></td></tr>
+          <tr><th>Kích thước</th><td><input type="text" class="form-control" placeholder="VD: Ôm sát thân máy..."></td></tr>
+          <tr><th>Trọng lượng</th><td><input type="text" class="form-control" placeholder="VD: 50g - 80g..."></td></tr>
+        `;
+        break;
+
+      case "Củ sạc":
+        otherInput.classList.add("d-none");
+        rows = `
+          <tr><th>Loại</th><td><input type="text" class="form-control" placeholder="VD: Củ sạc, Adapter..."></td></tr>
+          <tr><th>Công suất tối đa</th><td><input type="text" class="form-control" placeholder="VD: 35W, 65W..."></td></tr>
+          <tr><th>Số cổng</th><td><input type="text" class="form-control" placeholder="VD: 2 cổng USB-C..."></td></tr>
+          <tr><th>Công nghệ</th><td><input type="text" class="form-control" placeholder="VD: Power Delivery (PD), GaN..."></td></tr>
+          <tr><th>Kích thước</th><td><input type="text" class="form-control" placeholder="VD: 4.7 x 4.7 x 2.8 cm..."></td></tr>
+          <tr><th>Trọng lượng</th><td><input type="text" class="form-control" placeholder="VD: 100g..."></td></tr>
+        `;
+        break;
+
+      case "Khác":
+        otherInput.classList.remove("d-none");
+        rows = `
+          <tr><th>Thương hiệu</th><td><input type="text" class="form-control" placeholder="VD: Logitech, Razer..."></td></tr>
+          <tr><th>Chất liệu</th><td><input type="text" class="form-control" placeholder="VD: Nhựa, kim loại..."></td></tr>
+          <tr><th>Tính năng</th><td><input type="text" class="form-control" placeholder="VD: Chống nước, sạc nhanh..."></td></tr>
+          <tr><th>Kích thước</th><td><input type="text" class="form-control" placeholder="VD: 10x5x3 cm..."></td></tr>
+          <tr><th>Trọng lượng</th><td><input type="text" class="form-control" placeholder="VD: 200g..."></td></tr>
+        `;
+        break;
+    }
+
+    tbody.innerHTML = `
+      <tr>
+        <th>Loại phụ kiện</th>
+        <td>
+          <select class="form-select" id="accessoryType">
+            <option value="Tai nghe" ${e.target.value === "Tai nghe" ? "selected" : ""}>Tai nghe</option>
+            <option value="Ốp lưng" ${e.target.value === "Ốp lưng" ? "selected" : ""}>Ốp lưng</option>
+            <option value="Củ sạc" ${e.target.value === "Củ sạc" ? "selected" : ""}>Củ sạc</option>
+            <option value="Khác" ${e.target.value === "Khác" ? "selected" : ""}>Khác</option>
+          </select>
+          <input type="text" id="otherAccessoryType" class="form-control mt-2 ${e.target.value === "Khác" ? "" : "d-none"}" placeholder="Nhập loại phụ kiện khác...">
+        </td>
+      </tr>
+      ${rows}
+    `;
+  }
+});
+
+// Bắt sự kiện thay đổi loại sản phẩm
+if (categorySelect) {
+  categorySelect.addEventListener("change", () => {
+    const selected = categorySelect.value.trim();
+    if (specsByCategory[selected]) {
+      specFields.classList.remove("d-none");
+      specDetails.innerHTML = specsByCategory[selected];
+    } else {
+      specFields.classList.add("d-none");
+      specDetails.innerHTML = "";
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const categorySelect = document.getElementById("add_category");
+  const customCategoryInput = document.getElementById("customCategory");
+
+  categorySelect.addEventListener("change", () => {
+    if (categorySelect.value === "Khác") {
+      customCategoryInput.classList.remove("d-none");
+      customCategoryInput.focus();
+    } else {
+      customCategoryInput.classList.add("d-none");
+      customCategoryInput.value = "";
+    }
+  });
+});
+
+ 
+</script>
+
+
 </body>
 </html>

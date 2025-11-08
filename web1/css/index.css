@@ -1,27 +1,37 @@
+
+
+/* ===== BODY / OFFSET HEADER ===== */
+.background-blue {
+  background-color: #5cd6ff;
+}
 body {
   padding-top: 80px;
 }
 
-/* ====== NAVBAR & RESPONSIVE ====== */
+/* ====== NAVBAR & RESPONSIVE (CẬP NHẬT) ====== */
+/* Navbar full-width, bóng nhẹ, giữ màu background-blue của bạn */
+.navbar {
+  width: 100%;
+  background-color: #5cd6ff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  z-index: 1000;
+}
+
+/* Logo */
 .logo-img {
   width: 120px;
   height: auto;
 }
 
-.search-input {
-  flex: 1;
-  max-width: 500px;
-}
-
-.user-btn {
+/* Container giãn đều các phần */
+.navbar .container-fluid {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-width: 120px;
-  white-space: nowrap;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
-/* Dropdown */
+/* Dropdown (Danh mục) */
 .dropdown {
   position: relative;
 }
@@ -38,13 +48,92 @@ body {
   display: block;
 }
 
-/* Responsive Navbar */
+/* Ô tìm kiếm */
+.search-form {
+  flex: 1;
+  max-width: 500px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  flex: 1;
+  max-width: 500px;
+}
+
+/* Các nút bên phải (Giỏ hàng / Đăng nhập / Đăng ký) */
+.user-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.user-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.35rem;
+  transition: transform 0.15s ease;
+}
+
+.user-btn:hover img {
+  transform: scale(1.05);
+}
+
+.user-btn:hover {
+  background-color: rgba(0,0,0,0.08);
+}
+
+/* giữ khoảng cách mặc định giữa các phần trong navbar */
 .navbar .container-fluid {
   gap: 0.5rem;
 }
 
-@media (max-width: 768px) {
-  /* ==== NAVBAR CHUNG ==== */
+/* ====== RESPONSIVE: màn hình lớn (đẩy nút sang phải) ====== */
+@media (min-width: 992px) {
+  .navbar .container-fluid {
+    flex-wrap: nowrap;
+  }
+
+  .dropdown {
+    order: 1;
+    flex: 0 0 auto;
+  }
+
+  .search-form {
+    order: 2;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    flex-grow: 1;
+    max-width: 500px;
+  }
+
+  /* nhóm nút người dùng: đẩy sang phải trên màn lớn */
+  .d-flex.flex-wrap.gap-2 {
+    order: 3;
+    margin-left: auto; /* đẩy sang phải */
+    display: flex;
+    gap: 0.6rem !important;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .user-btn {
+    min-width: 130px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  /* giữ dropdown không co lại */
+  .navbar .dropdown {
+    flex-shrink: 0;
+  }
+}
+
+/* ====== RESPONSIVE: màn nhỏ (xếp dọc, gọn) ====== */
+@media (max-width: 991px) {
   .navbar {
     padding: 0.3rem 0.5rem !important;
   }
@@ -57,13 +146,13 @@ body {
     white-space: nowrap;
   }
 
-  /* ==== LOGO ==== */
+  /* LOGO nhỏ hơn trên mobile */
   .logo-img {
     width: 70px !important;
     height: auto;
   }
 
-  /* ==== DANH MỤC ==== */
+  /* DANH MỤC */
   .dropdown {
     order: 1;
     flex: 0 0 auto;
@@ -85,7 +174,7 @@ body {
     display: block;
   }
 
-  /* ==== THANH TÌM KIẾM ==== */
+  /* THANH TÌM KIẾM */
   .search-form {
     order: 2;
     width: 100%;
@@ -101,7 +190,7 @@ body {
     padding: 0.4rem;
   }
 
-  /* ==== NHÓM NÚT NGƯỜI DÙNG ==== */
+  /* NHÓM NÚT NGƯỜI DÙNG */
   .d-flex.flex-wrap.gap-2 {
     order: 3;
     width: 100%;
@@ -124,13 +213,13 @@ body {
     margin-right: 0.25rem;
   }
 
-  /* ==== NÚT CHUNG ==== */
+  /* NÚT CHUNG */
   .btn-lg {
     padding: 0.35rem 0.6rem !important;
     font-size: 0.85rem !important;
   }
 
-  /* ==== FORM TÌM KIẾM ==== */
+  /* FORM TÌM KIẾM nhóm */
   .btn-group {
     order: 4;
     width: 100%;
@@ -147,11 +236,8 @@ body {
     justify-content: center;
   }
 }
-/* ====== CARD SẢN PHẨM ====== */
-.background-blue {
-  background-color: #5cd6ff;
-}
 
+/* ====== CARD SẢN PHẨM (giữ nguyên phần gốc) ====== */
 .d-flex.align-items-stretch {
   align-items: stretch !important;
 }
@@ -216,4 +302,118 @@ body {
 
 .btn-danger:hover {
   background-color: #c82333;
+}
+
+/* Phần wrapper để giới hạn độ rộng */
+.product-scroll-wrapper {
+  overflow-x: hidden;
+  max-width: 100%; /* để không vượt khung container */
+}
+
+/* Phần chính cuộn ngang */
+.product-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap !important;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+}
+
+.product-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.product-scroll::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+}
+
+/* Card sản phẩm */
+.product-scroll .card {
+  flex: 0 0 auto;     /* Không co giãn */
+  width: 200px;       /* Kích thước mặc định */
+}
+
+/* ✅ Responsive breakpoints (gốc bạn có) */
+@media (min-width: 1200px) {  /* Desktop lớn */
+  .product-scroll-wrapper {
+    max-width: calc(200px * 6 + 12px * 5);
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) { /* Laptop nhỏ */
+  .product-scroll-wrapper {
+    max-width: calc(200px * 5 + 12px * 4);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { /* Tablet */
+  .product-scroll-wrapper {
+    max-width: calc(200px * 4 + 12px * 3);
+  }
+}
+
+@media (max-width: 767.98px) { /* Mobile */
+  .product-scroll-wrapper {
+    max-width: calc(200px * 2 + 12px * 1);
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown .btn {
+    width: auto !important;
+  }
+}
+
+/* ====== TOAST ====== */
+.toast {
+  border-radius: 12px;
+  font-size: 15px;
+  animation: slideInRight 0.4s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.user-btn:hover,
+.user-btn:focus {
+  background-color: #000 !important; /* nền đen */
+  color: #fff !important;            /* chữ trắng */
+  border-color: #000 !important;     /* viền đen */
+}
+/* ===== Bổ sung để hỗ trợ menu 3 gạch Bootstrap ===== */
+.navbar-toggler {
+  border: none;
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+.navbar-collapse {
+  background-color: #5cd6ff; /* cùng màu navbar */
+  border-radius: 0 0 12px 12px;
+  padding: 0.75rem;
+}
+/* ==== Căn chỉnh lại vị trí logo + danh mục ==== */
+.navbar .navbar-brand {
+  order: 1; /* logo luôn bên trái đầu tiên */
+}
+
+.navbar .dropdown {
+  order: 2; /* danh mục kế bên logo */
+}
+
+.navbar-toggler {
+  order: 3; /* nút 3 gạch nằm bên phải logo + danh mục */
+}
+
+.navbar-collapse {
+  order: 4; /* phần collapse nằm sau cùng */
 }

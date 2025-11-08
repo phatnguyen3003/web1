@@ -10,49 +10,71 @@
   <link rel="stylesheet" href="../css/check_out.css">
 </head>
 <body>
-<nav class="navbar navbar-light background-blue py-3">
-  <div class="container-fluid d-flex align-items-center flex-wrap">
-    
+
+   <!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-light fixed-top background-blue">
+  <div class="container-fluid">
+
     <!-- Logo -->
-    <a class="navbar-brand me-3" href="../index.html">
-      <img src="../asset/logo.png" alt="Logo" class="logo-img">
+    <a class="navbar-brand d-flex align-items-center me-2" href="../index.html">
+      <img src="../asset/logo.png" alt="Logo" class="logo-img" height="40">
     </a>
 
-    <!-- Danh mục -->
-    <div class="dropdown me-3 flex-shrink-0">
-      <button class="btn background-blue btn-lg dropdown-toggle fw-bold">
+    <!-- Danh mục (vẫn ở ngoài) -->
+    <div class="dropdown me-2 flex-shrink-0 nav-item-box">
+      <button class="btn background-blue btn-lg dropdown-toggle fw-bold w-100 btn-outline-dark"
+        data-bs-toggle="dropdown">
         <img src="../asset/expand_category_icon.png" alt="icon" width="24" height="24" class="me-2">
         Danh mục
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Điện Tử</a></li>
-        <li><a class="dropdown-item" href="#">Điện Lạnh - Điện Gia dụng</a></li>
-        <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
+        <li><a class="dropdown-item" href="electronic.html">Điện Tử</a></li>
+        <li><a class="dropdown-item" href="refrigeration.html">Điện Lạnh - Điện Gia Dụng</a></li>
+        <li><a class="dropdown-item" href="accessorie.html">Phụ Kiện</a></li>
       </ul>
     </div>
 
-    <!-- Search -->
-    <form class="d-flex me-2 search-form" style="flex:1; max-width:500px;">
-      <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
-    </form>
+    <!-- Nút menu 3 gạch -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+      aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <!-- User buttons -->
-    <div class="btn-group ms-0">
-      <a href="#" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
-        <img src="../asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
-        Giỏ hàng
-      </a>
-      <a href="#" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
-        <img src="../asset/user_icon.png" alt="Đăng nhập" width="24" height="24" class="me-2">
-        Đăng nhập
-      </a>
-      <a href="#" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn">
-        <img src="../asset/reigister_icon.png" alt="Đăng ký" width="24" height="24" class="me-2">
-        Đăng ký
-      </a>
+    <!-- Các phần còn lại: tìm kiếm + nút người dùng -->
+    <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
+
+      <!-- Ô tìm kiếm -->
+      <form class="d-flex me-2 search-form nav-item-box flex-grow-1" style="max-width:500px;">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." id="bill-search-input">
+          <button class="btn btn-secondary" type="submition">Tìm</button>
+        </div>
+      </form>
+
+      <!-- Nút người dùng -->
+      <div id="user-buttons" class="d-flex flex-wrap gap-2">
+        <a href="cart.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+          <img src="../asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
+          Giỏ hàng
+        </a>
+        <a href="login.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+          <img src="../asset/user_icon.png" alt="Đăng nhập" width="24" height="24" class="me-2">
+          Đăng nhập
+        </a>
+        <a href="register.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+          <img src="../asset/reigister_icon.png" alt="Đăng ký" width="24" height="24" class="me-2">
+          Đăng ký
+        </a>
+      </div>
+
     </div>
   </div>
 </nav>
+  <div style="height:60px;"></div>
+
 <!-- Thanh toán v -->
 <div class="check-out">
   <header class="p-3 bg-white border-bottom position-relative">
@@ -62,8 +84,8 @@
               Thanh toán
             </h3>
         </div>
-        <a href="cart.html" class="btn btn-link text-dark text-decoration-none fw-bold" style="z-index: 2;">
-            <i class="bi bi-arrow-left"></i> Quay lại
+        <a href="product_detail/xiaomi_turbo_detail.html" class="btn btn-link text-dark text-decoration-none fw-bold" style="z-index: 2;">
+             Quay lại
         </a>
       </div>
   </header>
@@ -171,12 +193,12 @@
               <div class="row align-items-center g-3">
                   
                   <div class="col-md-1 col-3 text-center">
-                      <img src="../asset/item_image/QA85Q60D.png" alt="Ảnh SP 1" class="img-fluid product-thumb rounded">
+                      <img src="../asset/products/tivi-tcl-115x955-max-g.png" alt="Ảnh SP 1" class="img-fluid product-thumb rounded">
                   </div>
                   
                   <div class="col-md-6 col-9">
-                      <p class="mb-0 fw-bold">Smart Tivi QLED Samsung 4K 85 inch</p>
-                      <small class="text-muted">Mã SP: QA85Q60D</small>
+                      <p class="mb-0 fw-bold">Google Tivi TCL QD-Mini LED 4K 115 inch 115X955 Max</p>
+                      <small class="text-muted">Mã SP: DT001</small>
                   </div>
                   
                   <div class="col-md-2 col-6 text-md-center text-start">
@@ -187,14 +209,14 @@
                   <div class="col-md-3 col-6 text-end">
                     <small class="text-muted d-block d-md-none">Giá:</small>
 
-                    <span class="fw-bold text-danger text-decoration-line-through small">30.870.000₫</span>
+                    <span class="fw-bold text-danger text-decoration-line-through small">699.000.000đ</span>
 
-                    <span class="fw-bold text-danger d-block">15.435.000₫</span>
+                    <span class="fw-bold text-danger d-block">500.435.000₫</span>
                   </div>
 
                   <div class="d-flex justify-content-between align-items-center mb-1">
                       <span class="text-success fw-bold small">Mã: SUMMER50</span>
-                      <span class="text-success small">-15.435.000₫</span>
+                      <span class="text-success small">-198.565.000₫</span>
 
                   </div>
               </div>
@@ -204,12 +226,12 @@
               <div class="row align-items-center g-3">
                   
                   <div class="col-md-1 col-3 text-center">
-                      <img src="../asset/item_image/FTKF71ZVMV.png" alt="Ảnh SP 2" class="img-fluid product-thumb rounded">
+                      <img src="../asset/products/Tu-lanh-Xiaomi-Mijia-606L.png" alt="Ảnh SP 2" class="img-fluid product-thumb rounded">
                   </div>
                   
                   <div class="col-md-6 col-9">
-                      <p class="mb-0 fw-bold">Máy Lạnh Daikin Inverter 3 Hp</p>
-                      <small class="text-muted">Mã SP: FTKF71ZVMV</small>
+                      <p class="mb-0 fw-bold">Tủ lạnh Xiaomi Mijia 606L</p>
+                      <small class="text-muted">Mã SP: DL001</small>
                   </div>
                   
                   <div class="col-md-2 col-6 text-md-center text-start">
@@ -220,14 +242,14 @@
                   <div class="col-md-3 col-6 text-end">
                     <small class="text-muted d-block d-md-none">Giá:</small>
 
-                    <span class="fw-bold text-danger text-decoration-line-through small">29.890.000₫</span>
+                    <span class="fw-bold text-danger text-decoration-line-through small">5.990.000₫</span>
 
-                    <span class="fw-bold text-danger d-block">23.912.000₫</span>
+                    <span class="fw-bold text-danger d-block">5.000.000₫</span>
                   </div>
 
                   <div class="d-flex justify-content-between align-items-center mb-1">
                       <span class="text-success fw-bold small">Mã: GIADUNG20</span>
-                      <span class="text-success small">-5.978.000₫</span>
+                      <span class="text-success small">-990.000₫</span>
 
                   </div>
                 </div>
@@ -237,12 +259,12 @@
               <div class="row align-items-center g-3">
                   
                   <div class="col-md-1 col-3 text-center">
-                      <img src="../asset/item_image/MNWP3ZA-A.png" alt="Ảnh SP 3" class="img-fluid product-thumb rounded">
+                      <img src="../asset/products/cu_sac_apple.png" alt="Ảnh SP 3" class="img-fluid product-thumb rounded">
                   </div>
                   
                   <div class="col-md-6 col-9">
                       <p class="mb-0 fw-bold">Củ sạc Apple 2 cổng Type-C 35W</p>
-                      <small class="text-muted">Mã SP: MNWP3ZA-A</small>
+                      <small class="text-muted">Mã SP: PK001</small>
                   </div>
                   
                   <div class="col-md-2 col-6 text-md-center text-start">
@@ -275,7 +297,7 @@
           <!-- giá chưa voucher -->
             <div class="text-end p-3 border-top mt-3">
               <span class="fw-bold me-3">Tổng Cộng:</span>
-              <span class="fw-bold text-danger fs-5">40.682.500₫</span>
+              <span class="fw-bold text-danger fs-5">506.770.000₫</span>
             </div>
         </div>
         <!-- vouchers -->
@@ -286,7 +308,7 @@
                 <div class="mb-2 p-2 border rounded bg-success-subtle">
                   <div class="d-flex justify-content-between align-items-center mb-1">
                       <span class="text-success fw-bold small">Mã: SUMMER50</span>
-                      <span class="text-success small">-50%</span>
+                      <span class="text-success small">-28%</span>
                   </div>
 
                   <div class="d-flex justify-content-between align-items-center">
@@ -297,7 +319,7 @@
                 <div class="mb-2 p-2 border rounded bg-success-subtle">
                   <div class="d-flex justify-content-between align-items-center mb-1">
                       <span class="text-success fw-bold small">Mã: GIADUNG20</span>
-                      <span class="text-success small">-20%</span>
+                      <span class="text-success small">-1,2%</span>
                   </div>
 
                   <div class="d-flex justify-content-between align-items-center">
@@ -319,16 +341,16 @@
 
                 
 
-                <p class="small text-muted mt-2">Tổng giảm giá đã áp dụng: <span class="fw-bold">21.636.500₫</span></p>
+                <p class="small text-muted mt-2">Tổng giảm giá đã áp dụng: <span class="fw-bold">199.778.500₫</span></p>
             </div>
             
             <hr>
 
             <div class="text-center">
-                <button
-                    class="btn btn-outline-primary w-100"
+                <button 
+                    class="btn btn-outline-primary w-100" 
                     type="button"
-                    data-bs-toggle="modal"
+                    data-bs-toggle="modal" 
                     data-bs-target="#voucherModal"
                 >
                     <i class="fas fa-ticket-alt me-2"></i> Chọn Voucher Khác
@@ -370,7 +392,7 @@
   </div>
 </div>
 <!-- Thanh toán ^ -->
-<!-- Chọn voucher -->
+<!-- Chọn voucher ^ -->
 <div class="modal fade" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -392,24 +414,24 @@
                         <input class="form-check-input me-3 mt-0" type="checkbox" value="KM001" checked aria-label="...">
                         <div class="flex-grow-1">
                             <span class="fw-bold text-dark d-block">SUMMER50</span>
-                            <small class="text-muted d-block">Giảm 50% cho danh mục Điện tử.</small>
+                            <small class="text-muted d-block">Giảm 28% cho danh mục Điện tử.</small>
                             <span class="badge bg-success mt-1">HSD: 31/12/2025</span>
                         </div>
-                        <span class="badge bg-primary rounded-pill text-white fw-bold p-2 ms-3">50%</span>
+                        <span class="badge bg-primary rounded-pill text-white fw-bold p-2 ms-3">28%</span>
                     </label>
 
                     <label class="list-group-item d-flex justify-content-between align-items-start border rounded mb-2 py-3">
-                        <input class="form-check-input me-3 mt-0" type="checkbox" value="KM002" aria-label="...">
+                        <input class="form-check-input me-3 mt-0" type="checkbox" value="KM002" checked aria-label="...">
                         <div class="flex-grow-1">
                             <span class="fw-bold text-dark d-block">GIADUNG20</span>
-                            <small class="text-muted d-block">Giảm 20% cho danh mục Điện lạnh - Gia dụng.</small>
+                            <small class="text-muted d-block">Giảm 1,2% cho danh mục Điện lạnh - Gia dụng.</small>
                             <span class="badge bg-success mt-1">HSD: 15/11/2025</span>
                         </div>
-                        <span class="badge bg-warning rounded-pill text-dark fw-bold p-2 ms-3">20%</span>
+                        <span class="badge bg-warning rounded-pill text-dark fw-bold p-2 ms-3">1,2%</span>
                     </label>
                     
                     <label class="list-group-item d-flex justify-content-between align-items-start border rounded mb-2 py-3">
-                        <input class="form-check-input me-3 mt-0" type="checkbox" value="KM003" aria-label="...">
+                        <input class="form-check-input me-3 mt-0" type="checkbox" value="KM003" checked aria-label="...">
                         <div class="flex-grow-1">
                             <span class="fw-bold text-dark d-block">PHUKIEN15</span>
                             <small class="text-muted d-block">Giảm 15% cho danh mục Phụ kiện.</small>
@@ -441,12 +463,13 @@
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-between">
-                <span class="text-muted small">Đã chọn: 1 Voucher</span>
+                <span class="text-muted small">Đã chọn: 3 Voucher</span>
                 <button type="button" class="btn btn-primary fw-bold" data-bs-dismiss="modal">Hoàn thành</button>
             </div>
         </div>
     </div>
 </div>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="../js/index.js"></script>
 </body>
 </html>

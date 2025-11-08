@@ -1,28 +1,7 @@
-/* 1. Mặc định: Vùng chức năng bị TẮT */
 #addressFields {
-    opacity: 0.5; 
-    pointer-events: none; /* Vô hiệu hóa tương tác chuột */
-    transition: opacity 0.2s; /* Thêm hiệu ứng chuyển đổi */
+    display: none;
 }
 
-/* 2. Quy tắc BẬT: Khi thẻ div.form-check chứa input#radioDefault2 được CHECKED, 
-      thì áp dụng style cho #addressFields là anh em (~) của nó. */
-/* Logic: Nếu chọn Tùy chỉnh địa chỉ -> KÍCH HOẠT */
 .form-check:has(#radioDefault2:checked) ~ #addressFields {
-    opacity: 1;
-    pointer-events: auto; /* Cho phép tương tác chuột */
-}
-
-/* 3. Tùy chọn: Đảm bảo khi radio 1 được chọn, nó vẫn TẮT */
-/* Logic: Nếu chọn Địa chỉ mặc định -> VÔ HIỆU HÓA (Chỉ cần giữ nguyên mặc định) */
-/* Quy tắc này không cần thiết vì Radio 2 không checked sẽ tự quay về trạng thái mặc định (1) */
-
-/* Cải thiện hiển thị: thay đổi con trỏ chuột khi vùng bị TẮT */
-#addressFields input,
-#addressFields select {
-    cursor: not-allowed;
-}
-.form-check:has(#radioDefault2:checked) ~ #addressFields input,
-.form-check:has(#radioDefault2:checked) ~ #addressFields select {
-    cursor: auto;
+    display: block;
 }

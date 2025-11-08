@@ -10,50 +10,67 @@
 <body class="bg-light">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-light background-blue py-3 fixed-top">
-    <div class="container-fluid d-flex align-items-center flex-wrap gap-2">
+<nav class="navbar navbar-expand-md navbar-light fixed-top background-blue">
+  <div class="container-fluid">
 
-      <!-- Logo -->
-      <a class="navbar-brand me-3 nav-item-box d-flex align-items-center" href="../index.html">
-        <img src="../asset/logo.png" alt="Logo" class="logo-img" height="40">
-      </a>
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center me-2" href="../index.html">
+      <img src="../asset/logo.png" alt="Logo" class="logo-img" height="40">
+    </a>
 
-      <!-- Danh mục -->
-      <div class="dropdown me-3 flex-shrink-0 nav-item-box">
-        <button class="btn background-blue btn-lg dropdown-toggle fw-bold w-100 btn-outline-dark" data-bs-toggle="dropdown">
-          <img src="../asset/expand_category_icon.png" alt="icon" width="24" height="24" class="me-2">
-          Danh mục
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="electronic.html">Điện Tử</a></li>
-          <li><a class="dropdown-item" href="refrigeration.html">Điện Lạnh - Điện Gia Dụng</a></li>
-          <li><a class="dropdown-item" href="accessorie.html">Phụ Kiện</a></li>
-        </ul>
-      </div>
+    <!-- Danh mục (vẫn ở ngoài) -->
+    <div class="dropdown me-2 flex-shrink-0 nav-item-box">
+      <button class="btn background-blue btn-lg dropdown-toggle fw-bold w-100 btn-outline-dark"
+        data-bs-toggle="dropdown">
+        <img src="../asset/expand_category_icon.png" alt="icon" width="24" height="24" class="me-2">
+        Danh mục
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="electronic.html">Điện Tử</a></li>
+        <li><a class="dropdown-item" href="refrigeration.html">Điện Lạnh - Điện Gia Dụng</a></li>
+        <li><a class="dropdown-item" href="accessorie.html">Phụ Kiện</a></li>
+      </ul>
+    </div>
+
+    <!-- Nút menu 3 gạch -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+      aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Các phần còn lại: tìm kiếm + nút người dùng -->
+    <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
 
       <!-- Ô tìm kiếm -->
       <form class="d-flex me-2 search-form nav-item-box flex-grow-1" style="max-width:500px;">
-        <input class="form-control search-input" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." id="bill-search-input">
+          <button class="btn btn-secondary" type="submition">Tìm</button>
+        </div>
       </form>
 
       <!-- Nút người dùng -->
-      <div class="d-flex flex-wrap gap-2">
-        <a href="sites/cart.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+      <div id="user-buttons" class="d-flex flex-wrap gap-2">
+        <a href="cart.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
           <img src="../asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
           Giỏ hàng
         </a>
-        <a href="sites/login.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+        <a href="login.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
           <img src="../asset/user_icon.png" alt="Đăng nhập" width="24" height="24" class="me-2">
           Đăng nhập
         </a>
-        <a href="sites/register.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+        <a href="register.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
           <img src="../asset/reigister_icon.png" alt="Đăng ký" width="24" height="24" class="me-2">
           Đăng ký
         </a>
       </div>
 
     </div>
-  </nav>
+  </div>
+</nav>
   <div style="height:90px;"></div>
 
   <!-- Nội dung danh mục Điện tử -->
@@ -73,9 +90,7 @@
           </a>
           <div class="card-footer bg-white border-0 d-flex justify-content-between">
             <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
-            <a href="cart.html" class="btn btn-sm btn-outline-primary flex-fill ms-1">
-              🛒
-            </a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
           </div>
         </div>
       </div>
@@ -86,14 +101,13 @@
           <a href="product_detail/tivi_tcl_detail.html" class="text-decoration-none text-dark">
             <img src="../asset/products/tivi-tcl-115x955-max-g.png" class="card-img-top" alt="TV">
             <div class="card-body text-center">
-              <h6 class="card-title">Google Tivi TCL QD-Mini LED 4K 115 inch 115X955 Max</h6>
+              <h6 class="card-title">Google Tivi TCL QD-Mini LED 4K</h6>
               <p class="card-text text-danger fw-bold">699.000.000đ</p>
             </div>
           </a>
           <div class="card-footer bg-white border-0 d-flex justify-content-between">
             <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
-            <a href="cart.html" class="btn btn-sm btn-outline-primary flex-fill ms-1">
-              🛒
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
             </a>
           </div>
         </div>
@@ -111,12 +125,11 @@
           </a>
           <div class="card-footer bg-white border-0 d-flex justify-content-between">
             <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
-            <a href="cart.html" class="btn btn-sm btn-outline-primary flex-fill ms-1">
-              🛒 
-            </a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
           </div>
         </div>
       </div>
+
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 shadow-sm">
           <a href="product_detail/xiaomi_turbo_detail.html" class="text-decoration-none text-dark">
@@ -128,32 +141,31 @@
           </a>
           <div class="card-footer bg-white border-0 d-flex justify-content-between">
             <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
-            <a href="cart.html" class="btn btn-sm btn-outline-primary flex-fill ms-1">
-              🛒 
-            </a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
           </div>
         </div>
       </div>
+
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <a href="product_detail/xiaomi_ipad_mini_detail.html" class="text-decoration-none text-dark">
+          <a href="product_detail/tivi_tcl_detail.html" class="text-decoration-none text-dark">
             <img src="../asset/products/smart-tivi-xiaomi-s-pro-mini-led-o32t-4k-75-inch-2026_3_.png" class="card-img-top" alt="TV">
             <div class="card-body text-center">
-              <h6 class="card-title">Smart Tivi Xiaomi S Pro Mini Led 4K 75 inch 2026 (O32T)</h6>
+              <h6 class="card-title">Smart Tivi Xiaomi S Pro Mini Led 4K</h6>
               <p class="card-text text-danger fw-bold">26.990.000₫</p>
             </div>
           </a>
           <div class="card-footer bg-white border-0 d-flex justify-content-between">
             <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
-            <a href="cart.html" class="btn btn-sm btn-outline-primary flex-fill ms-1">
-              🛒 
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
             </a>
           </div>
         </div>
       </div>
+
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <a href="product_detail/xiaomi_ipad_mini_detail.html" class="text-decoration-none text-dark">
+          <a href="product_detail/xiaomi_turbo_detail.html" class="text-decoration-none text-dark">
             <img src="../asset/products/honor-magic-v5_1.png" class="card-img-top" alt="TV">
             <div class="card-body text-center">
               <h6 class="card-title">HONOR Magic V5</h6>
@@ -162,17 +174,89 @@
           </a>
           <div class="card-footer bg-white border-0 d-flex justify-content-between">
             <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
-            <a href="cart.html" class="btn btn-sm btn-outline-primary flex-fill ms-1">
-              🛒 
-            </a>
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
           </div>
         </div>
       </div>
        
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/xiaomi_turbo_detail.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/vivo-iqoo-z10-turbo-sac-mac.jpg.png" class="card-img-top" alt="TV">
+            <div class="card-body text-center">
+              <h6 class="card-title">Điện thoại Vivo iQOO Z10 Turbo</h6>
+              <p class="card-text text-danger fw-bold">6.150.000đ</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+       
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/xiaomi_turbo_detail.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/xiaomi-poco-f8-ultra.png" class="card-img-top" alt="TV">
+            <div class="card-body text-center">
+              <h6 class="card-title">Điện thoại Xiaomi POCO F8 Ultra</h6>
+              <p class="card-text text-danger fw-bold">16.950.000đ</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/xiaomi_ipad_mini_detail.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/vivo-iqoo-pad5-pro.png" class="card-img-top" alt="TV">
+            <div class="card-body text-center">
+              <h6 class="card-title">Máy tính bảng Vivo iQOO Pad5 Pro</h6>
+              <p class="card-text text-danger fw-bold">11.550.000đ</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/xiaomi_turbo_detail.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/xiaomi-mix-flip.png" class="card-img-top" alt="TV">
+            <div class="card-body text-center">
+              <h6 class="card-title">Điện thoại Xiaomi MIX Flip 2</h6>
+              <p class="card-text text-danger fw-bold">21.850.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
 
     </div>
   </main>
-
+   <!-- Thông báo khi thêm sản phẩm -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+  <div id="cartToast" class="toast align-items-center text-white bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">
+        ✅ Đã thêm sản phẩm vào giỏ hàng thành công!
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Đóng"></button>
+    </div>
+  </div>
+</div>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/index.js"></script>
 </body>
 </html>

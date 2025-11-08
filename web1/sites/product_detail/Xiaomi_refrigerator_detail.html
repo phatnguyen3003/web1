@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tủ lạnh Xiaomi Mijia 606L</title>
+  <title>Thông Tin Sản Phẩm-Tủ lạnh Xiaomi Mijia 606L</title>
 
   <!-- Bootstrap & CSS -->
   <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="../../css/index.css">
-  <link rel="stylesheet" href="../../css/product_detail.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+ 
 
   <!-- Favicon & SEO -->
   <link rel="icon" href="../../asset/logo.png" type="image/png">
@@ -18,49 +18,68 @@
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-light background-blue py-3 fixed-top">
-    <div class="container-fluid d-flex align-items-center flex-wrap gap-2">
-      
-      <!-- Logo -->
-      <a class="navbar-brand me-3 nav-item-box d-flex align-items-center" href="../../index.html">
-        <img src="../../asset/logo.png" alt="Logo" class="logo-img" height="40">
-      </a>
+<nav class="navbar navbar-expand-md navbar-light fixed-top background-blue">
+  <div class="container-fluid">
 
-      <!-- Danh mục -->
-      <div class="dropdown me-3 flex-shrink-0 nav-item-box">
-        <button class="btn background-blue btn-lg dropdown-toggle fw-bold w-100 btn-outline-dark" data-bs-toggle="dropdown">
-          <img src="../../asset/expand_category_icon.png" alt="icon" width="24" height="24" class="me-2">
-          Danh mục
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="../electronic.html">Điện Tử</a></li>
-          <li><a class="dropdown-item" href="../refrigeration.html">Điện Lạnh - Điện Gia Dụng</a></li>
-          <li><a class="dropdown-item" href="../accessorie.html">Phụ Kiện</a></li>
-        </ul>
-      </div>
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center me-2" href="../../index.html">
+      <img src="../../asset/logo.png" alt="Logo" class="logo-img" height="40">
+    </a>
 
-      <!-- Tìm kiếm -->
+    <!-- Danh mục (vẫn ở ngoài) -->
+    <div class="dropdown me-2 flex-shrink-0 nav-item-box">
+      <button class="btn background-blue btn-lg dropdown-toggle fw-bold w-100 btn-outline-dark"
+        data-bs-toggle="dropdown">
+        <img src="../../asset/expand_category_icon.png" alt="icon" width="24" height="24" class="me-2">
+        Danh mục
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="../electronic.html">Điện Tử</a></li>
+        <li><a class="dropdown-item" href="../refrigeration.html">Điện Lạnh - Điện Gia Dụng</a></li>
+        <li><a class="dropdown-item" href="../accessorie.html">Phụ Kiện</a></li>
+      </ul>
+    </div>
+
+    <!-- Nút menu 3 gạch -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+      aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Các phần còn lại: tìm kiếm + nút người dùng -->
+    <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
+
+      <!-- Ô tìm kiếm -->
       <form class="d-flex me-2 search-form nav-item-box flex-grow-1" style="max-width:500px;">
-        <input class="form-control search-input" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." id="bill-search-input">
+          <button class="btn btn-secondary" type="submition">Tìm</button>
+        </div>
       </form>
 
       <!-- Nút người dùng -->
-      <div class="d-flex flex-wrap gap-2">
-        <a href="../cart.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+      <div id="user-buttons" class="d-flex flex-wrap gap-2">
+        <a href="../cart.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
           <img src="../../asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
           Giỏ hàng
         </a>
-        <a href="../login.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+        <a href="../login.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
           <img src="../../asset/user_icon.png" alt="Đăng nhập" width="24" height="24" class="me-2">
           Đăng nhập
         </a>
-        <a href="../register.html" class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+        <a href="../register.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
           <img src="../../asset/reigister_icon.png" alt="Đăng ký" width="24" height="24" class="me-2">
           Đăng ký
         </a>
       </div>
+
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- Nội dung sản phẩm -->
   <div class="container mt-5 pt-5">
@@ -69,7 +88,7 @@
       <!-- Ảnh sản phẩm -->
       <div class="col-md-5 text-center">
         <div class="card shadow-sm border-0">
-          <img src="../../asset/item_image/Tu-lanh-Xiaomi-Mijia-606L.png" alt="Tủ lạnh Xiaomi Mijia 606L" class="img-fluid rounded-3">
+          <img src="../../asset/products/Tu-lanh-Xiaomi-Mijia-606L.png" alt="Tủ lạnh Xiaomi Mijia 606L" class="img-fluid rounded-3">
         </div>
       </div>
 
@@ -119,18 +138,49 @@
           </div>
         </div>
 
-        <div class="d-flex gap-3">
-          <button class="btn btn-primary btn-lg">
-            <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
-          </button>
-          <a href="../index-frame.html" class="btn btn-outline-secondary btn-lg">← Quay lại</a>
-        </div>
+         <div class="d-flex flex-wrap gap-3 mt-4">
+
+            <!-- 🛒 Thêm vào giỏ -->
+            <a href="#" 
+              class="btn btn-outline-primary flex-fill fw-semibold shadow-sm add-to-cart-btn" 
+              style="height:52px; border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:1.05rem;">
+              🛒 Thêm vào giỏ
+            </a>
+
+            <!-- ⚡ Mua ngay -->
+            <a href="../check_out.html" 
+              class="btn btn-danger flex-fill fw-semibold shadow-sm" 
+              style="height:52px; border-radius:5px; background:danger; border:none; display:flex; align-items:center; justify-content:center; font-size:1.05rem;">
+                Mua ngay
+            </a>
+
+            <!-- ← Quay lại -->
+            <a href="../../index.html" 
+              class="btn btn-outline-secondary flex-fill fw-semibold shadow-sm" 
+              style="height:52px; border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:1.05rem;">
+              ← Quay lại
+            </a>
+
+           </div>
+
       </div>
     </div>
   </div>
 
+   <!-- Thông báo khi thêm sản phẩm -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+  <div id="cartToast" class="toast align-items-center text-white bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">
+        ✅ Đã thêm sản phẩm vào giỏ hàng thành công!
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Đóng"></button>
+    </div>
+  </div>
+</div>
   <!-- JS -->
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../js/control_quality.js"></script>
+  <script src="../../js/index.js"></script>
 </body>
 </html>

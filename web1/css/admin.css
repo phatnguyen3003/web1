@@ -1,58 +1,82 @@
-body{
-  padding-top:80px;
-}
-
-.background-blue{
-    background-color: #5cd6ff;
-}
-.logo-img {
-  width: 200px;
-  height: auto;
-  max-height: 100px;
-  object-fit: contain;
-}
-.avatar-img {
-  width: 100px;
-  height: auto;
-  max-height: 50px;
-  object-fit: contain;
-}
-.nav-link::after {
-  display: none !important;
-}
-
-.chart-img-temp{
-    width:auto;
-    height:auto;
-    max-width: 800px;
-    max-height: 600px;
-}
-.small-icon-size {
-  font-size: 14px;
-  width: 14px;
-  height: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Make the add-bill form stick to top when scrolling */
-    .sticky-form {
-      position: -webkit-sticky; /* Safari */
-      position: sticky;
-      top: 100px; /* below fixed navbar */
-      align-self: flex-start; /* keep width behavior inside flex */
-      z-index: 1020; /* above table rows */
+body {
+      padding-top: 80px;
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .table th, .table td {
+      vertical-align: middle !important;
+      text-align: center;
+    }
+    .logo-img {
+      height: 40px;
+    }
+    .profit {
+      font-weight: bold;
+      color: green;
+    }
+    .section-title {
+      background-color: #e9ecef;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    /* Thanh tìm kiếm */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 50px;
+      box-shadow: 0 2px 10px rgba(0, 123, 255, 0.2);
+      overflow: hidden;
+      width: 100%;
+      max-width: 500px;
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 50px 0 0 50px;
+      font-size: 15px;
+    }
+    .search-box button {
+      border: none;
+      outline: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+    .btn-search.background-blue:hover {
+      background-color: #0056b3 !important;
+    }
+    .btn-showall {
+      background-color: #6c757d;
+      color: white;
+      border-left: 1px solid #ddd;
+    }
+    .btn-showall:hover {
+      background-color: #565e64;
+    }
+    .navbar-brand img {
+      height: 40px;
+    }
+    .user-btn {
+      color: white;
+      border: 1px solid white;
+      margin-left: 10px;
+    }
+    .user-btn:hover {
+      background-color: white !important;
+      color: #007bff !important;
     }
 
-    @media (max-width: 767.98px) {
-      /* disable sticky on small screens so layout remains natural */
-      .sticky-form { position: static; top: auto; }
-    }
-
-
-.product-image{
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
+    .pagination { justify-content: center; margin-top: 20px;}

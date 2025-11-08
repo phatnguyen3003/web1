@@ -8,7 +8,7 @@
   <!-- Bootstrap 5 local -->
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="../css/index.css">
-  <link rel="stylesheet" href="../css/login.css">
+
 </head>
 <body>
 
@@ -29,6 +29,11 @@
               <input type="password" class="form-control" id="password" placeholder="Mật khẩu">
               <label for="password">Mật khẩu</label>
             </div>
+            <!-- Liên kết quên mật khẩu -->
+             <div class="text-end mb-2">
+              <a href="reset-pasword.html" class="text-decoration-none small text-primary">Quên mật khẩu?</a>
+              </div>
+              <div id="loginError" class="text-danger text-center mb-2" style="display:none;"></div>
             <div id="loginError" class="text-danger text-center mb-2" style="display:none;"></div>
             <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
           </form>
@@ -36,7 +41,7 @@
             Chưa có tài khoản? <a href="register.html" class="text-decoration-none text-primary">Đăng ký ngay</a>
           </p>
           <div class="text-center">
-            <a href="../index-frame.html" class="btn btn-outline-secondary btn-sm mt-2">← Quay lại trang chủ</a>
+            <a href="../index.html" class="btn btn-outline-secondary btn-sm mt-2">← Quay lại trang chủ</a>
           </div>
         </div>
       </div>

@@ -1,31 +1,42 @@
 const accounts = [
-    { username: "user1", password: "123456"}
+  { username: "khachhang1", password: "123456" }
 ];
+
 const form = document.getElementById("loginForm");
 const usernameInput = document.getElementById("username");
-const passwordInput= document.getElementById("password");
+const passwordInput = document.getElementById("password");
 const error1 = document.getElementById("loginError");
- form.addEventListener("submit", function(test) {
-test.preventDefault();
-const username = usernameInput.value.trim();
-const password = passwordInput.value.trim();
-    const found= accounts.find(
-        acc => acc.username=== username &&  acc.password === password
-    )
-    if (found)
-    {
-        alert("Đăng nhập thành công!");
-        window.location.href= "../index.html";
 
-    }
-    else
-    {
-        passwordInput.value="";
-        passwordInput.focus();
-        error1.textContent="Nhập sai tên tài khoản dùng hoặc mật khẩu!";
-        error1.style.display="block";
-    }
- }
-);
-usernameInput.addEventListener("input", ()=> error1.style.display="none");
-passwordInput.addEventListener("input", () => error1.style.display="none");
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value.trim();
+
+   if (!username || !password) {
+          error1.textContent = "Vui lòng nhập đầy đủ tài khoản và mật khẩu!";
+          error1.style.display = "block";
+          return;
+        }
+  const found = accounts.find(
+    acc => acc.username === username && acc.password === password
+  );
+
+  if (found) {
+    alert("Đăng nhập thành công!");
+
+    // ✅ Lưu trạng thái đăng nhập vào localStorage
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("currentUser", username);
+    // ✅ Chuyển về trang chính
+    window.location.href = "../index.html";
+  } else {
+    passwordInput.value = "";
+    passwordInput.focus();
+    error1.textContent = "Nhập sai tên tài khoản hoặc mật khẩu!";
+    error1.style.display = "block";
+  }
+});
+
+usernameInput.addEventListener("input", () => error1.style.display = "none");
+passwordInput.addEventListener("input", () => error1.style.display = "none");

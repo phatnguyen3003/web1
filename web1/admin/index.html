@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/png" href="../asset/logo.png">
+  <title>Thống kê thu nhập</title>
+
+  <script>
+    if (localStorage.getItem("AdminLogged") !== "quanly1") {
+      window.location.href = "../sites/login_admin.html";
+    }
+  </script>
+
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <style>
+    /* Thu nhỏ ảnh trên màn hình mobile */
+    @media (max-width: 767px) {
+      .chart-img-temp {
+        max-width: 80%;   /* giảm xuống 80% so với container */
+        height: auto;     /* giữ tỉ lệ ảnh */
+        margin: 0 auto;   /* căn giữa */
+      }
+    }
+  </style>
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark background-blue fixed-top shadow">
+    <div class="container-fluid">
+
+      <!-- Logo -->
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="../asset/logo.png" alt="Logo" class="me-2" style="height: 80px;">
+      </a>
+
+      <!-- Nút thu gọn -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu chính -->
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav align-items-center text-center mb-2 mb-md-0" id="admin-navbar">
+         <li class="nav-item mx-1"><a href="admin_user_manage.html" class="btn btn-outline-dark border-dark">Quản lý người dùng</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_items.html" class="btn btn-outline-dark border-dark">Quản lý danh mục sản phẩm</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_bill.html" class="btn btn-outline-dark border-dark">Quản lý nhập hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_price_manage.html" class="btn btn-outline-dark border-dark">Quản lý giá bán</a></li>
+          <li class="nav-item mx-1"><a href="admin_order_manage.html" class="btn btn-outline-dark border-dark">Quản lý đơn đặt hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_storage_manage.html" class="btn btn-outline-dark border-dark">Quản lý tồn kho</a></li>
+        </ul>
+        <!-- JS sẽ thêm phần admin vào đây -->
+      </div>
+
+      </div>
+    </nav>
+
+  <hr style="border: 2px solid black">
+
+  <!-- Dashboard Content -->
+  <div class="container-fluid" style="padding-top: 80px;">
+    <div class="row justify-content-center g-4">
+
+      <!-- Biểu đồ 1 -->
+      <div class="col-12 col-md-6 text-center">
+        <img src="../asset/admin/chart_1.png" alt="Biểu Đồ 1" class="img-fluid chart-img-temp">
+        <p><strong>Biểu Đồ Mẫu 1</strong></p>
+      </div>
+
+      <!-- Biểu đồ 2 -->
+      <div class="col-12 col-md-6 text-center">
+        <img src="../asset/admin/chart_2.png" alt="Biểu Đồ 2" class="img-fluid chart-img-temp">
+        <p><strong>Biểu Đồ Mẫu 2</strong></p>
+      </div>
+
+      <!-- Biểu đồ 3 -->
+      <div class="col-12 col-md-6 text-center">
+        <img src="../asset/admin/chart_3.png" alt="Biểu Đồ 3" class="img-fluid chart-img-temp">
+        <p><strong>Biểu Đồ Mẫu 3</strong></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("admin-navbar");
+    const tenAdmin = localStorage.getItem("AdminLogged") || "Admin";
+
+    const nameItem = document.createElement("li");
+    nameItem.className = "nav-item mx-1 fw-bold text-dark";
+    nameItem.innerHTML = `
+      <div class="d-flex align-items-center">
+        <img src="../asset/user_icon.png" alt="User" style="height:40px; width:40px; border-radius:50%; border:2px solid white; margin-right:8px;">
+        <span>${tenAdmin}</span>
+      </div>
+    `;
+
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "btn background-blue border-dark btn-sm fw-bold ms-2";
+    logoutBtn.textContent = "Đăng xuất";
+    logoutBtn.onclick = () => {
+      alert("Đã đăng xuất!");
+      // ❌ Chỉ xóa AdminLogged
+      localStorage.removeItem("AdminLogged");
+      location.reload();
+    };
+
+    const logoutItem = document.createElement("li");
+    logoutItem.className = "nav-item mx-1";
+    logoutItem.appendChild(logoutBtn);
+
+    nav.appendChild(nameItem);
+    nav.appendChild(logoutItem);
+  });
+
+  </script>
+</body>
+</html>

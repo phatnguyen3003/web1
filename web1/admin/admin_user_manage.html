@@ -1,323 +1,294 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>ADMIN User Manage</title>
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý khách hàng</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .table-responsive {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    /* Phần chính cuộn ngang */
+    .product-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      flex-wrap: nowrap !important;
+      scroll-behavior: smooth;
+      padding-bottom: 1rem;
+    }
+    
+  </style>
+
+  <script>
+    // ✅ Chặn truy cập nếu chưa đăng nhập admin
+    if (localStorage.getItem("AdminLogged") !== "quanly1") {
+      window.location.href = "../sites/login_admin.html";
+    }
+  </script>
 </head>
+
 <body>
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-md navbar-light bg-light px-0 py-0 fixed-top">
-      <div class="container-fluid background-blue">
-        <!-- Logo -->
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <img src="../asset/logo.png" alt="logo" class="logo-img me-2">
-          <span class="fw-bold">AdminPanel</span>
-        </a>
+ <nav class="navbar navbar-expand-lg navbar-dark background-blue fixed-top shadow">
+    <div class="container-fluid">
 
-        <!-- Nút toggle (cho màn nhỏ) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <!-- Logo -->
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="../asset/logo.png" alt="Logo" class="me-2" style="height: 80px;">
+      </a>
 
-        <!-- Menu -->
-      <div class="collapse navbar-collapse justify-content-end align-items-center fs-5" id="main-nav">
-        <ul class="navbar-nav px-3 align-items-center">
-          <li class="nav-item mx-1">
-            <a href="admin_index.html" class="btn btn-outline-dark">Dashboard</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_add_items.html" class="btn btn-outline-dark">Lên kệ</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_add_bill.html" class="btn btn-outline-dark">Hóa đơn nhập kho</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_package_manage.html" class="btn btn-outline-dark">Quản Lý Đơn hàng</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_user_manage.html" class="btn btn-outline-dark">Quản Lý Khách hàng</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a href="admin_voucher_manager.html" class="btn btn-outline-dark">Quản Lý Khuyến mãi</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle d-flex align-items-center p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="../asset/user_icon.png" alt="User" class="avatar-img">
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item text-danger" href="#">Đăng xuất</a></li>
-            </ul>
-           </li>
+      <!-- Nút thu gọn -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu chính -->
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav align-items-center text-center mb-2 mb-md-0" id="admin-navbar">
+         <li class="nav-item mx-1"><a href="admin_user_manage.html" class="btn btn-outline-dark border-dark">Quản lý người dùng</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_items.html" class="btn btn-outline-dark border-dark">Quản lý danh mục sản phẩm</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_bill.html" class="btn btn-outline-dark border-dark">Quản lý nhập hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_price_manage.html" class="btn btn-outline-dark border-dark">Quản lý giá bán</a></li>
+          <li class="nav-item mx-1"><a href="admin_order_manage.html" class="btn btn-outline-dark border-dark">Quản lý đơn đặt hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_storage_manage.html" class="btn btn-outline-dark border-dark">Quản lý tồn kho</a></li>
         </ul>
+        <!-- JS sẽ thêm phần admin vào đây -->
       </div>
 
       </div>
     </nav>
+       <div style="height: 90px"></div>
+  <!-- MAIN CONTENT -->
+  <div class="container mt-4 mb-5">
+    <h2 class="text-center mb-4 fw-bold">Quản lý khách hàng</h2>
 
-      <!-- THÊM KHOẢNG CÁCH SAU NAVBAR -->
-      <div style="height: 80px;"></div>
-
-    <!-- MAIN CONTAINER -->
-    <div class="container-lg">
-      <div class="row justify-content-center text-center">
-        <div class="col-11">
-
-          <!-- PHẦN THÊM KHÁCH HÀNG -->
-          <div class="card mb-4 shadow-sm">
-            <div class="card-header bg-primary text-white">
-              <h5 class="mb-0">Thêm Tài Khoản Khách Hàng</h5>
-            </div>
-            <div class="card-body">
-              <form class="row g-3 text-start">
-                <div class="col-md-2">
-                  <label class="form-label">Mã KH</label>
-                  <input type="text" class="form-control" placeholder="VD: KH009">
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label">Tên Khách Hàng</label>
-                  <input type="text" class="form-control" placeholder="Nhập tên khách hàng">
-                </div>
-                <div class="col-md-2">
-                  <label class="form-label">Giới Tính</label>
-                  <select class="form-select">
-                    <option selected>Chọn...</option>
-                    <option>Nam</option>
-                    <option>Nữ</option>
-                  </select>
-                </div>
-                <div class="col-md-2">
-                  <label class="form-label">Email</label>
-                  <input type="email" class="form-control" placeholder="email@gmail.com">
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label">Số Điện Thoại</label>
-                  <input type="text" class="form-control" placeholder="Nhập số điện thoại">
-                </div>
-
-                <!-- PHẦN ĐỊA CHỈ -->
-                <div class="col-12">
-                  <label class="form-label fw-bold text-primary">Địa Chỉ</label>
-                  <div class="row g-3">
-                    <div class="col-md-3">
-                      <label class="form-label">Số nhà</label>
-                      <input type="text" class="form-control" placeholder="VD: 68">
-                    </div>
-                    <div class="col-md-5">
-                      <label class="form-label">Tên đường</label>
-                      <input type="text" class="form-control" placeholder="VD: Bùi Thị Xuân">
-                    </div>
-                    <div class="col-md-4">
-                      <label class="form-label">Phường/Xã</label>
-                      <select class="form-select">
-                        <option selected>-- Chọn Phường/Xã --</option>
-                        <option>Phường Sài Gòn</option>
-                        <option>Phường Bến Thành</option>
-                        <option>Phường Bàn Cờ</option>
-                        <option>Phường Xuân Hòa</option>
-                        <option>Phường Khánh Hội</option>
-                        <option>Phường Chợ Lớn</option>
-                        <option>Phường Tân Hưng</option>
-                        <option>Phường Chánh Hưng</option>
-                        <option>Phường Vườn Lài</option>
-                        <option>Phường Tân Sơn Nhất</option>
-                        <option>Phường Thủ Đức</option>
-                        <option>Xã Tân An Hội</option>
-                        <option>Xã Nhuận Đức</option>
-                        <option>Xã Củ Chi</option>
-                        <option>Xã Bình Khánh</option>
-                        <option>Xã Bà Điểm</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="row g-3 mt-1">
-                    <div class="col-md-6">
-                      <label class="form-label">Thành phố</label>
-                      <select class="form-select">
-                        <option selected>-- Chọn Thành phố --</option>
-                        <option>Thành Phố Hồ Chí Minh</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-12 text-center mt-3">
-                  <button type="submit" class="btn btn-success px-4">Thêm Khách Hàng</button>
-                </div>
-              </form>
-            </div>
+    <!-- FORM THÊM KHÁCH HÀNG -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <form id="addUserForm" class="row g-3">
+          <div class="col-12 col-md-6 col-lg-2">
+            <input type="text" id="username" class="form-control" placeholder="Tài khoản" required />
           </div>
-
-
-          <!-- PHẦN DANH SÁCH KHÁCH HÀNG -->
-          <div class="row justify-content-center text-center g-3 align-items-start">
-            <h3 class="mb-4">Thông Tin Khách hàng</h3>
-
-            <!-- BẢNG KHÁCH HÀNG -->
-            <table class="table table-striped table-hover align-middle text-center">
-              <thead class="table-primary">
-                <tr>
-                  <th scope="col">Mã KH</th>
-                  <th scope="col">Avatar</th>
-                  <th scope="col">Tên Khách Hàng</th>
-                  <th scope="col">Giới Tính</th>
-                  <th scope="col">Ngày Sinh</th>
-                  <th scope="col">Số Điện Thoại</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Địa Chỉ</th>
-                  <th scope="col">Thao Tác</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                    <tr>
-                    <td>KH001</td>
-                    <td><img src="../asset/profile_image/male_profile_image.png" class="rounded-circle" width="50" height="50"></td>
-                    <td>Người Dùng 001</td>
-                    <td>Nam</td>
-                    <td>30/03/2003</td>
-                    <td>0901234567</td>
-                    <td>nguoidung001300320036@gmail.com</td>
-                    <td>68 Bùi Thị Xuân, <b>phường Tân Sơn Nhất</b>, TP.HCM</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <button class="btn btn-warning btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </td>
-                    </tr>
-
-                    <tr>
-                    <td>KH002</td>
-                    <td><img src="../asset/profile_image/male_profile_image.png" class="rounded-circle" width="50" height="50"></td>
-                    <td>Người Dùng 002</td>
-                    <td>Nam</td>
-                    <td>14/10/2009</td>
-                    <td>0912456789</td>
-                    <td>nguoidung002141020098@gmail.com</td>
-                    <td>12 Nguyễn Trãi, <b>Phường Bàn Cờ</b>, TP.HCM</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <button class="btn btn-warning btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </td>
-                    </tr>
-
-                    <tr>
-                    <td>KH003</td>
-                    <td><img src="../asset/profile_image/male_profile_image.png" class="rounded-circle" width="50" height="50"></td>
-                    <td>Người Dùng 003</td>
-                    <td>Nam</td>
-                    <td>12/09/2009</td>
-                    <td>0933456789</td>
-                    <td>nguoidung003120920095@gmail.com</td>
-                    <td>24 Phạm Văn Đồng, <b>Phường Tân Sơn Nhì</b>, TP.HCM</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <button class="btn btn-warning btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </td>
-                    </tr>
-
-                    <tr>
-                    <td>KH004</td>
-                    <td><img src="../asset/profile_image/female_profile_image.png" class="rounded-circle" width="50" height="50"></td>
-                    <td>Người Dùng 004</td>
-                    <td>Nữ</td>
-                    <td>29/08/2009</td>
-                    <td>0945567890</td>
-                    <td>nguoidung004290820091@gmail.com</td>
-                    <td>175 Hai Bà Trưng, <b>Phường Linh Tây</b>, TP.HCM</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <button class="btn btn-warning btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </td>
-                    </tr>
-
-                    <tr>
-                    <td>KH005</td>
-                    <td><img src="../asset/profile_image/male_profile_image.png" class="rounded-circle" width="50" height="50"></td>
-                    <td>Người Dùng 005</td>
-                    <td>Nam</td>
-                    <td>11/06/2010</td>
-                    <td>0967788990</td>
-                    <td>nguoidung005110620109@gmail.com</td>
-                    <td>42 Lê Văn Sỹ, <b>Phường Bình Trưng Đông</b>, TP.HCM</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <button class="btn btn-warning btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </td>
-                    </tr>
-
-                    <tr>
-                    <td>KH006</td>
-                    <td><img src="../asset/profile_image/female_profile_image.png" class="rounded-circle" width="50" height="50"></td>
-                    <td>Người Dùng 006</td>
-                    <td>Nữ</td>
-                    <td>07/07/2008</td>
-                    <td>0978899001</td>
-                    <td>nguoidung006070720087@gmail.com</td>
-                    <td>321 Cách Mạng Tháng 8, <b>Phường Long Phước</b>, TP.HCM</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <button class="btn btn-warning btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </td>
-                    </tr>
-
-                    <tr>
-                    <td>KH007</td>
-                    <td><img src="../asset/profile_image/male_profile_image.png" class="rounded-circle" width="50" height="50"></td>
-                    <td>Người Dùng 007</td>
-                    <td>Nam</td>
-                    <td>23/04/2008</td>
-                    <td>0989900112</td>
-                    <td>nguoidung007230420089@gmail.com</td>
-                    <td>75 Lý Thường Kiệt, <b>Phường Tân Kiểng</b>, TP.HCM</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <button class="btn btn-warning btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </td>
-                    </tr>
-
-                    <tr>
-                    <td>KH008</td>
-                    <td><img src="../asset/profile_image/female_profile_image.png" class="rounded-circle" width="50" height="50"></td>
-                    <td>Người Dùng 008</td>
-                    <td>Nữ</td>
-                    <td>01/12/2008</td>
-                    <td>0901122334</td>
-                    <td>nguoidung008011220082@gmail.com</td>
-                    <td>64 Võ Văn Tần, <b>Phường Long Thạnh Mỹ</b>, TP.HCM</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <button class="btn btn-warning btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </td>
-                    </tr>
-
-                </tbody>
-            </table>
+          <div class="col-12 col-md-6 col-lg-2">
+            <input type="password" id="password" class="form-control" placeholder="Mật khẩu (tùy chọn)" />
           </div>
-
-        </div>
+          <div class="col-12 col-md-6 col-lg-2">
+            <input type="text" id="fullname" class="form-control" placeholder="Họ tên" required />
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <input type="text" id="address" class="form-control" placeholder="Địa chỉ" required />
+          </div>
+          <div class="col-12 col-md-6 col-lg-2">
+            <input type="tel" id="phone" class="form-control" placeholder="Số điện thoại" required />
+          </div>
+          <div class="col-12 col-lg-1 d-grid">
+            <button type="submit" class="btn btn-primary">Thêm</button>
+          </div>
+        </form>
       </div>
     </div>
 
-
+    <!-- DANH SÁCH KHÁCH HÀNG -->
+    <div class="card shadow product-scroll" >
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle text-center" id="userTable">
+            <thead class="table-dark">
+              <tr>
+                <th>Tài khoản</th>
+                <th>Họ tên</th>
+                <th>Địa chỉ</th>
+                <th>SĐT</th>
+                <th>Mật khẩu</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- JS render -->
+            </tbody>
+          </table>
+                  <div class="table-responsive">
+          <table class="table table-hover align-middle text-center" id="userTable"></table>
+          <div id="pagination" class="d-flex justify-content-center mt-3"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("admin-navbar");
+    const tenAdmin = localStorage.getItem("AdminLogged") || "Admin";
+
+    const nameItem = document.createElement("li");
+    nameItem.className = "nav-item mx-1 fw-bold text-dark";
+    nameItem.innerHTML = `
+      <div class="d-flex align-items-center">
+        <img src="../asset/user_icon.png" alt="User" style="height:40px; width:40px; border-radius:50%; border:2px solid white; margin-right:8px;">
+        <span>${tenAdmin}</span>
+      </div>
+    `;
+
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "btn background-blue border-dark btn-sm fw-bold ms-2";
+    logoutBtn.textContent = "Đăng xuất";
+    logoutBtn.onclick = () => {
+      alert("Đã đăng xuất!");
+      // ❌ Chỉ xóa AdminLogged
+      localStorage.removeItem("AdminLogged");
+      location.reload();
+    };
+
+    const logoutItem = document.createElement("li");
+    logoutItem.className = "nav-item mx-1";
+    logoutItem.appendChild(logoutBtn);
+
+    nav.appendChild(nameItem);
+    nav.appendChild(logoutItem);
+  });
+// ===============================
+// admin_user_manage.js + pagination chuẩn
+// ===============================
+
+// --- Dữ liệu mẫu có sẵn ---
+const defaultUsers = [
+  { username: "user1", password: "123456", fullname: "Nguyễn Văn A", address: "Hà Nội", phone: "0905123456", locked: false },
+  { username: "user2", password: "quang123", fullname: "Trần Quốc Quang", address: "TP.HCM", phone: "0912345678", locked: false },
+  { username: "user3", password: "bao123", fullname: "Lê Báo", address: "Đà Nẵng", phone: "0933456789", locked: true },
+  { username: "user4", password: "thuy123", fullname: "Lê Thùy", address: "Huế", phone: "0945123456", locked: false },
+  { username: "user5", password: "hung123", fullname: "Nguyễn Hùng", address: "Hải Phòng", phone: "0956123456", locked: false },
+  { username: "user6", password: "khanh123", fullname: "Phạm Khánh", address: "Cần Thơ", phone: "0978123456", locked: false },
+  { username: "user7", password: "lan123", fullname: "Trần Lan", address: "Quảng Ninh", phone: "0999123456", locked: true }
+];
+
+let users = JSON.parse(localStorage.getItem("users")) || defaultUsers;
+const rowsPerPage = 5;
+let currentPage = 1;
+
+function saveUsers() {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+// --- Hiển thị danh sách khách hàng ---
+function renderUsersTable() {
+  const tbody = document.querySelector("#userTable tbody");
+  tbody.innerHTML = "";
+
+  users.forEach((user, index) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${user.username}</td>
+      <td>${user.fullname}</td>
+      <td>${user.address}</td>
+      <td>${user.phone}</td>
+      <td>${user.password}</td>
+      <td>${user.locked ? '<span class="badge bg-danger">Bị khóa</span>' : '<span class="badge bg-success">Hoạt động</span>'}</td>
+      <td>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <button class="btn btn-sm btn-warning" onclick="toggleLock(${index})">${user.locked ? 'Mở khóa' : 'Khóa'}</button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  saveUsers();
+  setupPagination();
+}
+
+// --- Phân trang giống form mẫu ---
+function setupPagination() {
+  const table = document.getElementById("userTable");
+  const rows = Array.from(table.querySelectorAll("tbody tr"));
+  const paginationDiv = document.getElementById("pagination");
+
+  function renderTable() {
+    rows.forEach(row => row.style.display = "none");
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    currentPage = Math.min(currentPage, totalPages) || 1;
+
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = currentPage * rowsPerPage;
+    rows.slice(start, end).forEach(row => row.style.display = "");
+
+    renderPagination(totalPages);
+  }
+
+  function renderPagination(totalPages) {
+    paginationDiv.innerHTML = "";
+
+    const prev = document.createElement("button");
+    prev.textContent = "« Trước";
+    prev.className = "btn btn-outline-primary btn-sm";
+    prev.disabled = currentPage === 1;
+    prev.onclick = () => { currentPage--; renderTable(); };
+
+    const next = document.createElement("button");
+    next.textContent = "Sau »";
+    next.className = "btn btn-outline-primary btn-sm";
+    next.disabled = currentPage === totalPages;
+    next.onclick = () => { currentPage++; renderTable(); };
+
+    const pageInfo = document.createElement("span");
+    pageInfo.textContent = `Trang ${currentPage} / ${totalPages || 1}`;
+    pageInfo.className = "mx-2";
+
+    paginationDiv.append(prev, pageInfo, next);
+  }
+
+  renderTable();
+}
+
+// --- Thêm khách hàng ---
+document.getElementById("addUserForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  let password = document.getElementById("password").value.trim();
+  const fullname = document.getElementById("fullname").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+
+  if (!username || !fullname || !address || !phone) {
+    alert("Vui lòng điền đầy đủ thông tin!");
+    return;
+  }
+
+  if (users.some(u => u.username === username)) {
+    alert("Tên tài khoản đã tồn tại!");
+    return;
+  }
+
+  if (!password) password = "123456";
+
+  users.push({ username, password, fullname, address, phone, locked: false });
+  saveUsers();
+  renderUsersTable();
+  e.target.reset();
+  alert(`✅ Đã thêm khách hàng "${fullname}" (Tài khoản: ${username}, Mật khẩu: ${password})`);
+});
+
+// --- Khóa / Mở tài khoản ---
+window.toggleLock = function (index) {
+  users[index].locked = !users[index].locked;
+  saveUsers();
+  renderUsersTable();
+};
+
+// --- Khi tải xong DOM ---
+document.addEventListener("DOMContentLoaded", renderUsersTable);
+
+  </script>
 </body>
 </html>

@@ -1,9 +1,10 @@
 .box{
 	position: relative;
-	background: aqua;
+	background: rgb(213, 213, 213);
 	min-height: 150px;
 	margin-top: 20px ;
 	border-radius: 10px;
+    border: 2px solid black;
 }
 
 .item-picture{
@@ -48,5 +49,7 @@
 
 
 body {
+    padding-top:80px;
     padding-bottom: 70px;
 }
+

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phụ Kiện</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body class="bg-light">
+
+   <!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-light fixed-top background-blue">
+  <div class="container-fluid">
+
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center me-2" href="../index.html">
+      <img src="../asset/logo.png" alt="Logo" class="logo-img" height="40">
+    </a>
+
+    <!-- Danh mục (vẫn ở ngoài) -->
+    <div class="dropdown me-2 flex-shrink-0 nav-item-box">
+      <button class="btn background-blue btn-lg dropdown-toggle fw-bold w-100 btn-outline-dark"
+        data-bs-toggle="dropdown">
+        <img src="../asset/expand_category_icon.png" alt="icon" width="24" height="24" class="me-2">
+        Danh mục
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="electronic.html">Điện Tử</a></li>
+        <li><a class="dropdown-item" href="refrigeration.html">Điện Lạnh - Điện Gia Dụng</a></li>
+        <li><a class="dropdown-item" href="accessorie.html">Phụ Kiện</a></li>
+      </ul>
+    </div>
+
+    <!-- Nút menu 3 gạch -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+      aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Các phần còn lại: tìm kiếm + nút người dùng -->
+    <div class="collapse navbar-collapse justify-content-end align-items-center" id="main-nav">
+
+      <!-- Ô tìm kiếm -->
+      <form class="d-flex me-2 search-form nav-item-box flex-grow-1" style="max-width:500px;">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." id="bill-search-input">
+          <button class="btn btn-secondary" type="submition">Tìm</button>
+        </div>
+      </form>
+
+      <!-- Nút người dùng -->
+      <div id="user-buttons" class="d-flex flex-wrap gap-2">
+        <a href="cart.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+          <img src="../asset/user_package_icon.png" alt="Giỏ hàng" width="24" height="24" class="me-2">
+          Giỏ hàng
+        </a>
+        <a href="login.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+          <img src="../asset/user_icon.png" alt="Đăng nhập" width="24" height="24" class="me-2">
+          Đăng nhập
+        </a>
+        <a href="register.html"
+          class="btn background-blue btn-lg fw-bold d-flex align-items-center user-btn nav-item-box btn-outline-dark">
+          <img src="../asset/reigister_icon.png" alt="Đăng ký" width="24" height="24" class="me-2">
+          Đăng ký
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+  <div style="height:90px;"></div>
+
+  <main class="container mt-4">
+    <h3 class="fw-bold mb-4 text-primary">Danh mục: Phụ Kiện</h3>
+    <div class="row g-4">
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/cu_sac_apple.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/cu_sac_apple.png" class="card-img-top" alt="Cáp sạc">
+            <div class="card-body text-center">
+              <h6 class="card-title">Củ sạc Apple 2 cổng Type-C 35W</h6>
+              <p class="card-text text-danger fw-bold">1.190.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/op_lung_17.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/op_lung_17.png" class="card-img-top" alt="Tai nghe">
+            <div class="card-body text-center">
+              <h6 class="card-title">Ốp lưng kèm dây đeo iPhone 17 Pro Max</h6>
+              <p class="card-text text-danger fw-bold">2.500.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/tai_nghe.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/tai_nghe.png" class="card-img-top" alt="Chuột">
+            <div class="card-body text-center">
+              <h6 class="card-title">Tai nghe Apple AirPods Pro VN/A</h6>
+              <p class="card-text text-danger fw-bold">6.500.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+       
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/cu_sac_apple.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/USB-3.2-Kingston.png" class="card-img-top" alt="Cáp sạc">
+            <div class="card-body text-center">
+              <h6 class="card-title">USB 3.2 Kingston DataTraveler Exodia Onyx 64GB</h6>
+              <p class="card-text text-danger fw-bold">219.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/op_lung_17.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/Thẻ-nhớ-MicroSDXC.png" class="card-img-top" alt="Tai nghe">
+            <div class="card-body text-center">
+              <h6 class="card-title">Thẻ nhớ Micro SDXC Sandisk Extreme Pro V30 S 1TB</h6>
+              <p class="card-text text-danger fw-bold">5.990.000đ</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/tai_nghe.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/Bộ-phát-Wifi-di-động-TotoLink-M3L-Wifi-6.png" class="card-img-top" alt="Chuột">
+            <div class="card-body text-center">
+              <h6 class="card-title">Bộ phát Wifi di động TotoLink M3L Wifi 6 AX300 4G LTE 300Mbps</h6>
+              <p class="card-text text-danger fw-bold">1.099.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/cu_sac_apple.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/Pin-dự-phòng-Ugreen-không-dây.png" class="card-img-top" alt="Cáp sạc">
+            <div class="card-body text-center">
+              <h6 class="card-title">Pin dự phòng Ugreen không dây Ugreen Qi2 10000mAh 30W PB761</h6>
+              <p class="card-text text-danger fw-bold">1.200.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/op_lung_17.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/Pin-dự-phòng-Cuktech.png" class="card-img-top" alt="Tai nghe">
+            <div class="card-body text-center">
+              <h6 class="card-title">Pin dự phòng Cuktech 1C1A 20000mAh 55W tích hợp cáp Type-C (CP25) PB200N</h6>
+              <p class="card-text text-danger fw-bold">767.000đ</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/tai_nghe.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/Chuột-không-dây-Logitech.png" class="card-img-top" alt="Chuột">
+            <div class="card-body text-center">
+              <h6 class="card-title">Chuột không dây Logitech MX Master 2S</h6>
+              <p class="card-text text-danger fw-bold">1.890.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+             <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+       
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <a href="product_detail/cu_sac_apple.html" class="text-decoration-none text-dark">
+            <img src="../asset/products/tui-chong-soc-macbook-pro-m2-m1-14-inch.png" class="card-img-top" alt="Cáp sạc">
+            <div class="card-body text-center">
+              <h6 class="card-title">Túi chống sốc Macbook Pro M2/M1 14 inch Tomtoc</h6>
+              <p class="card-text text-danger fw-bold">570.000₫</p>
+            </div>
+          </a>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between">
+            <a href="check_out.html" class="btn btn-sm btn-danger flex-fill me-1">Mua ngay</a>
+            <a href="#" class="btn btn-sm btn-outline-primary flex-fill ms-1 add-to-cart-btn">🛒</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+    <!-- Thông báo khi thêm sản phẩm -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+  <div id="cartToast" class="toast align-items-center text-white bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">
+        ✅ Đã thêm sản phẩm vào giỏ hàng thành công!
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Đóng"></button>
+    </div>
+  </div>
+</div>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="../js/index.js"></script>
+</body>
+</html>

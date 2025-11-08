@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/png" href="../asset/logo.png">
+  <title>Quản lý tồn kho</title>
+
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script>
+    // Kiểm tra trạng thái đăng nhập
+    if (localStorage.getItem("AdminLogged") !== "quanly1") {
+        // Chưa đăng nhập => chuyển về trang login
+        window.location.href = "../sites/login_admin.html";
+    }
+
+  </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark background-blue fixed-top shadow">
+    <div class="container-fluid">
+
+      <!-- Logo -->
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="../asset/logo.png" alt="Logo" class="me-2" style="height: 80px;">
+      </a>
+
+      <!-- Nút thu gọn -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu chính -->
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav align-items-center text-center mb-2 mb-md-0" id="admin-navbar">
+          <li class="nav-item mx-1"><a href="admin_user_manage.html" class="btn btn-outline-dark border-dark">Quản lý người dùng</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_items.html" class="btn btn-outline-dark border-dark">Quản lý danh mục sản phẩm</a></li>
+          <li class="nav-item mx-1"><a href="admin_add_bill.html" class="btn btn-outline-dark border-dark">Quản lý nhập hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_price_manage.html" class="btn btn-outline-dark border-dark">Quản lý giá bán</a></li>
+          <li class="nav-item mx-1"><a href="admin_order_manage.html" class="btn btn-outline-dark border-dark">Quản lý đơn đặt hàng</a></li>
+          <li class="nav-item mx-1"><a href="admin_storage_manage.html" class="btn btn-outline-dark border-dark">Quản lý tồn kho</a></li>
+        </ul>
+        <!-- JS sẽ thêm phần admin vào đây -->
+      </div>
+
+      </div>
+    </nav>
+
+  <div style="height: 80px"></div>
+<div class="container-fluid">
+  <!-- NỘI DUNG -->
+<h2 class="mb-4">Quản lý Nhập-Xuất-Tồn</h2>
+
+<!-- 1️⃣ Tra cứu tồn kho -->
+<div class="section">
+  <h4>Tra cứu tồn kho</h4>
+  <div class="row g-2 align-items-center mb-2">
+    <div class="col-auto">
+      <input type="text" id="lookupProductID" class="form-control" placeholder="ID sản phẩm">
+    </div>
+    <div class="col-auto">
+      <select id="lookupCategory" class="form-select">
+        <option value="">-- Chọn loại sản phẩm --</option>
+        <option value="DT">Điện thoại</option>
+        <option value="GD">Gia dụng</option>
+        <option value="PK">Phụ kiện</option>
+        <option value="MT">Máy tính bảng</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <input type="month" id="lookupMonth" class="form-control">
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary" onclick="traCuuTonKho()">Tra cứu</button>
+    </div>
+  </div>
+  <div id="lookupResult"></div>
+</div>
+
+<!-- 2️⃣ Báo cáo tổng nhập-xuất-tồn -->
+<div class="section">
+  <h4>Báo cáo tổng nhập-xuất-tồn</h4>
+  <div class="row g-2 align-items-center mb-2">
+    <div class="col-auto">
+      <label>Tháng bắt đầu:</label>
+      <input type="month" id="reportStartMonth" class="form-control">
+    </div>
+    <div class="col-auto">
+      <label>Tháng kết thúc:</label>
+      <input type="month" id="reportEndMonth" class="form-control">
+    </div>
+    <div class="col-auto align-self-end">
+      <button class="btn btn-success" onclick="baoCaoNhapXuatTon()">Xem báo cáo</button>
+    </div>
+  </div>
+  <div id="reportResult"></div>
+</div>
+
+<!-- 3️⃣ Cảnh báo sắp hết hàng -->
+<div class="section">
+  <h4>Cảnh báo sắp hết hàng</h4>
+  <button class="btn btn-warning mb-2" onclick="canhBaoSapHetHang()">Kiểm tra</button>
+  <div id="lowStockAlert"></div>
+</div>
+
+<hr style="border-top: 2px solid #343a40; margin: 4px 0;">
+
+<!-- Bảng dữ liệu 15 sản phẩm (có nhập-xuất-tồn theo từng tháng) -->
+<table id="tableSanPham" class="table table-bordered table-sm " style="margin-top: 20px;">
+<thead>
+<tr><th>ID</th><th>Tên</th><th>Tháng</th><th>Nhập</th><th>Xuất</th><th>Tồn</th></tr>
+</thead>
+<tbody>
+<!-- Điện thoại -->
+<tr><td>DT001</td><td>Xiaomi Redmi Turbo 4</td><td>2025-01</td><td>50</td><td>30</td><td>20</td></tr>
+<tr><td>DT001</td><td>Xiaomi Redmi Turbo 4</td><td>2025-02</td><td>30</td><td>25</td><td>25</td></tr>
+<tr><td>DT001</td><td>Xiaomi Redmi Turbo 4</td><td>2025-03</td><td>40</td><td>35</td><td>30</td></tr>
+<tr><td>DT002</td><td>Xiaomi Pad Mini 8GB 256GB</td><td>2025-01</td><td>40</td><td>25</td><td>15</td></tr>
+<tr><td>DT002</td><td>Xiaomi Pad Mini 8GB 256GB</td><td>2025-02</td><td>35</td><td>30</td><td>20</td></tr>
+<tr><td>DT002</td><td>Xiaomi Pad Mini 8GB 256GB</td><td>2025-03</td><td>45</td><td>40</td><td>25</td></tr>
+<tr><td>DT003</td><td>Xiaomi 17 Pro 5G</td><td>2025-01</td><td>30</td><td>10</td><td>20</td></tr>
+<tr><td>DT003</td><td>Xiaomi 17 Pro 5G</td><td>2025-02</td><td>25</td><td>15</td><td>10</td></tr>
+<tr><td>DT003</td><td>Xiaomi 17 Pro 5G</td><td>2025-03</td><td>35</td><td>20</td><td>15</td></tr>
+
+<!-- Máy tính bảng -->
+<tr><td>MT001</td><td>Máy tính bảng Vivo iQOO Pad5 Pro</td><td>2025-01</td><td>20</td><td>5</td><td>15</td></tr>
+<tr><td>MT001</td><td>Máy tính bảng Vivo iQOO Pad5 Pro</td><td>2025-02</td><td>20</td><td>5</td><td>15</td></tr>
+<tr><td>MT001</td><td>Máy tính bảng Vivo iQOO Pad5 Pro</td><td>2025-03</td><td>25</td><td>10</td><td>15</td></tr>
+<tr><td>DT004</td><td>HONOR Magic V5</td><td>2025-01</td><td>25</td><td>15</td><td>10</td></tr>
+<tr><td>DT004</td><td>HONOR Magic V5</td><td>2025-02</td><td>30</td><td>20</td><td>15</td></tr>
+<tr><td>DT004</td><td>HONOR Magic V5</td><td>2025-03</td><td>35</td><td>25</td><td>20</td></tr>
+
+<!-- Gia dụng -->
+<tr><td>GD001</td><td>Google Tivi TCL QD-Mini LED 4K</td><td>2025-01</td><td>10</td><td>2</td><td>8</td></tr>
+<tr><td>GD001</td><td>Google Tivi TCL QD-Mini LED 4K</td><td>2025-02</td><td>8</td><td>3</td><td>5</td></tr>
+<tr><td>GD001</td><td>Google Tivi TCL QD-Mini LED 4K</td><td>2025-03</td><td>12</td><td>5</td><td>7</td></tr>
+<tr><td>GD002</td><td>Smart Tivi Xiaomi S Pro Mini Led 4K</td><td>2025-01</td><td>12</td><td>4</td><td>8</td></tr>
+<tr><td>GD002</td><td>Smart Tivi Xiaomi S Pro Mini Led 4K</td><td>2025-02</td><td>15</td><td>6</td><td>9</td></tr>
+<tr><td>GD002</td><td>Smart Tivi Xiaomi S Pro Mini Led 4K</td><td>2025-03</td><td>18</td><td>8</td><td>10</td></tr>
+<tr><td>GD003</td><td>Máy lạnh Casper Inverter 1.5HP QC-12IS36</td><td>2025-01</td><td>20</td><td>10</td><td>10</td></tr>
+<tr><td>GD003</td><td>Máy lạnh Casper Inverter 1.5HP QC-12IS36</td><td>2025-02</td><td>18</td><td>8</td><td>10</td></tr>
+<tr><td>GD003</td><td>Máy lạnh Casper Inverter 1.5HP QC-12IS36</td><td>2025-03</td><td>15</td><td>5</td><td>20</td></tr>
+<tr><td>GD004</td><td>Máy giặt Toshiba 8kg AW-M905BV(MK)</td><td>2025-01</td><td>15</td><td>5</td><td>10</td></tr>
+<tr><td>GD004</td><td>Máy giặt Toshiba 8kg AW-M905BV(MK)</td><td>2025-02</td><td>12</td><td>3</td><td>9</td></tr>
+<tr><td>GD004</td><td>Máy giặt Toshiba 8kg AW-M905BV(MK)</td><td>2025-03</td><td>18</td><td>7</td><td>11</td></tr>
+<tr><td>GD005</td><td>Tủ lạnh Xiaomi Mijia 606L</td><td>2025-01</td><td>12</td><td>5</td><td>7</td></tr>
+<tr><td>GD005</td><td>Tủ lạnh Xiaomi Mijia 606L</td><td>2025-02</td><td>10</td><td>4</td><td>6</td></tr>
+<tr><td>GD005</td><td>Tủ lạnh Xiaomi Mijia 606L</td><td>2025-03</td><td>15</td><td>6</td><td>9</td></tr>
+<tr><td>GD006</td><td>Máy lạnh Toshiba Inverter 1 HP</td><td>2025-01</td><td>10</td><td>3</td><td>7</td></tr>
+<tr><td>GD006</td><td>Máy lạnh Toshiba Inverter 1 HP</td><td>2025-02</td><td>12</td><td>4</td><td>8</td></tr>
+<tr><td>GD006</td><td>Máy lạnh Toshiba Inverter 1 HP</td><td>2025-03</td><td>15</td><td>5</td><td>10</td></tr>
+
+<!-- Phụ kiện -->
+<tr><td>PK001</td><td>Củ sạc Apple 2 cổng Type-C 35W</td><td>2025-01</td><td>100</td><td>80</td><td>20</td></tr>
+<tr><td>PK001</td><td>Củ sạc Apple 2 cổng Type-C 35W</td><td>2025-02</td><td>60</td><td>50</td><td>30</td></tr>
+<tr><td>PK001</td><td>Củ sạc Apple 2 cổng Type-C 35W</td><td>2025-03</td><td>50</td><td>40</td><td>30</td></tr>
+<tr><td>PK002</td><td>Ốp lưng iPhone 17 Pro Max</td><td>2025-01</td><td>50</td><td>40</td><td>10</td></tr>
+<tr><td>PK002</td><td>Ốp lưng iPhone 17 Pro Max</td><td>2025-02</td><td>55</td><td>45</td><td>10</td></tr>
+<tr><td>PK002</td><td>Ốp lưng iPhone 17 Pro Max</td><td>2025-03</td><td>60</td><td>50</td><td>10</td></tr>
+<tr><td>PK003</td><td>Tai nghe Bluetooth Apple AirPods Pro</td><td>2025-01</td><td>30</td><td>15</td><td>15</td></tr>
+<tr><td>PK003</td><td>Tai nghe Bluetooth Apple AirPods Pro</td><td>2025-02</td><td>30</td><td>15</td><td>15</td></tr>
+<tr><td>PK003</td><td>Tai nghe Bluetooth Apple AirPods Pro</td><td>2025-03</td><td>35</td><td>20</td><td>20</td></tr>
+<tr><td>PK004</td><td>USB 3.2 Kingston 64GB</td><td>2025-01</td><td>30</td><td>25</td><td>5</td></tr>
+<tr><td>PK004</td><td>USB 3.2 Kingston 64GB</td><td>2025-02</td><td>25</td><td>20</td><td>5</td></tr>
+<tr><td>PK004</td><td>USB 3.2 Kingston 64GB</td><td>2025-03</td><td>35</td><td>30</td><td>10</td></tr>
+</tbody>
+
+
+</table>
+<div id="pagination" class="mt-2"></div>
+
+</div>
+  <div style="height:80px";></div>
+
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ======= HÀM PHÂN TRANG CHUNG =======
+function paginateTable(tableId, paginationId, rowsPerPage=10){
+    const table = document.getElementById(tableId);
+    if(!table) return;
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    let currentPage = 1;
+
+    let paginationDiv = document.getElementById(paginationId);
+    if(!paginationDiv){
+        paginationDiv = document.createElement("div");
+        paginationDiv.id = paginationId;
+        paginationDiv.className = "d-flex justify-content-center align-items-center mt-2 gap-1";
+        table.insertAdjacentElement("afterend", paginationDiv);
+    }
+
+    function showPage(page){
+        currentPage = Math.min(Math.max(1, page), totalPages);
+        const start = (currentPage-1)*rowsPerPage;
+        const end = start+rowsPerPage;
+        rows.forEach((r,i)=> r.style.display = (i>=start && i<end) ? "" : "none");
+        renderPagination();
+    }
+
+    function renderPagination(){
+        paginationDiv.innerHTML = "";
+        const createBtn = (txt, page, disabled=false) => {
+            const btn = document.createElement("button");
+            btn.textContent = txt;
+            btn.className = "btn btn-sm " + (disabled ? "btn-secondary disabled" : "btn-outline-primary");
+            if(!disabled) btn.onclick = ()=> showPage(page);
+            return btn;
+        };
+        paginationDiv.appendChild(createBtn("«", 1, currentPage===1));
+        paginationDiv.appendChild(createBtn("<", currentPage-1, currentPage===1));
+        paginationDiv.appendChild(document.createTextNode(` Trang ${currentPage} / ${totalPages || 1} `));
+        paginationDiv.appendChild(createBtn(">", currentPage+1, currentPage===totalPages));
+        paginationDiv.appendChild(createBtn("»", totalPages, currentPage===totalPages));
+    }
+
+    showPage(1);
+    return { showPage, rows };
+}
+
+// ======= LẤY DỮ LIỆU SẢN PHẨM =======
+function getProductsData(){
+    const table = document.getElementById("tableSanPham");
+    const rows = Array.from(table.querySelectorAll("tbody tr"));
+    return rows.map(r=>({
+        id: r.cells[0].textContent.trim(),
+        name: r.cells[1].textContent.trim(),
+        month: r.cells[2].textContent.trim(),
+        nhap: parseInt(r.cells[3].textContent.trim()),
+        xuat: parseInt(r.cells[4].textContent.trim()),
+        ton: parseInt(r.cells[5].textContent.trim())
+    }));
+}
+
+// ======= TRA CỨU TỒN KHO =======
+function traCuuTonKho() {
+    const pid = document.getElementById("lookupProductID").value.trim();
+    const category = document.getElementById("lookupCategory").value;
+
+    const rows = getProductsData();
+
+    // Lọc theo ID và category
+    let filtered = rows;
+    if (pid) filtered = filtered.filter(p => p.id === pid);
+    if (category) filtered = filtered.filter(p => p.id.startsWith(category));
+
+    if (filtered.length === 0) {
+        document.getElementById("lookupResult").innerHTML =
+            '<span class="text-danger">Không tìm thấy sản phẩm.</span>';
+        return;
+    }
+
+    // Tính tổng tồn kho hiện tại
+    const grouped = {};
+    filtered.forEach(p => {
+        if (!grouped[p.id]) grouped[p.id] = { name: p.name, ton: 0 };
+        grouped[p.id].ton += p.ton;
+    });
+
+    let html = '<table class="table table-sm table-bordered"><thead><tr><th>ID</th><th>Tên</th><th>Tồn hiện tại</th></tr></thead><tbody>';
+    for (const id in grouped) {
+        html += `<tr>
+            <td>${id}</td>
+            <td>${grouped[id].name}</td>
+            <td>${grouped[id].ton}</td>
+        </tr>`;
+    }
+    html += '</tbody></table>';
+    document.getElementById("lookupResult").innerHTML = html;
+}
+
+
+// ======= BÁO CÁO NHẬP-XUẤT-TỒN =======
+function baoCaoNhapXuatTon(){
+    const start = document.getElementById("reportStartMonth").value;
+    const end = document.getElementById("reportEndMonth").value;
+    let products = getProductsData().filter(p => (!start || p.month >= start) && (!end || p.month <= end));
+    const reportDiv = document.getElementById("reportResult");
+
+    if(products.length===0){
+        reportDiv.innerHTML = '<span class="text-danger">Không có dữ liệu.</span><hr>';
+        return;
+    }
+
+    // Gộp theo ID
+    const grouped = {};
+    products.forEach(p=>{
+        if(!grouped[p.id]) grouped[p.id] = {name: p.name, nhap:0, xuat:0, ton:0};
+        grouped[p.id].nhap += p.nhap;
+        grouped[p.id].xuat += p.xuat;
+        grouped[p.id].ton += p.ton;
+    });
+
+    let totalNhap=0, totalXuat=0, totalTon=0;
+    let html='<table class="table table-sm table-bordered"><thead><tr><th>ID</th><th>Tên</th><th>Nhập</th><th>Xuất</th><th>Tồn</th></tr></thead><tbody>';
+    for(const id in grouped){
+        const p = grouped[id];
+        html += `<tr>
+            <td>${id}</td>
+            <td>${p.name}</td>
+            <td>${p.nhap}</td>
+            <td>${p.xuat}</td>
+            <td>${p.ton}</td>
+        </tr>`;
+        totalNhap += p.nhap; totalXuat += p.xuat; totalTon += p.ton;
+    }
+    html += '</tbody></table>';
+    html += `<div class="mt-2"><b>Tổng nhập:</b> ${totalNhap} | <b>Tổng xuất:</b> ${totalXuat} | <b>Tồn kho:</b> ${totalTon}</div>`;
+
+
+    reportDiv.innerHTML = html;
+}
+
+
+function canhBaoSapHetHang() {
+    const products = getProductsData();
+
+    // Gộp theo ID, lấy tồn lớn nhất của từng sản phẩm
+    const grouped = {};
+    products.forEach(p => {
+        if(!grouped[p.id]) {
+            grouped[p.id] = { name: p.name, ton: p.ton };
+        } else {
+            // Tồn còn lại là tồn cuối cùng (hoặc cộng dồn tuỳ nhu cầu)
+            grouped[p.id].ton = Math.max(grouped[p.id].ton, p.ton);
+        }
+    });
+
+    // Lọc ra sản phẩm sắp hết hàng (tồn ≤10)
+    const lowStock = Object.entries(grouped).filter(([id, p]) => p.ton <= 10);
+
+    const div = document.getElementById("lowStockAlert");
+    if(lowStock.length === 0){
+        div.innerHTML = "Không có sản phẩm sắp hết hàng";
+    } else {
+        // Tạo bảng
+        let html = '<b>Sản phẩm sắp hết hàng:</b>';
+        html += '<table class="table table-sm table-bordered mt-2">';
+        html += '<thead><tr><th>ID</th><th>Tên</th><th>Tồn còn lại</th></tr></thead><tbody>';
+
+        lowStock.forEach(([id, p]) => {
+            html += `<tr>
+                        <td>${id}</td>
+                        <td>${p.name}</td>
+                        <td>${p.ton}</td>
+                     </tr>`;
+        });
+
+        html += '</tbody></table>';
+        div.innerHTML = html;
+    }
+}
+
+
+
+// ======= KHỞI TẠO =======
+document.addEventListener("DOMContentLoaded", ()=>{
+    // Phân trang bảng gốc
+    paginateTable("tableSanPham", "pagination", 10);
+
+    // Gắn sự kiện button
+    document.querySelector('button.btn.btn-primary').onclick = traCuuTonKho;
+    document.querySelector('button.btn.btn-success').onclick = baoCaoNhapXuatTon;
+    document.querySelector('button.btn.btn-warning').onclick = canhBaoSapHetHang;
+
+    // Navbar admin
+    const nav = document.getElementById("admin-navbar");
+    const tenAdmin = localStorage.getItem("AdminLogged") || "Admin";
+    const nameItem = document.createElement("li");
+    nameItem.className = "nav-item mx-1 fw-bold text-dark";
+    nameItem.innerHTML = `
+        <div class="d-flex align-items-center">
+            <img src="../asset/user_icon.png" alt="User" style="height:40px;width:40px;border-radius:50%;border:2px solid white;margin-right:8px;">
+            <span>${tenAdmin}</span>
+        </div>`;
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "btn background-blue border-dark btn-sm fw-bold ms-2";
+    logoutBtn.textContent = "Đăng xuất";
+    logoutBtn.onclick = ()=>{
+        alert("Đã đăng xuất!");
+        localStorage.removeItem("AdminLogged");
+        location.reload();
+    };
+    const logoutItem = document.createElement("li");
+    logoutItem.className = "nav-item mx-1";
+    logoutItem.appendChild(logoutBtn);
+    nav.appendChild(nameItem);
+    nav.appendChild(logoutItem);
+});
+</script>
+
+
+
+
+</body>
+</html>
